@@ -6,7 +6,7 @@
 
 [The Roguelike Tutorial with Zig](https://anotherlehnner.github.io/zig-roguelike)
 
-[h-rl, a fantasy roguelike with Typescript](https://anotherlehner.github.io/h-rl)
+[h-rl: a fantasy roguelike with Typescript](https://anotherlehner.github.io/h-rl)
 
 ## Blog
 

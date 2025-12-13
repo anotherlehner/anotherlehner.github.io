@@ -4,7 +4,7 @@
 
 ### Selected Projects
 
-[The Roguelike Tutorial with Zig](https://anotherlehnner.github.io/zig-roguelike)
+[The Roguelike Tutorial with Zig](https://anotherlehner.github.io/zig-roguelike/)
 
 [h-rl: a fantasy roguelike with Typescript](https://anotherlehner.github.io/h-rl)
 

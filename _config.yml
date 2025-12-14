@@ -1,1 +1,4 @@
-theme: jekyll-theme-modernist
+theme: jekyll-theme-minima
+
+minima:
+  skin: dark

@@ -6,7 +6,7 @@
 
 [The Roguelike Tutorial with Zig](https://anotherlehner.github.io/zig-roguelike/)
 
-[h-rl: a fantasy roguelike with Typescript](https://anotherlehner.github.io/h-rl)
+[The Horror of Blackbird Hollow](https://anotherlehner.github.io/blackbird-hollow)
 
 ## Blog
 

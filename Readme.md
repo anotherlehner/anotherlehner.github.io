@@ -6,8 +6,6 @@
 
 [The Roguelike Tutorial with Zig](https://anotherlehner.github.io/zig-roguelike/)
 
-[The Horror of Blackbird Hollow](https://anotherlehner.github.io/blackbird-hollow)
-
 ## Blog
 
 [https://anotherlehner.blogspot.com/](https://anotherlehner.blogspot.com/)

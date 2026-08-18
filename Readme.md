@@ -4,7 +4,7 @@
 
 ### Selected Projects
 
-[The Roguelike Tutorial with Zig](https://anotherlehner.github.io/zig-roguelike/)
+[The Roguelike Tutorial with Zig](https://anotherlehner.github.io/zig-roguelike-tutorial/)
 
 ## Blog
 

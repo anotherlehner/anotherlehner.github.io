@@ -2,10 +2,6 @@
 
 [https://github.com/anotherlehner](https://github.com/anotherlehner)
 
-### Selected Projects
-
-[The Roguelike Tutorial with Zig](https://anotherlehner.github.io/zig-roguelike-tutorial/)
-
 ## Blog
 
 [https://anotherlehner.blogspot.com/](https://anotherlehner.blogspot.com/)
@@ -21,4 +17,4 @@
 
 ![Martian](images/martian.png)
 
-Martin Lehner (@anotherlehner (c 2025))
+Martin Lehner (@anotherlehner (c 2026))

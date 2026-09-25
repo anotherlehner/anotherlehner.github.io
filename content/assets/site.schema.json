@@ -1,0 +1,82 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "title": "Site Metadata",
+    "description": "Format for md2blog site metadata file (site.json).",
+    "type": "object",
+    "$defs": {
+        "hexColor": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+        }
+    },
+    "properties": {
+        "$schema": {
+            "description": "Optional JSON schema URI (ignored by md2blog, but can be used by text editors to support contextual hints and auto-complete).",
+            "type": "string"
+        },
+        "title": {
+            "description": "Title for the site (displayed at the top of every page).",
+            "type": "string"
+        },
+        "description": {
+            "description": "Optional (but recommended) description of the site (used in meta tags and also used as the default subtitle on all pages).",
+            "type": "string"
+        },
+        "url": {
+            "description": "Optional (but recommended) URL for the root of the site (used in Atom feed and Open Graph links).",
+            "type": "string"
+        },
+        "colors": {
+            "description": "Optional object specifying colors to use on the site. Note that all colors are reused for syntax highlighting.",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "Color used for the site title.",
+                    "$ref": "#/$defs/hexColor"
+                },
+                "heading": {
+                    "description": "Color used for headings.",
+                    "$ref": "#/$defs/hexColor"
+                },
+                "link": {
+                    "description": "Color used links.",
+                    "$ref": "#/$defs/hexColor"
+                },
+                "comment": {
+                    "description": "Color used only for syntax highlighting (generally for comments).",
+                    "$ref": "#/$defs/hexColor"
+                }
+            }
+        },
+        "header": {
+            "description": "Optional subtitle and top-level links (added to all pages). By default, the site description is used as the subtitle and links to non-post pages in the site root are shown.",
+            "type": "object",
+            "properties": {
+                "text": {
+                    "description": "Optional subtitle (added to all pages). By default, the site description is used as the subtitle.",
+                    "type": "string"
+                },
+                "links": {
+                    "description": "Optional map of top-level link names to relative paths or URLs. Use `index.html` to link to the home page and `posts/index.html` to link to the archive. By default, links to non-post pages in the site root are shown.",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "footer": {
+            "description": "Optional footer, e.g. for copyright notices (added to all pages).",
+            "type": "object",
+            "properties": {
+                "text": {
+                    "description": "Text to be shown in the footer (e.g. copyright notice).",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "required": [
+        "title"
+    ]
+}

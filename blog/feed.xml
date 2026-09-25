@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>anotherlehner/blog</title>
+<id>urn:md2blog:anotherlehner%2Fblog</id>
+
+<author>
+<name>anotherlehner/blog</name>
+</author>
+<updated>2026-09-25T16:12:05.223Z</updated>
+
+<entry>
+<title>Hello N</title>
+<id>urn:md2blog:anotherlehner%2Fblog:Hello%20N</id>
+<link rel="alternate" href="posts/nature-of-code/2026-09-25-hello-world.html"/>
+<updated>2026-09-25T00:00:00.000Z</updated>
+<summary type="text">This is the first post on my brand new dev blog</summary>
+<content type="html"></content>
+</entry>
+</feed>

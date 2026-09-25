@@ -2,7 +2,7 @@
 
 ## Test
 
-[test2](test.md)
+[test2](test2.md)
 
 ```javascript
 let x = 14;

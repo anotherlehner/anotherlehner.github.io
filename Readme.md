@@ -6,6 +6,8 @@
 
 [https://anotherlehner.blogspot.com/](https://anotherlehner.blogspot.com/)
 
+[blog/](blog/)
+
 ## Art
 
 [https://anotherlehner-art.blogspot.com/](https://anotherlehner-art.blogspot.com/)

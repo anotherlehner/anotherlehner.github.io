@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Genart Begins</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Genart Begins",
+
+  "keywords": "code",
+  "datePublished": "2026-09-09"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/code/index.html">code</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/code/2026-09-09-genart-begins.html">Genart Begins</a></h1>
+<p><time datetime="2026-09-09">September 9, 2026</time></p>
+</header>
+<p>With the move to Canada mostly complete (I hung curtains and my mattress has shipped so I hopefully can start sleeping a little better soon, the pod is still MIA) I have started looking toward other activities. With my job at CMU wound down I&#39;m focusing on three main objectives for the next four months:</p>
+<ol>
+<li>Working out daily and getting a good healthy eating routine re-established</li>
+<li>Painting/drawing every day (still working on getting this one going)</li>
+<li>Generative computer art</li>
+</ol>
+<p>This blog post is going to focus on #3. I&#39;ve been mulling over in my head for a couple months what projects I wanted to do during my break in Canada before getting back into work. What I landed on was reading and doing the exercises through the book <em>Nature of Code</em>, by Daniel Shiffman. </p>
+<p>When I read a technical book like this I typically do the exercises in another language if I can so that I&#39;m not so much a passive reader. I know typing in code from exercises and playing with them isn&#39;t exactly &quot;passive&quot; but unfortunately I think my engagement goes down a little when I&#39;m mostly re-typing in things instead of having to think through them. Toward that goal I wanted to work through the book using another stack than Javascript.</p>
+<p>I looked at a whole bunch of different languages and the whole preparation stage for this turned into more analysis paralysis than anything else but I think I learned some useful things about myself and my goal. Since I want to get through some of this book before the next century I ultimately decided to use something that compiles to Javascript. Going through some options like ReScript, ClojureScript, OCaml, F#, PureScript, Scheme, Gleam, Kotlin, Scala, and Standard ML was an adventure in itself! I&#39;m down to two possibilities: ClojureScript and PureScript. I might revisit Scheme at some point as well.</p>
+<p>Here&#39;s some of my thoughts on each option, which obviously skewed pretty hard into functional languages:</p>
+<ul>
+<li><strong>ReScript:</strong> I didn&#39;t like that ReScript was so similar to Javascript but I really liked how easy it was to get going, the overall environment and build process was great.</li>
+<li><strong>OCaml:</strong> OCaml took a bit more to get running than ReScript, I liked the syntax much more, but the Javascript interop, at least with <code>js_of_ocaml</code>, felt heavier and more fussy than what I wanted to deal with.</li>
+<li><strong>F#:</strong> F# I unfairly excluded because I don&#39;t much want to learn .NET right now.</li>
+<li><strong>Gleam:</strong> Gleam was reasonably nice to set up, the error messages were great, but I guess I didn&#39;t like the braces, it made it feel too much like day-to-day work, which I wanted to get away from -- also I have this unreasonably silly notion that a language shouldn&#39;t allow division by 0 to be 0, I realize that&#39;s unfair of me, the rest of the experience was pretty good.</li>
+<li><strong>Scheme:</strong> Scheme was an interesting animal; I used Racketscript for some experiments, BiwaScheme, and Gambit Scheme. For the life of me I couldn&#39;t get Gambit to build javascript files, I think this was an installation problem on my part. Biwa was very interesting and if I had more time I&#39;d explore that more. Racketscript mostly also worked -- the reason I didn&#39;t go further down this route was mostly time and interactivity, If I choose a lispish language like ClojureScript then I get some great interactive development out of the box with <code>shadow-cljs</code>.</li>
+<li><strong>Kotlin:</strong> Kotlin was a bit too much like day-to-day, too close to home (Java).</li>
+<li><strong>Scala:</strong> Scala builds were too slow for me.</li>
+<li><strong>Standard ML:</strong> Standard ML was tantalizingly close to what I&#39;ve always wanted in a language, I had never used it before now. Using <code>lunarml</code>, which compiles to both Lua and Javascript, I created a canvas-based experiment I really liked and felt very clean. I also created a simple <code>raylib 6</code> experiment using the C FFI of <code>mlton</code>. Worked pretty well, I&#39;m going to revisit this in the future at some point. It&#39;s a pity that SML has a few quirks that might make it difficult for day-to-day use (eg record update syntax) and the community is fairly small.</li>
+</ul>
+<p>So I&#39;m left with <code>cljs</code> and <code>purs</code>. I really like the idea of learning some deeper functional programming approaches with <code>purs</code> and I generally like static typing more than dynamic so I lean that way with my own bias. <code>cljs</code> I&#39;ve done some game experiments with using <code>rotjs</code> and that was a pretty good experience. I think it just comes down to which is ringing more bells than the other so I&#39;m going to get started with the book with both side-by-side and see which feels like it&#39;s pulling me harder.</p>
+<p>For a little teaser here&#39;s my first image generated with PureScript in ppm format...</p>
+<p><img src="../../assets/test.png" alt="demo png"></p>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

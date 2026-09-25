@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Nature of Code - Random Walker</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Nature of Code - Random Walker",
+
+  "keywords": "code",
+  "datePublished": "2025-11-02"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/code/index.html">code</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/code/2025-11-02-noc-random-walker.html">Nature of Code - Random Walker</a></h1>
+<p><time datetime="2025-11-02">November 2, 2025</time></p>
+</header>
+<p>For a small second post on the Nature of Code Chapter 0 I wanted to talk about the random walker, which simply takes a random step forward in one of four directions: up, down, left, and right. To quote from the book itself, a random walk can be used to model many different processes in nature:</p>
+<blockquote>
+<p>This may seem like an unsophisticated algorithm, but you can use random walks to model all sorts of phenomena that occur in the real world, from the movements of molecules in a gas, to the foraging of an animal, to the behavior of a gambler spending a day at the casino. [<a href="https://natureofcode.com/random/#random-walks">source</a>]</p>
+</blockquote>
+<p>Here is a video of my solution working on the Tic-80 with Janet:</p>
+<p>I&#39;m starting to learn some new little tricks with Janet and I managed to reduce the size of what I originally had. I quite like the ability to mix paradigms as I learn as well! I&#39;ve used Clojure a little and while I found it enjoyable I also found I needed to conform more to it&#39;s functional approach from the start. That&#39;s not a big deal but I did have some moments of frustration. With Janet I&#39;m learning about some of the same functional ideas but I can also easily do things in a more mutable imperative way too. This seems to smooth the learning to a more play and refine approach that I think I find more fun and less frustrating. Anyway, enough gabbing, here&#39;s the code...</p>
+<pre><code class="language-lisp"># title:   Janet Random Walker
+# author:  clockworkmartian
+# desc:    from nature of code chapter <span class="hljs-number">0</span>
+# site:    none
+# license: MIT License
+# version: <span class="hljs-number">0.1</span>
+# script: janet
+# strict:  true
+
+(<span class="hljs-name">use</span> tic80)
+
+(<span class="hljs-name">var</span> walker
+ @{<span class="hljs-symbol">:x</span> (<span class="hljs-name">/</span> <span class="hljs-number">240</span> <span class="hljs-number">2</span>)
+   <span class="hljs-symbol">:y</span> (<span class="hljs-name">/</span> <span class="hljs-number">136</span> <span class="hljs-number">2</span>)})
+
+(<span class="hljs-name">defn</span> random [min max]
+ (<span class="hljs-name">def</span> fmin (<span class="hljs-name">math/ceil</span> min))
+ (<span class="hljs-name">def</span> fmax (<span class="hljs-name">math/floor</span> max))
+  (<span class="hljs-name">+</span> fmin
+   (<span class="hljs-name">math/floor</span> 
+    (<span class="hljs-name">*</span> 
+     (<span class="hljs-name">math/random</span>) 
+     (<span class="hljs-name">+</span> (<span class="hljs-name">-</span> fmax fmin) <span class="hljs-number">1</span>)))))
+
+(<span class="hljs-name">defn</span> walker-step []
+ (<span class="hljs-name">+=</span> (<span class="hljs-name">walker</span> <span class="hljs-symbol">:x</span>) (<span class="hljs-name">random</span> <span class="hljs-number">-1</span> <span class="hljs-number">1</span>))
+ (<span class="hljs-name">+=</span> (<span class="hljs-name">walker</span> <span class="hljs-symbol">:y</span>) (<span class="hljs-name">random</span> <span class="hljs-number">-1</span> <span class="hljs-number">1</span>)))
+
+(<span class="hljs-name">defn</span> walker-show []
+ (<span class="hljs-name">pix</span> (<span class="hljs-name">walker</span> <span class="hljs-symbol">:x</span>) (<span class="hljs-name">walker</span> <span class="hljs-symbol">:y</span>) <span class="hljs-number">8</span>))
+
+(<span class="hljs-name">defn</span> BOOT []
+ (<span class="hljs-name">cls</span> <span class="hljs-number">13</span>)
+ (<span class="hljs-name">print</span> <span class="hljs-string">&quot;Random Walker (Janet)&quot;</span> <span class="hljs-number">5</span> <span class="hljs-number">5</span>))
+
+(<span class="hljs-name">defn</span> TIC []
+ (<span class="hljs-name">walker-step</span>)
+ (<span class="hljs-name">walker-show</span>))
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

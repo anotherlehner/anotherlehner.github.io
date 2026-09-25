@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LIPS Scheme NoC-ch0-Uniform-Distribution</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LIPS Scheme NoC-ch0-Uniform-Distribution",
+
+  "keywords": "code",
+  "datePublished": "2026-09-14"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/code/index.html">code</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/code/2026-09-14-lips-noc-ch0-uniform.html">LIPS Scheme NoC-ch0-Uniform-Distribution</a></h1>
+<p><time datetime="2026-09-14">September 14, 2026</time></p>
+</header>
+<p><img src="../../assets/lips-scheme-uniform-distr.png" alt="lips scheme uniform distribution"></p>
+<p>I worked up Example 0.2 in <em>The Nature of Code</em> this morning, which displays growing rectangles with vertical height based on a uniform random distribution. </p>
+<p>Created a new <code>lib.scm</code> file that I could include that contains utility functions. I had never used the <code>unfold</code> function before but managed to use that to create a simple range function that gives me a list of incrementing numbers—this came in handy during this exercise.</p>
+<p>When I finished converting the code to Scheme and running it, I noticed an issue I hadn&#39;t entirely expected: performance. My fans kicked up when running this example in my browser. I had expected to encounter some performance issues later on when I got to exercises and examples with more data, more movement, and lots of particles, but not this early for just 20 rectangles. LIPS Scheme is fully interpreted I believe, but I didn&#39;t expect that to be an issue this early. Will need to re-evaluate tonight what to do moving forward. I don&#39;t want to be baking my laptop and listening to my fans all day.</p>
+<p>A few other things I noticed:</p>
+<ul>
+<li><strong>The REPL is really great for playing with functions and learning how they work:</strong> I expected this as I&#39;ve used REPLs before, but it was pleasant to be able to do this since most of my day job work is in Java and I don&#39;t exactly get the opportunity often (I do use JRebel though to speed things up, which is pretty useful).</li>
+<li><strong>Dynamic friction:</strong> I make a lot of mistakes typing in function names, spelling, putting things in the wrong expression parenthesis, etc.—things that a statically typed language would tell me about before I even got to the browser.</li>
+<li><strong>Error reporting:</strong> LIPS Scheme doesn&#39;t tell me the line number that a program fails on; this is a big one because I need to make sure I move in very small increments, or issues in multiple places might be harder to fix.</li>
+</ul>
+<p>Will need to think about whether I want to keep going with this particular project using LIPS Scheme. I like it, but the performance on a project like this probably won&#39;t work. Lessons you can only learn by using it, it seems :) ...</p>
+<p>Rough code is here: <a href="https://github.com/anotherlehner/nature-of-code/tree/main/archived/lips/ch0/example_i_2_random_distribution">GitHub - nature-of-code / ch0 / example_i_2_random_distribution</a></p>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

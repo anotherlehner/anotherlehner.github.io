@@ -1,4 +1,10 @@
 {
     "$schema": "assets/site.schema.json",
-    "title": "anotherlehner/blog"
+    "title": "anotherlehner/blog",
+    "colors": {
+        "title": "#ff55ff",
+        "heading": "#ffffff",
+        "link": "#55ffff",
+	"comment": "#c8c8c8"
+    }
 }

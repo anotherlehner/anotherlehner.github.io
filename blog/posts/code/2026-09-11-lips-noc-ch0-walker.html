@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LIPS Scheme NoC-ch0-Random-Walker</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LIPS Scheme NoC-ch0-Random-Walker",
+
+  "keywords": "code",
+  "datePublished": "2026-09-11"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/code/index.html">code</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/code/2026-09-11-lips-noc-ch0-walker.html">LIPS Scheme NoC-ch0-Random-Walker</a></h1>
+<p><time datetime="2026-09-11">September 11, 2026</time></p>
+</header>
+<p><img src="../../assets/lips-scheme-random-walker.png" alt="lips scheme random walker"></p>
+<p>For the moment I settled on a language to use for my exploration of the Nature of Code: I&#39;m going to be using LIPS Scheme, which can be found at <a href="https://lips.js.org/">https://lips.js.org/</a>. It&#39;s an interpreted scheme that runs directly in an HTML page. I quite like the syntax of scheme but haven&#39;t had any reason to use it since I was in school many years ago. This project, being relatively small in scope, should be a nice use of it. Bonus being I can get more used to scheme and perhaps use it in other contexts like small binary executables with Chicken or other schemes.</p>
+<p>The first chapter of Nature of Code, chapter 0, is all about randomness and getting started with the exercises I implemented a random walker with LIPS, which provides a very nice syntax for interacting with javascript.</p>
+<p>The source to display this is relatively simple with scheme and p5. By the way, the reason it looks pixelated like this is because I intentionally made the resolution very small and then scaled it up so that it looked this way. I like the retro feel and hope to keep that vibe throughout the other exercises.</p>
+<pre><code class="language-scheme">(<span class="hljs-name"><span class="hljs-built_in">define</span></span> base-width <span class="hljs-number">160</span>)
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> base-height <span class="hljs-number">120</span>)
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> scale-factor <span class="hljs-number">6</span>)
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> screen-width (<span class="hljs-name"><span class="hljs-built_in">*</span></span> base-width scale-factor))
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> screen-height (<span class="hljs-name"><span class="hljs-built_in">*</span></span> base-height scale-factor))
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> walker-x (<span class="hljs-name"><span class="hljs-built_in">/</span></span> base-width <span class="hljs-number">2</span>))
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> walker-y (<span class="hljs-name"><span class="hljs-built_in">/</span></span> base-height <span class="hljs-number">2</span>))
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> randomDirections #(<span class="hljs-name">-1</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>))
+
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> (<span class="hljs-name">setup</span> p)
+  (<span class="hljs-name">p.createCanvas</span> screen-width screen-height)
+  (<span class="hljs-name">p.background</span> <span class="hljs-string">&quot;#1a1c2c&quot;</span>)
+  (<span class="hljs-name">p.fill</span> <span class="hljs-string">&quot;#f4f4f4&quot;</span>)
+  (<span class="hljs-name">p.textFont</span> <span class="hljs-string">&quot;monospace&quot;</span>)
+  (<span class="hljs-name">p.textSize</span> (<span class="hljs-name"><span class="hljs-built_in">*</span></span> <span class="hljs-number">8</span> scale-factor))
+  (<span class="hljs-name">p.text</span> <span class="hljs-string">&quot;Random Walker (LIPS + p5.js) &quot;</span> (<span class="hljs-name"><span class="hljs-built_in">*</span></span> <span class="hljs-number">5</span> scale-factor) (<span class="hljs-name"><span class="hljs-built_in">*</span></span> <span class="hljs-number">12</span> scale-factor)))
+
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> (<span class="hljs-name">step-walker</span> p)
+  (<span class="hljs-name"><span class="hljs-built_in">set!</span></span> walker-x (<span class="hljs-name"><span class="hljs-built_in">+</span></span> walker-x (<span class="hljs-name">p.random</span> randomDirections)))
+  (<span class="hljs-name"><span class="hljs-built_in">set!</span></span> walker-y (<span class="hljs-name"><span class="hljs-built_in">+</span></span> walker-y (<span class="hljs-name">p.random</span> randomDirections))))
+
+(<span class="hljs-name"><span class="hljs-built_in">define</span></span> (<span class="hljs-name">draw</span> p)
+  (<span class="hljs-name">step-walker</span> p)
+  (<span class="hljs-name">p.push</span>)
+  (<span class="hljs-name">p.scale</span> scale-factor)
+  (<span class="hljs-name">p.stroke</span> <span class="hljs-string">&quot;#ff0044&quot;</span>)
+  (<span class="hljs-name">p.point</span> walker-x walker-y)
+  (<span class="hljs-name">p.pop</span>))
+
+(<span class="hljs-name">new</span> p5
+  (<span class="hljs-name"><span class="hljs-built_in">lambda</span></span> (p)
+    (<span class="hljs-name"><span class="hljs-built_in">set!</span></span> p.setup (<span class="hljs-name"><span class="hljs-built_in">lambda</span></span> () (<span class="hljs-name">setup</span> p)))
+    (<span class="hljs-name"><span class="hljs-built_in">set!</span></span> p.draw (<span class="hljs-name"><span class="hljs-built_in">lambda</span></span> () (<span class="hljs-name">draw</span> p)))))
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

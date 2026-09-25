@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Nature of Code - Uniforms</title>
+<meta name="description" content="Nature of Code Uniform random distribution using Janet" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Nature of Code - Uniforms",
+  "abstract": "Nature of Code Uniform random distribution using Janet",
+  "keywords": "code",
+  "datePublished": "2025-10-26"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/code/index.html">code</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/code/2025-10-26-noc-uniforms.html">Nature of Code - Uniforms</a></h1>
+<p><time datetime="2025-10-26">October 26, 2025</time></p>
+</header>
+<p>I noticed recently that the <a href="https://natureofcode.com/">Nature of Code</a> book has appeared in a new edition using <a href="https://p5js.org/">p5js</a>! I&#39;ve been wanting to read this book for awhile and play with the exercises but couldn&#39;t seem to find the time among other things going on. I&#39;ve also been playing around with the idea of making some tiny games using this fantasy console called <a href="https://tic80.com/">tic80</a> so I figured it&#39;s 2025, why not both? So this blog series will cover my adventures in working through Nature of Code and porting the examples to work in tic80... hopefully.</p>
+<p>There&#39;s one more teensy challenge, I didn&#39;t want to work through this with Javascript. I work with Javascript every day for $dayjob and like to play around with other things at home to expand my brain a little, hopefully, probably not. Either way I was reading something about <a href="https://janet-lang.org/">Janet</a> on some website or other and realized it was also on the list of languages tic80 supported. Funny coincidence! So anyway, here we go.</p>
+<p>The first chapter of Nature of Code is all about randomness. In today&#39;s post I&#39;m working through roughly the second example of chapter 0 that describes using the uniform distribution. The goals is to make this 20 bar-chart-like display that tics up as a random number generator uniformly chooses one of the 20 and adds 1 to it&#39;s total. </p>
+<p>I needed to write a random function to make calculating discrete ranges of random numbers easier and to better match the examples from NoC. I also did this example in Javascript in tic80 and was pleasantly surprised to see that my Janet version used less tokens!</p>
+<pre><code class="language-lisp"># title:   Uniform Distribution
+# author:  clockworkmartian
+# desc:    from nature of code chatper <span class="hljs-number">0</span>
+# site:    none
+# license: MIT License
+# version: <span class="hljs-number">0.1</span>
+# script: janet
+# strict:  true
+
+(<span class="hljs-name">use</span> tic80)
+
+(<span class="hljs-name">var</span> randomCounts @[])
+(<span class="hljs-name">def</span> total <span class="hljs-number">20</span>)
+
+(<span class="hljs-name">defn</span> random [min max]
+    (<span class="hljs-name">def</span> n (<span class="hljs-name">math/ceil</span> min))
+    (<span class="hljs-name">def</span> x (<span class="hljs-name">math/floor</span> max))
+    (<span class="hljs-name">+</span> n
+        (<span class="hljs-name">math/floor</span> 
+            (<span class="hljs-name">*</span> 
+                (<span class="hljs-name">math/random</span>) 
+                (<span class="hljs-name">+</span> (<span class="hljs-name">-</span> x n) <span class="hljs-number">1</span>)))))
+
+(<span class="hljs-name">defn</span> drawRectangles []
+    (<span class="hljs-name">def</span> index (<span class="hljs-name">random</span> <span class="hljs-number">0</span> (<span class="hljs-name">-</span> total <span class="hljs-number">1</span>)))
+    (<span class="hljs-name">def</span> w (<span class="hljs-name">/</span> <span class="hljs-number">240</span> total))
+    (<span class="hljs-name">put</span> randomCounts index (<span class="hljs-name">++</span> (<span class="hljs-name">randomCounts</span> index)))
+    (<span class="hljs-name">for</span> x <span class="hljs-number">0</span> total
+        (<span class="hljs-name">rect</span> (<span class="hljs-name">*</span> x w)
+              (<span class="hljs-name">-</span> <span class="hljs-number">136</span> (<span class="hljs-name">randomCounts</span> x))
+                                (<span class="hljs-name">-</span> w <span class="hljs-number">1</span>)
+                                (<span class="hljs-name">randomCounts</span> x)
+                                <span class="hljs-number">8</span>)))
+
+(<span class="hljs-name">defn</span> BOOT []
+    (<span class="hljs-name">repeat</span> total 
+        (<span class="hljs-name">array/push</span> randomCounts <span class="hljs-number">0</span>)))
+
+(<span class="hljs-name">defn</span> TIC []
+    (<span class="hljs-name">cls</span> <span class="hljs-number">13</span>)
+    (<span class="hljs-name">print</span> <span class="hljs-string">&quot;Uniform Distribution&quot;</span> <span class="hljs-number">5</span> <span class="hljs-number">5</span>)
+    (<span class="hljs-name">drawRectangles</span>))
+</code></pre>
+<p>You can grab the cartridge for this in PNG format:</p>
+<p><img src="../../assets/janet_uniform_distribution.png" alt="janet uniform distribution tic-80 cartridge"></p>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

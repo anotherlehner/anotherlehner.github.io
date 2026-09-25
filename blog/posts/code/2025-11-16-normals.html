@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Nature of Code - Normals</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Nature of Code - Normals",
+
+  "keywords": "code",
+  "datePublished": "2025-11-16"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/code/index.html">code</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/code/2025-11-16-normals.html">Nature of Code - Normals</a></h1>
+<p><time datetime="2025-11-16">November 16, 2025</time></p>
+</header>
+<p>Normal distribution in TIC-80 using Janet. I converted the approach p5.js uses for normal randoms to Janet and displayed the result using the growing vertical bars like in previous examples.</p>
+<p>Here&#39;s the code and the cartridge:</p>
+<pre><code class="language-lisp"># title:   Normal Distribution
+# author:  clockworkmartian
+# desc:    from nature of code chatper <span class="hljs-number">0</span>
+# site:    none
+# license: MIT License
+# version: <span class="hljs-number">0.1</span>
+# script: janet
+# strict:  true
+
+(<span class="hljs-name">use</span> tic80)
+(<span class="hljs-name">var</span> randomCounts @[])
+(<span class="hljs-name">def</span> total <span class="hljs-number">60</span>)
+(<span class="hljs-name">var</span> y2 <span class="hljs-number">0</span>)
+(<span class="hljs-name">var</span> gprev false)
+
+(<span class="hljs-name">defn</span> randomGaussian [mean sd]
+ (<span class="hljs-name">var</span> y1 <span class="hljs-literal">nil</span>)
+ (<span class="hljs-name">if</span> gprev
+  (<span class="hljs-name">do</span> 
+   (<span class="hljs-name">set</span> y1 y2) 
+   (<span class="hljs-name">set</span> gprev false))
+  (<span class="hljs-name">do</span>
+   (<span class="hljs-name">var</span> x1 <span class="hljs-literal">nil</span>)
+   (<span class="hljs-name">var</span> x2 <span class="hljs-literal">nil</span>)
+   (<span class="hljs-name">var</span> w <span class="hljs-number">1</span>)
+   (<span class="hljs-name">while</span> (<span class="hljs-name">&gt;=</span> w <span class="hljs-number">1</span>)
+    (<span class="hljs-name">set</span> x1 (<span class="hljs-name">-</span> (<span class="hljs-name">*</span> (<span class="hljs-name">math/random</span>) <span class="hljs-number">2</span>) <span class="hljs-number">1</span>))
+    (<span class="hljs-name">set</span> x2 (<span class="hljs-name">-</span> (<span class="hljs-name">*</span> (<span class="hljs-name">math/random</span>) <span class="hljs-number">2</span>) <span class="hljs-number">1</span>))
+    (<span class="hljs-name">set</span> w (<span class="hljs-name">+</span> (<span class="hljs-name">*</span> x1 x1) (<span class="hljs-name">*</span> x2 x2))))
+   (<span class="hljs-name">set</span> w (<span class="hljs-name">math/sqrt</span> 
+    (<span class="hljs-name">/</span> (<span class="hljs-name">*</span> <span class="hljs-number">-2</span> (<span class="hljs-name">math/log</span> w)) w)))
+   (<span class="hljs-name">set</span> y1 (<span class="hljs-name">*</span> x1 w))
+   (<span class="hljs-name">set</span> y2 (<span class="hljs-name">*</span> x2 w))
+   (<span class="hljs-name">set</span> gprev true)))
+   (<span class="hljs-name">+</span> (<span class="hljs-name">*</span> y1 sd) mean))
+
+(<span class="hljs-name">defn</span> drawRectangles []
+ (<span class="hljs-name">def</span> index 
+  (<span class="hljs-name">math/floor</span> (<span class="hljs-name">randomGaussian</span> <span class="hljs-number">30</span> <span class="hljs-number">3</span>)))
+ (<span class="hljs-name">def</span> w (<span class="hljs-name">math/ceil</span> (<span class="hljs-name">/</span> <span class="hljs-number">240</span> total)))
+ (<span class="hljs-name">++</span> (<span class="hljs-name">randomCounts</span> index))
+ (<span class="hljs-name">for</span> x <span class="hljs-number">0</span> total
+  (<span class="hljs-name">rect</span> (<span class="hljs-name">*</span> x w)
+        (<span class="hljs-name">-</span> <span class="hljs-number">136</span> (<span class="hljs-name">randomCounts</span> x))
+        (<span class="hljs-name">-</span> w <span class="hljs-number">1</span>)
+        (<span class="hljs-name">randomCounts</span> x)
+        <span class="hljs-number">8</span>)))
+
+(<span class="hljs-name">defn</span> BOOT []
+ (<span class="hljs-name">repeat</span> total 
+  (<span class="hljs-name">array/push</span> randomCounts <span class="hljs-number">0</span>)))
+
+(<span class="hljs-name">defn</span> TIC []
+ (<span class="hljs-name">cls</span> <span class="hljs-number">13</span>)
+ (<span class="hljs-name">print</span> <span class="hljs-string">&quot;Normal Distribution (Janet)&quot;</span> <span class="hljs-number">5</span> <span class="hljs-number">5</span>)
+ (<span class="hljs-name">drawRectangles</span>))
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

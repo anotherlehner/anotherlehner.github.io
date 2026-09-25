@@ -4,9 +4,11 @@
 
 ## Blog
 
-[https://anotherlehner.blogspot.com/](https://anotherlehner.blogspot.com/)
+[anotherlehner.github.io/blog](blog/)
 
-[blog/](blog/)
+DEPRECATED (while switching to above github.io blog):
+
+[https://anotherlehner.blogspot.com/](https://anotherlehner.blogspot.com/)
 
 ## Art
 

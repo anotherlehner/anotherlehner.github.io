@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>ReScript NoC-ch0-Random-Distribution</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ReScript NoC-ch0-Random-Distribution",
+
+  "keywords": "code",
+  "datePublished": "2026-09-15"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/code/index.html">code</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/code/2026-09-15-rescript-noc-ch0-uniform.html">ReScript NoC-ch0-Random-Distribution</a></h1>
+<p><time datetime="2026-09-15">September 15, 2026</time></p>
+</header>
+<p><img src="../../assets/rescript-noc-random-distr.png" alt="rescript noc random distribution"></p>
+<p>I restarted my work on <em>The Nature of Code</em> today and started using ReScript instead of LIPS Scheme. ReScript is a variant of the ML language family and compiles to JavaScript. It&#39;s based on OCaml and builds very fast, has good integration with the npm ecosystem, and, although it&#39;s similar to JavaScript in some ways with respect to syntax, it&#39;s a fairly pleasant middle ground between F#, OCaml, SML, JavaScript, and related languages.</p>
+<p>I&#39;m using VS Code as my IDE with the official ReScript extension, which so far has worked very well showing errors in the editor before I go check the browser. I like having the compiler check me for errors before runtime—it&#39;s a bias I&#39;ve had for a long time and I guess I just feel more comfortable in that space. I don&#39;t mind the extra burden of having to describe things to it a bit more. ReScript, like other ML languages, has good type inference and I don&#39;t have to write a lot of additional static types unless I want to.</p>
+<p>Something I do need to do though is handle type signatures... Code is here.</p>
+<p>I think the code is a tad verbose in its current form and could probably be a lot shorter if worked on a bit. In the interest of time though—I&#39;ve been spending weeks getting moving on these initial exercises—I&#39;m going to keep speeding along.</p>
+<p>The trickiest bit of the ReScript coding so far, actually both it and LIPS, was getting it plugged into p5.js properly. For ReScript I decided to stick with global mode p5.js and set the window setup and draw functions.</p>
+<p>In the below example we need to:</p>
+<ol>
+<li>Set up the <code>window</code> as a type and point it at the JS window (<code>Browser</code>)</li>
+<li>Create some &quot;sets&quot; to assign functions to <code>setup</code> and <code>draw</code> (<code>P5</code>)</li>
+<li>Finally use them to set some anonymous functions with the code (<code>Main</code>)</li>
+</ol>
+<pre><code class="language-rescript"><span class="hljs-keyword">type</span> window
+@<span class="hljs-keyword">val</span> <span class="hljs-keyword">external</span> window: window = <span class="hljs-string">&quot;window&quot;</span>
+
+<span class="hljs-comment">// ...</span>
+
+@set <span class="hljs-keyword">external</span> setSetup:<span class="hljs-function"> (B<span class="hljs-params">rowser</span>.<span class="hljs-params">window</span>, <span class="hljs-params">unit</span> =&gt;</span> <span class="hljs-built_in">unit</span>) =&gt; <span class="hljs-built_in">unit</span> = <span class="hljs-string">&quot;setup&quot;</span>
+@set <span class="hljs-keyword">external</span> setDraw:<span class="hljs-function"> (B<span class="hljs-params">rowser</span>.<span class="hljs-params">window</span>, <span class="hljs-params">unit</span> =&gt;</span> <span class="hljs-built_in">unit</span>) =&gt; <span class="hljs-built_in">unit</span> = <span class="hljs-string">&quot;draw&quot;</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">let</span> main =<span class="hljs-function"> <span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Browser</span>.</span></span>window-&gt;<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">P5</span>.</span></span>set<span class="hljs-constructor">Setup(()</span> =&gt; {
+    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">P5</span>.</span></span>create<span class="hljs-constructor">Canvas(<span class="hljs-params">screenWidth</span>, <span class="hljs-params">screenHeight</span>)</span>
+    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">P5</span>.</span></span>background(#<span class="hljs-constructor">Str(<span class="hljs-params">bgColor</span>)</span>)
+  })
+
+  <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Browser</span>.</span></span>window-&gt;<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">P5</span>.</span></span>set<span class="hljs-constructor">Draw(()</span> =&gt; {
+    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">P5</span>.</span></span>background(#<span class="hljs-constructor">Str(<span class="hljs-params">bgColor</span>)</span>)
+    show<span class="hljs-constructor">Title()</span>
+    update<span class="hljs-constructor">Counts()</span>
+    show<span class="hljs-constructor">Rectangles()</span>
+  })
+
+  <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">P5</span>.</span></span>init<span class="hljs-constructor">P5Global()</span>
+}
+</code></pre>
+<p>Ta ta!</p>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

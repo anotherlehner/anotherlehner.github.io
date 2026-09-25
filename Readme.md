@@ -6,10 +6,6 @@
 
 [anotherlehner.github.io/blog](blog/)
 
-DEPRECATED (while switching to above github.io blog):
-
-[https://anotherlehner.blogspot.com/](https://anotherlehner.blogspot.com/)
-
 ## Art
 
 [https://anotherlehner-art.blogspot.com/](https://anotherlehner-art.blogspot.com/)

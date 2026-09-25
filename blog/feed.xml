@@ -6,8 +6,71 @@
 <author>
 <name>anotherlehner/blog</name>
 </author>
-<updated>2026-09-25T17:22:50.107Z</updated>
+<updated>2026-09-25T21:35:32.202Z</updated>
 
+<entry>
+<title>Nature of Code ch0 end</title>
+<id>urn:md2blog:anotherlehner%2Fblog:Nature%20of%20Code%20ch0%20end</id>
+<link rel="alternate" href="posts/code/2026-09-23-noc-ch0-end.html"/>
+<updated>2026-09-23T00:00:00.000Z</updated>
+
+<content type="html">&lt;p&gt;&lt;img src=&quot;posts/code/../../assets/noc-exercise-0-10.png&quot; alt=&quot;wiggling terrain&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;Finished capping off &lt;strong&gt;Chapter 0&lt;/strong&gt; of &lt;em&gt;The Nature of Code&lt;/em&gt;. I&amp;#39;ve been through most of these examples in various languages, but I think &lt;strong&gt;ReScript&lt;/strong&gt; has been my favorite so far. &lt;/p&gt;
+&lt;p&gt;I liked playing with both F# and ReScript, but a few key things pulled ReScript to the front for me:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Type inference without the friction:&lt;/strong&gt; I mostly didn&amp;#39;t write types except for externals. Once the externals were taken care of, I barely wrote any types in the sketch code itself. Some externals slowed me down a bit, but once I understood more about ReScript&amp;#39;s JS interop, I quickly solved those problems. I got to keep full, sound type safety for most regular coding without explicitly typing everything—it feels dynamic while staying completely type-safe!&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Blazing fast compiler:&lt;/strong&gt; The compiler is &lt;em&gt;fast&lt;/em&gt; fast.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JavaScript similarity:&lt;/strong&gt; Okay, this one surprised me. I was actually trying to get away from familiar JS syntax toward something new, but I found having a slightly similar syntax helped me feel more at home with ReScript while keeping a bit of familiarity along the way. Maybe a good gateway drug?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Great tooling:&lt;/strong&gt; The VS Code plugin works well for the most part, with only a few minor quirks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;a-minor-stumbling-block-p5js--global-scope&quot;&gt;A Minor Stumbling Block (P5.js &amp;amp; Global Scope)&lt;/h3&gt;
+&lt;p&gt;Something less positive that surfaced was less of a ReScript issue and more of a JavaScript/p5.js quirk. &lt;/p&gt;
+&lt;p&gt;I kept running into issues where the &lt;code&gt;floor&lt;/code&gt; function wasn&amp;#39;t found in one module but worked in another. After swapping things around, I realized that the p5.js &lt;code&gt;floor&lt;/code&gt; function (and all of its global functions) aren&amp;#39;t available until the global instance has actually been created. I had global variables being initialized before &lt;code&gt;main()&lt;/code&gt; was called outside of my &lt;code&gt;setup&lt;/code&gt;/&lt;code&gt;draw&lt;/code&gt; functions. &lt;/p&gt;
+&lt;p&gt;Once I rearranged things to initialize those variables inside &lt;code&gt;setup()&lt;/code&gt;, everything started working again. This would probably be an issue in plain JS as well, but either way, it resulted in a runtime error—something I always like to avoid if possible.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;I converted the &lt;code&gt;Terrain&lt;/code&gt; code Dan used in the book to ReScript with Gemini&amp;#39;s help for this exercise.&lt;/em&gt;&lt;/p&gt;
+</content>
+</entry>
+<entry>
+<title>Nature of Code ch0 exercise 0.4 paint splatter</title>
+<id>urn:md2blog:anotherlehner%2Fblog:Nature%20of%20Code%20ch0%20exercise%200.4%20paint%20splatter</id>
+<link rel="alternate" href="posts/code/2026-09-17-noc-ch0-exercise-0-4.html"/>
+<updated>2026-09-17T00:00:00.000Z</updated>
+
+<content type="html">&lt;p&gt;&lt;img src=&quot;posts/code/../../assets/noc-exercise-0-4-rescript.png&quot; alt=&quot;exercise 0.4 paint splatter&quot;/&gt;&lt;/p&gt;
+</content>
+</entry>
+<entry>
+<title>Long Lake Provincial Park NS</title>
+<id>urn:md2blog:anotherlehner%2Fblog:Long%20Lake%20Provincial%20Park%20NS</id>
+<link rel="alternate" href="posts/misc/2026-09-16-long-lake-park.html"/>
+<updated>2026-09-16T00:00:00.000Z</updated>
+
+<content type="html">&lt;p&gt;&lt;img src=&quot;posts/misc/../../assets/long-lake-1.jpg&quot; alt=&quot;long lake park picture one&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;Today I got out for a long walk at &lt;strong&gt;Long Lake Provincial Park&lt;/strong&gt; in Nova Scotia (The Lakeview Trails Recreation Area)—it&amp;#39;s a trivial 5-minute drive from my apartment in Clayton Park. &lt;/p&gt;
+&lt;h2 id=&quot;parking--facilities&quot;&gt;Parking &amp;amp; Facilities&lt;/h2&gt;
+&lt;p&gt;The main parking lot is on &lt;strong&gt;Dunbrack Street&lt;/strong&gt; and is dirt. There&amp;#39;s a pit toilet here, which I don&amp;#39;t really advise anyone to use unless you have to. I had to—drank far too much water this morning.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;posts/misc/../../assets/long-lake-2.jpg&quot; alt=&quot;long lake picture 2&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;The park surrounds Long Lake and Witherod Lake on the north end and then seemingly stretches far south all the way to the ocean. I don&amp;#39;t know if that&amp;#39;s actually true or not, but it looks like that on Google Maps.&lt;/p&gt;
+&lt;h2 id=&quot;witherod-lake-loop&quot;&gt;Witherod Lake Loop&lt;/h2&gt;
+&lt;p&gt;Much of the main trail around Witherod Lake is the same sort of tree/plant mix, and there are benches to sit on short distances apart (along the whole trail, actually). I walked this whole Witherod loop and discovered there was really only one spot I could reach the lake—which I avoided this time, because an aggressive little white dog made me think twice. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;posts/misc/../../assets/long-lake-3.jpg&quot; alt=&quot;long lake picture 3&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;I stuck to the trail and continued. While this loop was a nice walk in the beautiful weather today (&lt;strong&gt;70°F, sunny, mid humidity&lt;/strong&gt;), it was fairly boring. I did find loads of different mushroom species, though! &lt;/p&gt;
+&lt;p&gt;Here&amp;#39;s a picture of one right by the trail:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;posts/misc/../../assets/long-lake-4.jpg&quot; alt=&quot;Mushroom near the trail&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;I returned to the main parking area and used the awful pit toilet again before heading toward the scenic loop.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;posts/misc/../../assets/long-lake-5.jpg&quot; alt=&quot;Bathroom&quot;/&gt;&lt;/p&gt;
+&lt;h2 id=&quot;the-scenic-loop&quot;&gt;The Scenic Loop&lt;/h2&gt;
+&lt;p&gt;The scenic trail is much more what I was hoping to find: &lt;strong&gt;stunning views of the lake and direct access to the shoreline.&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;This part of Canada is just full of granite, and I found absolutely lovely rocky views of the lake that have a lot of promise for plein air painting later on. I guess I didn&amp;#39;t mention that above... I&amp;#39;m enjoying my walks, but I&amp;#39;m also scouting for later painting spots with my new gear. &lt;em&gt;(See my art blog if you&amp;#39;re interested in my paintings!)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Parts of this trail look like the high desert around Flagstaff, Arizona in the States—especially this view, which had me thinking of home:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;posts/misc/../../assets/long-lake-6.jpg&quot; alt=&quot;High desert-style view of the lake&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;After this high spot, the trail curved around the edge of the lake and opened up full access to the beach.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;posts/misc/../../assets/long-lake-7.jpg&quot; alt=&quot;cove view&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;I turned back before completing the full scenic loop so I could return later with Michele, so we can both discover the full trail and sights together. But here&amp;#39;s another picture of a nice shore spot:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;posts/misc/../../assets/long-lake-7.jpg&quot; alt=&quot;Shoreline view&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;Ta ta!&lt;/p&gt;
+</content>
+</entry>
 <entry>
 <title>ReScript NoC-ch0-Random-Distribution</title>
 <id>urn:md2blog:anotherlehner%2Fblog:ReScript%20NoC-ch0-Random-Distribution</id>
@@ -73,106 +136,6 @@
 &lt;/ul&gt;
 &lt;p&gt;Will need to think about whether I want to keep going with this particular project using LIPS Scheme. I like it, but the performance on a project like this probably won&amp;#39;t work. Lessons you can only learn by using it, it seems :) ...&lt;/p&gt;
 &lt;p&gt;Rough code is here: &lt;a href=&quot;https://github.com/anotherlehner/nature-of-code/tree/main/archived/lips/ch0/example_i_2_random_distribution&quot;&gt;GitHub - nature-of-code / ch0 / example_i_2_random_distribution&lt;/a&gt;&lt;/p&gt;
-</content>
-</entry>
-<entry>
-<title>LIPS Scheme NoC-ch0-Random-Walker</title>
-<id>urn:md2blog:anotherlehner%2Fblog:LIPS%20Scheme%20NoC-ch0-Random-Walker</id>
-<link rel="alternate" href="posts/code/2026-09-11-lips-noc-ch0-walker.html"/>
-<updated>2026-09-11T00:00:00.000Z</updated>
-
-<content type="html">&lt;p&gt;&lt;img src=&quot;posts/code/../../assets/lips-scheme-random-walker.png&quot; alt=&quot;lips scheme random walker&quot;/&gt;&lt;/p&gt;
-&lt;p&gt;For the moment I settled on a language to use for my exploration of the Nature of Code: I&amp;#39;m going to be using LIPS Scheme, which can be found at &lt;a href=&quot;https://lips.js.org/&quot;&gt;https://lips.js.org/&lt;/a&gt;. It&amp;#39;s an interpreted scheme that runs directly in an HTML page. I quite like the syntax of scheme but haven&amp;#39;t had any reason to use it since I was in school many years ago. This project, being relatively small in scope, should be a nice use of it. Bonus being I can get more used to scheme and perhaps use it in other contexts like small binary executables with Chicken or other schemes.&lt;/p&gt;
-&lt;p&gt;The first chapter of Nature of Code, chapter 0, is all about randomness and getting started with the exercises I implemented a random walker with LIPS, which provides a very nice syntax for interacting with javascript.&lt;/p&gt;
-&lt;p&gt;The source to display this is relatively simple with scheme and p5. By the way, the reason it looks pixelated like this is because I intentionally made the resolution very small and then scaled it up so that it looked this way. I like the retro feel and hope to keep that vibe throughout the other exercises.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-scheme&quot;&gt;(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; base-width &lt;span class=&quot;hljs-number&quot;&gt;160&lt;/span&gt;)
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; base-height &lt;span class=&quot;hljs-number&quot;&gt;120&lt;/span&gt;)
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; scale-factor &lt;span class=&quot;hljs-number&quot;&gt;6&lt;/span&gt;)
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; screen-width (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;*&lt;/span&gt;&lt;/span&gt; base-width scale-factor))
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; screen-height (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;*&lt;/span&gt;&lt;/span&gt; base-height scale-factor))
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; walker-x (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;/&lt;/span&gt;&lt;/span&gt; base-width &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;))
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; walker-y (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;/&lt;/span&gt;&lt;/span&gt; base-height &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;))
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; randomDirections #(&lt;span class=&quot;hljs-name&quot;&gt;-1&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;))
-
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; (&lt;span class=&quot;hljs-name&quot;&gt;setup&lt;/span&gt; p)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.createCanvas&lt;/span&gt; screen-width screen-height)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.background&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#1a1c2c&amp;quot;&lt;/span&gt;)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.fill&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#f4f4f4&amp;quot;&lt;/span&gt;)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.textFont&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;monospace&amp;quot;&lt;/span&gt;)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.textSize&lt;/span&gt; (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;*&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;8&lt;/span&gt; scale-factor))
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.text&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Random Walker (LIPS + p5.js) &amp;quot;&lt;/span&gt; (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;*&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt; scale-factor) (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;*&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;12&lt;/span&gt; scale-factor)))
-
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; (&lt;span class=&quot;hljs-name&quot;&gt;step-walker&lt;/span&gt; p)
-  (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;set!&lt;/span&gt;&lt;/span&gt; walker-x (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;+&lt;/span&gt;&lt;/span&gt; walker-x (&lt;span class=&quot;hljs-name&quot;&gt;p.random&lt;/span&gt; randomDirections)))
-  (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;set!&lt;/span&gt;&lt;/span&gt; walker-y (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;+&lt;/span&gt;&lt;/span&gt; walker-y (&lt;span class=&quot;hljs-name&quot;&gt;p.random&lt;/span&gt; randomDirections))))
-
-(&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;define&lt;/span&gt;&lt;/span&gt; (&lt;span class=&quot;hljs-name&quot;&gt;draw&lt;/span&gt; p)
-  (&lt;span class=&quot;hljs-name&quot;&gt;step-walker&lt;/span&gt; p)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.push&lt;/span&gt;)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.scale&lt;/span&gt; scale-factor)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.stroke&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#ff0044&amp;quot;&lt;/span&gt;)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.point&lt;/span&gt; walker-x walker-y)
-  (&lt;span class=&quot;hljs-name&quot;&gt;p.pop&lt;/span&gt;))
-
-(&lt;span class=&quot;hljs-name&quot;&gt;new&lt;/span&gt; p5
-  (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;lambda&lt;/span&gt;&lt;/span&gt; (p)
-    (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;set!&lt;/span&gt;&lt;/span&gt; p.setup (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;lambda&lt;/span&gt;&lt;/span&gt; () (&lt;span class=&quot;hljs-name&quot;&gt;setup&lt;/span&gt; p)))
-    (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;set!&lt;/span&gt;&lt;/span&gt; p.draw (&lt;span class=&quot;hljs-name&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;lambda&lt;/span&gt;&lt;/span&gt; () (&lt;span class=&quot;hljs-name&quot;&gt;draw&lt;/span&gt; p)))))
-&lt;/code&gt;&lt;/pre&gt;
-</content>
-</entry>
-<entry>
-<title>Genart Begins</title>
-<id>urn:md2blog:anotherlehner%2Fblog:Genart%20Begins</id>
-<link rel="alternate" href="posts/code/2026-09-09-genart-begins.html"/>
-<updated>2026-09-09T00:00:00.000Z</updated>
-
-<content type="html">&lt;p&gt;With the move to Canada mostly complete (I hung curtains and my mattress has shipped so I hopefully can start sleeping a little better soon, the pod is still MIA) I have started looking toward other activities. With my job at CMU wound down I&amp;#39;m focusing on three main objectives for the next four months:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Working out daily and getting a good healthy eating routine re-established&lt;/li&gt;
-&lt;li&gt;Painting/drawing every day (still working on getting this one going)&lt;/li&gt;
-&lt;li&gt;Generative computer art&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This blog post is going to focus on #3. I&amp;#39;ve been mulling over in my head for a couple months what projects I wanted to do during my break in Canada before getting back into work. What I landed on was reading and doing the exercises through the book &lt;em&gt;Nature of Code&lt;/em&gt;, by Daniel Shiffman. &lt;/p&gt;
-&lt;p&gt;When I read a technical book like this I typically do the exercises in another language if I can so that I&amp;#39;m not so much a passive reader. I know typing in code from exercises and playing with them isn&amp;#39;t exactly &amp;quot;passive&amp;quot; but unfortunately I think my engagement goes down a little when I&amp;#39;m mostly re-typing in things instead of having to think through them. Toward that goal I wanted to work through the book using another stack than Javascript.&lt;/p&gt;
-&lt;p&gt;I looked at a whole bunch of different languages and the whole preparation stage for this turned into more analysis paralysis than anything else but I think I learned some useful things about myself and my goal. Since I want to get through some of this book before the next century I ultimately decided to use something that compiles to Javascript. Going through some options like ReScript, ClojureScript, OCaml, F#, PureScript, Scheme, Gleam, Kotlin, Scala, and Standard ML was an adventure in itself! I&amp;#39;m down to two possibilities: ClojureScript and PureScript. I might revisit Scheme at some point as well.&lt;/p&gt;
-&lt;p&gt;Here&amp;#39;s some of my thoughts on each option, which obviously skewed pretty hard into functional languages:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;ReScript:&lt;/strong&gt; I didn&amp;#39;t like that ReScript was so similar to Javascript but I really liked how easy it was to get going, the overall environment and build process was great.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OCaml:&lt;/strong&gt; OCaml took a bit more to get running than ReScript, I liked the syntax much more, but the Javascript interop, at least with &lt;code&gt;js_of_ocaml&lt;/code&gt;, felt heavier and more fussy than what I wanted to deal with.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;F#:&lt;/strong&gt; F# I unfairly excluded because I don&amp;#39;t much want to learn .NET right now.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Gleam:&lt;/strong&gt; Gleam was reasonably nice to set up, the error messages were great, but I guess I didn&amp;#39;t like the braces, it made it feel too much like day-to-day work, which I wanted to get away from -- also I have this unreasonably silly notion that a language shouldn&amp;#39;t allow division by 0 to be 0, I realize that&amp;#39;s unfair of me, the rest of the experience was pretty good.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Scheme:&lt;/strong&gt; Scheme was an interesting animal; I used Racketscript for some experiments, BiwaScheme, and Gambit Scheme. For the life of me I couldn&amp;#39;t get Gambit to build javascript files, I think this was an installation problem on my part. Biwa was very interesting and if I had more time I&amp;#39;d explore that more. Racketscript mostly also worked -- the reason I didn&amp;#39;t go further down this route was mostly time and interactivity, If I choose a lispish language like ClojureScript then I get some great interactive development out of the box with &lt;code&gt;shadow-cljs&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Kotlin:&lt;/strong&gt; Kotlin was a bit too much like day-to-day, too close to home (Java).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Scala:&lt;/strong&gt; Scala builds were too slow for me.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Standard ML:&lt;/strong&gt; Standard ML was tantalizingly close to what I&amp;#39;ve always wanted in a language, I had never used it before now. Using &lt;code&gt;lunarml&lt;/code&gt;, which compiles to both Lua and Javascript, I created a canvas-based experiment I really liked and felt very clean. I also created a simple &lt;code&gt;raylib 6&lt;/code&gt; experiment using the C FFI of &lt;code&gt;mlton&lt;/code&gt;. Worked pretty well, I&amp;#39;m going to revisit this in the future at some point. It&amp;#39;s a pity that SML has a few quirks that might make it difficult for day-to-day use (eg record update syntax) and the community is fairly small.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So I&amp;#39;m left with &lt;code&gt;cljs&lt;/code&gt; and &lt;code&gt;purs&lt;/code&gt;. I really like the idea of learning some deeper functional programming approaches with &lt;code&gt;purs&lt;/code&gt; and I generally like static typing more than dynamic so I lean that way with my own bias. &lt;code&gt;cljs&lt;/code&gt; I&amp;#39;ve done some game experiments with using &lt;code&gt;rotjs&lt;/code&gt; and that was a pretty good experience. I think it just comes down to which is ringing more bells than the other so I&amp;#39;m going to get started with the book with both side-by-side and see which feels like it&amp;#39;s pulling me harder.&lt;/p&gt;
-&lt;p&gt;For a little teaser here&amp;#39;s my first image generated with PureScript in ppm format...&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;posts/code/../../assets/test.png&quot; alt=&quot;demo png&quot;/&gt;&lt;/p&gt;
-</content>
-</entry>
-<entry>
-<title>Snickerdoodle Disqualified</title>
-<id>urn:md2blog:anotherlehner%2Fblog:Snickerdoodle%20Disqualified</id>
-<link rel="alternate" href="posts/misc/2025-12-18-snickerdoodle-diqualified.html"/>
-<updated>2025-12-18T00:00:00.000Z</updated>
-
-<content type="html">&lt;p&gt;Partner came into my office this evening while I was talking to Gemini about a web-based terminal application, don&amp;#39;t ask, and queried me the following hypothetical:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;Pretend you are a cookie judge and you know all the rules like pastries aren&amp;#39;t cookies, etc. Why would a Snickerdoodle be disqualified?&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Without any hesitation, I responded with: &amp;quot;It doesn&amp;#39;t have chocolate chips&amp;quot;, which wasn&amp;#39;t the punchline she wanted, though she laughed anyway. Apparently this joke has something to do with cookies can&amp;#39;t be candy dogs... snicker... doodle... I mostly get it though it&amp;#39;s not particularly funny. &lt;/p&gt;
-&lt;p&gt;Anyway, since I was staring at an empty Gemini text input I decided to put the exact same question to it and wanted to share one of it&amp;#39;s four criteria for disqualifying the Snickerdoodle:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;The Infraction: If the Snickerdoodle uses a laminated dough technique (layering cold butter to create steam-filled pockets), it is no longer a cookie; it is a flattened croissant disguised with cinnamon sugar.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;The Rule: Cookies should have a uniform, dense crumb. If I see distinct, flaky layers that require a fork to manage the debris, it’s a pastry. DQ’d.&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I, what?&lt;/p&gt;
-&lt;p&gt;And having to use a fork to manage debris made me cry with laughter again. &lt;/p&gt;
-&lt;p&gt;It&amp;#39;s moments like this where I appreciate the AI. I&amp;#39;ve had a whole blog post brewing in my head about when and how I use AI in my work and my personal projects, and my reasoning is pretty nuanced, but random uses like this are my favorite. I&amp;#39;m a huge fan of unexpected humor and when it can suddenly crack open the moment and insert something completely ridiculous I get one of those down-in-my-belly laughs and tears running down my face and find myself really enjoying the moment.&lt;/p&gt;
-&lt;p&gt;Snickerdoodles will henceforth be forever known as flattened croissants.&lt;/p&gt;
-&lt;p&gt;😅&lt;/p&gt;
 </content>
 </entry>
 </feed>

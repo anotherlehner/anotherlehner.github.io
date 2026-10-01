@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 1 - Apple</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 1 - Apple",
+
+  "keywords": "code",
+  "datePublished": "2026-10-01"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/code/index.html">code</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/code/2026-10-01-gentober-apple.html">Generativetober Day 1 - Apple</a></h1>
+<p><time datetime="2026-10-01">October 1, 2026</time></p>
+</header>
+<p><img src="../../assets/gentober-day1.png" alt="day 1 apple"></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Mover</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">mass</span> = <span class="hljs-number">1</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span> = <span class="hljs-title function_">createVector</span>(width / <span class="hljs-number">5</span>, -<span class="hljs-number">12</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span> = <span class="hljs-title function_">createVector</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">acceleration</span> = <span class="hljs-title function_">createVector</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">visited</span> = [];
+  }
+
+  <span class="hljs-title function_">applyForce</span>(<span class="hljs-params">force</span>) {
+    <span class="hljs-keyword">let</span> f = p5.<span class="hljs-property">Vector</span>.<span class="hljs-title function_">div</span>(force, <span class="hljs-variable language_">this</span>.<span class="hljs-property">mass</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">acceleration</span>.<span class="hljs-title function_">add</span>(f);
+  }
+
+  <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">visited</span>.<span class="hljs-title function_">push</span>([<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span>]);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>.<span class="hljs-title function_">add</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">acceleration</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-title function_">add</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">acceleration</span>.<span class="hljs-title function_">mult</span>(<span class="hljs-number">0</span>);
+  }
+
+  <span class="hljs-title function_">show</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title function_">noStroke</span>();
+    <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">2</span>);
+    <span class="hljs-title function_">fill</span>(<span class="hljs-number">225</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">150</span>);
+    <span class="hljs-title function_">ellipse</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span>, <span class="hljs-number">24</span>, <span class="hljs-number">24</span>);
+
+    <span class="hljs-title function_">fill</span>(<span class="hljs-number">15</span>, <span class="hljs-number">225</span>, <span class="hljs-number">20</span>, <span class="hljs-number">255</span>);
+    <span class="hljs-title function_">ellipse</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span>+<span class="hljs-number">4</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span>-<span class="hljs-number">9</span>, <span class="hljs-number">12</span>, <span class="hljs-number">6</span>);
+
+    <span class="hljs-title function_">fill</span>(<span class="hljs-string">&quot;#663300&quot;</span>)
+    <span class="hljs-title function_">ellipse</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span>-<span class="hljs-number">8</span>, <span class="hljs-number">3</span>, <span class="hljs-number">12</span>)
+
+    <span class="hljs-title function_">stroke</span>(<span class="hljs-string">&quot;#666&quot;</span>);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">visited</span>.<span class="hljs-property">length</span>; i++) {
+      <span class="hljs-title function_">point</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">visited</span>[i][<span class="hljs-number">0</span>]-<span class="hljs-number">12</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">visited</span>[i][<span class="hljs-number">1</span>]+<span class="hljs-number">12</span>);
+    }
+  }
+
+  <span class="hljs-title function_">checkEdges</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span> &gt; width - <span class="hljs-number">12</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span> = width - <span class="hljs-number">12</span>;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">x</span> *= -<span class="hljs-number">0.65</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span> &lt; <span class="hljs-number">12</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">x</span> *= -<span class="hljs-number">0.65</span>;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span> = <span class="hljs-number">12</span>;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span> &gt; height - <span class="hljs-number">12</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">y</span> *= -<span class="hljs-number">0.65</span>;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span> = height - <span class="hljs-number">12</span>;
+    }
+  }
+}
+
+
+<span class="hljs-keyword">let</span> mover;
+<span class="hljs-keyword">let</span> wind;
+<span class="hljs-keyword">let</span> doWind = <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">let</span> paused = <span class="hljs-literal">false</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&#x27;w&#x27;</span>) {
+    doWind = !doWind;
+  }
+
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&#x27;p&#x27;</span>) {
+    paused = !paused;
+  }
+
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&#x27;s&#x27;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;day1.png&quot;</span>);
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  mover = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Mover</span>();
+  wind = <span class="hljs-title function_">createVector</span>(<span class="hljs-number">0.003</span>, <span class="hljs-number">0</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">background</span>(<span class="hljs-string">&quot;#ddf0dd&quot;</span>);
+
+  <span class="hljs-keyword">if</span> (!paused) {
+    <span class="hljs-keyword">let</span> gravity = <span class="hljs-title function_">createVector</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>);
+    mover.<span class="hljs-title function_">applyForce</span>(gravity);
+  
+    <span class="hljs-keyword">if</span> (doWind) {
+      mover.<span class="hljs-title function_">applyForce</span>(wind);
+    }
+    mover.<span class="hljs-title function_">update</span>();
+  }
+  mover.<span class="hljs-title function_">show</span>();
+  mover.<span class="hljs-title function_">checkEdges</span>();
+
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-string">&quot;#999&quot;</span>);
+  <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">1</span>);
+  <span class="hljs-title function_">noFill</span>();
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Apple&quot;</span>, <span class="hljs-number">8</span>, height-<span class="hljs-number">10</span>);
+}
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

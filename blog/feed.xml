@@ -6,15 +6,15 @@
 <author>
 <name>anotherlehner/blog</name>
 </author>
-<updated>2026-10-02T16:35:44.770Z</updated>
+<updated>2026-10-02T16:50:23.309Z</updated>
 
 <entry>
 <title>Generativetober Day 2 - Relic</title>
 <id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%202%20-%20Relic</id>
-<link rel="alternate" href="posts/code/2026-10-02-gentober-relic.html"/>
+<link rel="alternate" href="posts/gentober2026/2026-10-02-gentober-relic.html"/>
 <updated>2026-10-02T00:00:00.000Z</updated>
 
-<content type="html">&lt;p&gt;&lt;img src=&quot;posts/code/../../assets/gentober-day2.png&quot; alt=&quot;day 2 relic&quot;/&gt;&lt;/p&gt;
+<content type="html">&lt;p&gt;&lt;img src=&quot;posts/gentober2026/../../assets/gentober-day2.png&quot; alt=&quot;day 2 relic&quot;/&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; font;
 
 &lt;span class=&quot;hljs-keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;setup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
@@ -119,10 +119,10 @@
 <entry>
 <title>Generativetober Day 1 - Apple</title>
 <id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%201%20-%20Apple</id>
-<link rel="alternate" href="posts/code/2026-10-01-gentober-apple.html"/>
+<link rel="alternate" href="posts/gentober2026/2026-10-01-gentober-apple.html"/>
 <updated>2026-10-01T00:00:00.000Z</updated>
 
-<content type="html">&lt;p&gt;&lt;img src=&quot;posts/code/../../assets/gentober-day1.png&quot; alt=&quot;day 1 apple&quot;/&gt;&lt;/p&gt;
+<content type="html">&lt;p&gt;&lt;img src=&quot;posts/gentober2026/../../assets/gentober-day1.png&quot; alt=&quot;day 1 apple&quot;/&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Mover&lt;/span&gt; {
   &lt;span class=&quot;hljs-title function_&quot;&gt;constructor&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
     &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;mass&lt;/span&gt; = &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;;

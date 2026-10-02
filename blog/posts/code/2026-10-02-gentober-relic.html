@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 2 - Relic</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 2 - Relic",
+
+  "keywords": "code",
+  "datePublished": "2026-10-02"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/code/index.html">code</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/code/2026-10-02-gentober-relic.html">Generativetober Day 2 - Relic</a></h1>
+<p><time datetime="2026-10-02">October 2, 2026</time></p>
+</header>
+<p><img src="../../assets/gentober-day2.png" alt="day 2 relic"></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> font;
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  font = <span class="hljs-keyword">await</span> <span class="hljs-title function_">loadFont</span>(<span class="hljs-string">&quot;./MorePerfectDOSVGA.ttf&quot;</span>)
+
+  <span class="hljs-title function_">background</span>(<span class="hljs-string">&quot;#111&quot;</span>);
+
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">20</span>);
+  <span class="hljs-title function_">textFont</span>(font);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Current date is Tue  1-01-1980&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Enter new date:&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">45</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Current time is 13:21:24.54&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">70</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Enter new time:&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">95</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;The IBM Personal Computer DOS&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">170</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Version 2.00 (C)Copyright IBM Corp 1981, 1982, 1983&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">195</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;A&gt; RELIC&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">245</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;L oAd(_g.,.&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">295</span>);
+
+  <span class="hljs-comment">// glitch terminal</span>
+  <span class="hljs-comment">// use a list of ibm 4-color CGA definitions and choose randomly to set stroke</span>
+  <span class="hljs-comment">// draw lines of random length and start</span>
+  <span class="hljs-comment">// draw colored squares</span>
+  <span class="hljs-comment">// draw checkerboards of black and white</span>
+  <span class="hljs-keyword">let</span> cga = [<span class="hljs-string">&quot;#111&quot;</span>, <span class="hljs-string">&quot;#fff&quot;</span>, <span class="hljs-string">&quot;#55ffff&quot;</span>, <span class="hljs-string">&quot;#ff55ff&quot;</span>]
+
+  <span class="hljs-comment">// top half</span>
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> y=<span class="hljs-number">0</span>; y &lt; <span class="hljs-number">290</span>; y+=<span class="hljs-number">10</span>) {
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> x=<span class="hljs-number">0</span>; x &lt; <span class="hljs-number">640</span>; x+=<span class="hljs-number">10</span>) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-title function_">random</span>() &gt; <span class="hljs-number">0.99</span>) {
+        <span class="hljs-title function_">noStroke</span>();
+        <span class="hljs-title function_">fill</span>(<span class="hljs-title function_">random</span>(cga));
+        <span class="hljs-title function_">rect</span>(x, y, <span class="hljs-number">10</span>, <span class="hljs-number">25</span>);
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-title function_">random</span>() &gt; <span class="hljs-number">0.5</span>) {
+          <span class="hljs-title function_">stroke</span>(<span class="hljs-title function_">random</span>(cga));
+          <span class="hljs-title function_">line</span>(x, y, x+<span class="hljs-title function_">random</span>(-<span class="hljs-number">20</span>,<span class="hljs-number">30</span>), y);
+        }
+      }
+    }
+  }
+  
+  <span class="hljs-comment">// bottom half</span>
+
+  <span class="hljs-keyword">let</span> checker = <span class="hljs-literal">false</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> y=<span class="hljs-number">333</span>; y &lt; <span class="hljs-number">555</span>; y+=<span class="hljs-number">25</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-title function_">random</span>([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>,] == <span class="hljs-number">0</span>)) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> x=<span class="hljs-number">0</span>; x &lt; <span class="hljs-number">640</span>; x+=<span class="hljs-number">10</span>) {
+        <span class="hljs-title function_">fill</span>(checker === <span class="hljs-literal">false</span> ? <span class="hljs-number">0</span> : <span class="hljs-number">255</span>);
+        <span class="hljs-title function_">rect</span>(x, y, <span class="hljs-number">10</span>, <span class="hljs-number">25</span>);
+        checker = !checker;
+      }
+    }
+    checker = !checker;
+  }
+  
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-title function_">random</span>(cga));
+  <span class="hljs-title function_">line</span>(<span class="hljs-number">62</span>, <span class="hljs-number">291</span>, <span class="hljs-number">174</span>, <span class="hljs-number">291</span>);
+  <span class="hljs-title function_">noStroke</span>();
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> y=<span class="hljs-number">295</span>; y &lt; <span class="hljs-number">640</span>; y+=<span class="hljs-number">10</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-title function_">random</span>([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]) == <span class="hljs-number">2</span>) {
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> x=<span class="hljs-number">0</span>; x &lt; <span class="hljs-number">640</span>; x+=<span class="hljs-number">10</span>) {
+        <span class="hljs-title function_">fill</span>(<span class="hljs-title function_">random</span>(cga));
+        <span class="hljs-keyword">if</span> (<span class="hljs-title function_">random</span>([<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]) === <span class="hljs-number">1</span>) {
+          <span class="hljs-title function_">rect</span>(x, y, <span class="hljs-number">10</span>, <span class="hljs-number">25</span>);
+        }
+      }  
+    }
+
+    <span class="hljs-title function_">fill</span>(<span class="hljs-title function_">random</span>(cga));
+    <span class="hljs-title function_">rect</span>(
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">640</span>),
+      y,
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">25</span>, <span class="hljs-number">640</span>),
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">15</span>, <span class="hljs-number">25</span>)
+    );
+
+    <span class="hljs-title function_">fill</span>(<span class="hljs-number">0</span>);
+    <span class="hljs-title function_">rect</span>(
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">640</span>),
+      y,
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">640</span>),
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
+    )
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key ==<span class="hljs-string">&#x27;s&#x27;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;day2.png&quot;</span>);
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  
+}
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

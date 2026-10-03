@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 2 - Miniature</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 2 - Miniature",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-03"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-03-gentober-miniature.html">Generativetober Day 2 - Miniature</a></h1>
+<p><time datetime="2026-10-03">October 3, 2026</time></p>
+</header>
+<p><img src="../../assets/gentober-day3.png" alt="day 3"></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&#x27;s&#x27;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;day3.png&quot;</span>);
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+
+  <span class="hljs-keyword">let</span> cga = [<span class="hljs-string">&quot;#fff&quot;</span>, <span class="hljs-string">&quot;#55ffff&quot;</span>, <span class="hljs-string">&quot;#ff55ff&quot;</span>]
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">1.5</span>);
+  <span class="hljs-title function_">noFill</span>();
+  <span class="hljs-keyword">let</span> nSquares = <span class="hljs-number">14</span>;
+  <span class="hljs-keyword">let</span> increment = <span class="hljs-number">25</span>;
+  
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>; i &lt; nSquares; i++) {
+    <span class="hljs-keyword">let</span> [x1, y1] = [i*increment, i*increment];
+    <span class="hljs-keyword">let</span> [x2, y2] = [width - i*increment, y1];
+    <span class="hljs-keyword">let</span> [x3, y3] = [width - i*increment, height - i*increment];
+    <span class="hljs-keyword">let</span> [x4, y4] = [i*increment, height - i*increment];
+
+    x1 += <span class="hljs-title function_">random</span>(-<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)*i*<span class="hljs-number">2</span>;
+    y1 += <span class="hljs-title function_">random</span>(-<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)*i*<span class="hljs-number">2</span>;
+    x2 += <span class="hljs-title function_">random</span>(-<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)*i*<span class="hljs-number">2</span>;
+    y2 += <span class="hljs-title function_">random</span>(-<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)*i*<span class="hljs-number">2</span>;
+    x3 += <span class="hljs-title function_">random</span>(-<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)*i*<span class="hljs-number">2</span>;
+    y3 += <span class="hljs-title function_">random</span>(-<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)*i*<span class="hljs-number">2</span>;
+    x4 += <span class="hljs-title function_">random</span>(-<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)*i*<span class="hljs-number">2</span>;
+    y4 += <span class="hljs-title function_">random</span>(-<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)*i*<span class="hljs-number">2</span>;
+    
+    <span class="hljs-title function_">stroke</span>(<span class="hljs-title function_">random</span>(cga));
+    
+    <span class="hljs-title function_">line</span>(x1, y1, x2, y2);
+    <span class="hljs-title function_">line</span>(x2, y2, x3, y3);
+    <span class="hljs-title function_">line</span>(x3, y3, x4, y4);
+    <span class="hljs-title function_">line</span>(x4, y4, x1, y1);
+  }
+
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">12</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Miniature&quot;</span>, <span class="hljs-number">7</span>, height-<span class="hljs-number">7</span>);
+}
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

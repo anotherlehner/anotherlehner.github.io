@@ -1,5 +1,5 @@
 ---
-title: Generativetober Day 2 - Miniature
+title: Generativetober Day 3 - Miniature
 date: 2026-10-03
 ---
 

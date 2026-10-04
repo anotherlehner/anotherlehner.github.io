@@ -6,8 +6,93 @@
 <author>
 <name>anotherlehner/blog</name>
 </author>
-<updated>2026-10-03T17:56:20.866Z</updated>
+<updated>2026-10-04T18:01:21.381Z</updated>
 
+<entry>
+<title>Generativetober Day 4 - Cactus</title>
+<id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%204%20-%20Cactus</id>
+<link rel="alternate" href="posts/gentober2026/2026-10-04-gentober-cactus.html"/>
+<updated>2026-10-04T00:00:00.000Z</updated>
+
+<content type="html">&lt;p&gt;&lt;img src=&quot;posts/gentober2026/../../assets/gentober-day4.png&quot; alt=&quot;day picture&quot;/&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; white = &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#fff&amp;quot;&lt;/span&gt;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; cyan = &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#55ffff&amp;quot;&lt;/span&gt;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; magenta = &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#ff55ff&amp;quot;&lt;/span&gt;;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;cactus&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;x,y, baseHeight&lt;/span&gt;) {
+  &lt;span class=&quot;hljs-comment&quot;&gt;// saguaro-like cactus with random number of arms&lt;/span&gt;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (baseHeight &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(white);
+  } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (baseHeight &amp;gt;= &lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt; &amp;amp;&amp;amp; baseHeight &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;250&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(cyan);
+  } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(magenta);
+  }
+  &lt;span class=&quot;hljs-title function_&quot;&gt;strokeWeight&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;);
+
+  &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; dy = baseHeight+&lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;25&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;);
+  &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; cHeight = dy;
+
+  &lt;span class=&quot;hljs-comment&quot;&gt;// spine&lt;/span&gt;
+  &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(x,y, x, y-dy);
+
+  &lt;span class=&quot;hljs-comment&quot;&gt;// number of arms&lt;/span&gt;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; nArms = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;4&lt;/span&gt;);
+
+  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; i=&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;; i &amp;lt;= nArms; i++) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; xpos = x + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-cHeight/&lt;span class=&quot;hljs-number&quot;&gt;4&lt;/span&gt;, cHeight/&lt;span class=&quot;hljs-number&quot;&gt;4&lt;/span&gt;);
+    &lt;span class=&quot;hljs-comment&quot;&gt;// let x1 = x;&lt;/span&gt;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; y1 = y - &lt;span class=&quot;hljs-number&quot;&gt;0.30&lt;/span&gt;*cHeight;
+    &lt;span class=&quot;hljs-comment&quot;&gt;// let x2 = x1 + random(-cHeight/3, cHeight/3);&lt;/span&gt;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; y2 = y1 - &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(cHeight/&lt;span class=&quot;hljs-number&quot;&gt;6&lt;/span&gt;, cHeight/&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(xpos, y1, xpos, y2);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(xpos, y1, x, y1+&lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;);
+  }
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;setup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+  &lt;span class=&quot;hljs-title function_&quot;&gt;createCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;background&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;);
+
+  &lt;span class=&quot;hljs-comment&quot;&gt;// sketch name&lt;/span&gt;
+  &lt;span class=&quot;hljs-title function_&quot;&gt;noFill&lt;/span&gt;();
+  &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;strokeWeight&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;textSize&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;text&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Cactus&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;, height-&lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;);
+
+  
+  &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; cga = [white, cyan, magenta];
+
+  &lt;span class=&quot;hljs-comment&quot;&gt;// landscape&lt;/span&gt;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; y=&lt;span class=&quot;hljs-number&quot;&gt;400&lt;/span&gt;, x=&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, z=&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; y &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;620&lt;/span&gt;; y+=&lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;, x+=&lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;, z+=&lt;span class=&quot;hljs-number&quot;&gt;0.1&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;strokeWeight&lt;/span&gt;(z);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (y &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;580&lt;/span&gt;) {
+      &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(y &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;450&lt;/span&gt; ? white : cyan);
+      &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(x*&lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;+&lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;), y, &lt;span class=&quot;hljs-number&quot;&gt;200&lt;/span&gt; + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;200&lt;/span&gt;), y);
+    } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
+      &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(magenta);
+      &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(x*&lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt; + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;200&lt;/span&gt;, -&lt;span class=&quot;hljs-number&quot;&gt;350&lt;/span&gt;), y, x*&lt;span class=&quot;hljs-number&quot;&gt;4&lt;/span&gt;, y);
+    }
+  }
+
+  &lt;span class=&quot;hljs-comment&quot;&gt;// cactus&lt;/span&gt;
+  &lt;span class=&quot;hljs-title function_&quot;&gt;cactus&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;444&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;420&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;25&lt;/span&gt;);
+  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; nc = &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;; nc &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt;; nc++) {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;cactus&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;340&lt;/span&gt;), &lt;span class=&quot;hljs-number&quot;&gt;400&lt;/span&gt; + nc*&lt;span class=&quot;hljs-number&quot;&gt;50&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;*nc);
+  }
+
+  &lt;span class=&quot;hljs-title function_&quot;&gt;cactus&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;500&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;450&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;110&lt;/span&gt;);
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;keyPressed&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (key == &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;s&amp;#x27;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;saveCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;day4.png&amp;quot;&lt;/span&gt;);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+</entry>
 <entry>
 <title>Generativetober Day 3 - Miniature</title>
 <id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%203%20-%20Miniature</id>
@@ -301,15 +386,6 @@
 &lt;p&gt;I kept running into issues where the &lt;code&gt;floor&lt;/code&gt; function wasn&amp;#39;t found in one module but worked in another. After swapping things around, I realized that the p5.js &lt;code&gt;floor&lt;/code&gt; function (and all of its global functions) aren&amp;#39;t available until the global instance has actually been created. I had global variables being initialized before &lt;code&gt;main()&lt;/code&gt; was called outside of my &lt;code&gt;setup&lt;/code&gt;/&lt;code&gt;draw&lt;/code&gt; functions. &lt;/p&gt;
 &lt;p&gt;Once I rearranged things to initialize those variables inside &lt;code&gt;setup()&lt;/code&gt;, everything started working again. This would probably be an issue in plain JS as well, but either way, it resulted in a runtime error—something I always like to avoid if possible.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;I converted the &lt;code&gt;Terrain&lt;/code&gt; code Dan used in the book to ReScript with Gemini&amp;#39;s help for this exercise.&lt;/em&gt;&lt;/p&gt;
-</content>
-</entry>
-<entry>
-<title>Nature of Code ch0 exercise 0.4 paint splatter</title>
-<id>urn:md2blog:anotherlehner%2Fblog:Nature%20of%20Code%20ch0%20exercise%200.4%20paint%20splatter</id>
-<link rel="alternate" href="posts/code/2026-09-17-noc-ch0-exercise-0-4.html"/>
-<updated>2026-09-17T00:00:00.000Z</updated>
-
-<content type="html">&lt;p&gt;&lt;img src=&quot;posts/code/../../assets/noc-exercise-0-4-rescript.png&quot; alt=&quot;exercise 0.4 paint splatter&quot;/&gt;&lt;/p&gt;
 </content>
 </entry>
 </feed>

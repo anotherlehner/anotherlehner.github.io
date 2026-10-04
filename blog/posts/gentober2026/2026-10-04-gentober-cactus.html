@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 4 - Cactus</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 4 - Cactus",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-04"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-04-gentober-cactus.html">Generativetober Day 4 - Cactus</a></h1>
+<p><time datetime="2026-10-04">October 4, 2026</time></p>
+</header>
+<p><img src="../../assets/gentober-day4.png" alt="day picture"></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = <span class="hljs-string">&quot;#fff&quot;</span>;
+<span class="hljs-keyword">const</span> cyan = <span class="hljs-string">&quot;#55ffff&quot;</span>;
+<span class="hljs-keyword">const</span> magenta = <span class="hljs-string">&quot;#ff55ff&quot;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">cactus</span>(<span class="hljs-params">x,y, baseHeight</span>) {
+  <span class="hljs-comment">// saguaro-like cactus with random number of arms</span>
+  <span class="hljs-keyword">if</span> (baseHeight &lt; <span class="hljs-number">100</span>) {
+    <span class="hljs-title function_">stroke</span>(white);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (baseHeight &gt;= <span class="hljs-number">100</span> &amp;&amp; baseHeight &lt; <span class="hljs-number">250</span>) {
+    <span class="hljs-title function_">stroke</span>(cyan);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-title function_">stroke</span>(magenta);
+  }
+  <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">let</span> dy = baseHeight+<span class="hljs-title function_">random</span>(<span class="hljs-number">25</span>,<span class="hljs-number">100</span>);
+  <span class="hljs-keyword">let</span> cHeight = dy;
+
+  <span class="hljs-comment">// spine</span>
+  <span class="hljs-title function_">line</span>(x,y, x, y-dy);
+
+  <span class="hljs-comment">// number of arms</span>
+  <span class="hljs-keyword">const</span> nArms = <span class="hljs-title function_">random</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>);
+
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>; i &lt;= nArms; i++) {
+    <span class="hljs-keyword">let</span> xpos = x + <span class="hljs-title function_">random</span>(-cHeight/<span class="hljs-number">4</span>, cHeight/<span class="hljs-number">4</span>);
+    <span class="hljs-comment">// let x1 = x;</span>
+    <span class="hljs-keyword">let</span> y1 = y - <span class="hljs-number">0.30</span>*cHeight;
+    <span class="hljs-comment">// let x2 = x1 + random(-cHeight/3, cHeight/3);</span>
+    <span class="hljs-keyword">let</span> y2 = y1 - <span class="hljs-title function_">random</span>(cHeight/<span class="hljs-number">6</span>, cHeight/<span class="hljs-number">2</span>);
+    <span class="hljs-title function_">line</span>(xpos, y1, xpos, y2);
+    <span class="hljs-title function_">line</span>(xpos, y1, x, y1+<span class="hljs-number">10</span>);
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-comment">// sketch name</span>
+  <span class="hljs-title function_">noFill</span>();
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">1</span>);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">15</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Cactus&quot;</span>, <span class="hljs-number">10</span>, height-<span class="hljs-number">10</span>);
+
+  
+  <span class="hljs-keyword">let</span> cga = [white, cyan, magenta];
+
+  <span class="hljs-comment">// landscape</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> y=<span class="hljs-number">400</span>, x=<span class="hljs-number">0</span>, z=<span class="hljs-number">0</span>; y &lt; <span class="hljs-number">620</span>; y+=<span class="hljs-number">10</span>, x+=<span class="hljs-number">10</span>, z+=<span class="hljs-number">0.1</span>) {
+    <span class="hljs-title function_">strokeWeight</span>(z);
+    <span class="hljs-keyword">if</span> (y &lt; <span class="hljs-number">580</span>) {
+      <span class="hljs-title function_">stroke</span>(y &lt; <span class="hljs-number">450</span> ? white : cyan);
+      <span class="hljs-title function_">line</span>(x*<span class="hljs-number">5</span>+<span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>,<span class="hljs-number">100</span>), y, <span class="hljs-number">200</span> + <span class="hljs-title function_">random</span>(<span class="hljs-number">100</span>,<span class="hljs-number">200</span>), y);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-title function_">stroke</span>(magenta);
+      <span class="hljs-title function_">line</span>(x*<span class="hljs-number">3</span> + <span class="hljs-title function_">random</span>(-<span class="hljs-number">200</span>, -<span class="hljs-number">350</span>), y, x*<span class="hljs-number">4</span>, y);
+    }
+  }
+
+  <span class="hljs-comment">// cactus</span>
+  <span class="hljs-title function_">cactus</span>(<span class="hljs-number">444</span>, <span class="hljs-number">420</span>, <span class="hljs-number">25</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> nc = <span class="hljs-number">1</span>; nc &lt;= <span class="hljs-number">3</span>; nc++) {
+    <span class="hljs-title function_">cactus</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>,<span class="hljs-number">340</span>), <span class="hljs-number">400</span> + nc*<span class="hljs-number">50</span>, <span class="hljs-number">100</span>*nc);
+  }
+
+  <span class="hljs-title function_">cactus</span>(<span class="hljs-number">500</span>, <span class="hljs-number">450</span>, <span class="hljs-number">110</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&#x27;s&#x27;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;day4.png&quot;</span>);
+  }
+}
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

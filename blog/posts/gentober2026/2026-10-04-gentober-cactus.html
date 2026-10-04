@@ -42,16 +42,17 @@
 <span class="hljs-keyword">const</span> cyan = <span class="hljs-string">&quot;#55ffff&quot;</span>;
 <span class="hljs-keyword">const</span> magenta = <span class="hljs-string">&quot;#ff55ff&quot;</span>;
 
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">cactus</span>(<span class="hljs-params">x,y, baseHeight</span>) {
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">cactus</span>(<span class="hljs-params">x,y, baseHeight, distance</span>) {
   <span class="hljs-comment">// saguaro-like cactus with random number of arms</span>
-  <span class="hljs-keyword">if</span> (baseHeight &lt; <span class="hljs-number">100</span>) {
+  <span class="hljs-keyword">if</span> (distance &gt;= <span class="hljs-number">4</span>) {
     <span class="hljs-title function_">stroke</span>(white);
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (baseHeight &gt;= <span class="hljs-number">100</span> &amp;&amp; baseHeight &lt; <span class="hljs-number">250</span>) {
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (distance &gt;= <span class="hljs-number">2</span>) {
     <span class="hljs-title function_">stroke</span>(cyan);
   } <span class="hljs-keyword">else</span> {
     <span class="hljs-title function_">stroke</span>(magenta);
   }
-  <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">1</span>);
+
+  <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">1.5</span> / distance);
 
   <span class="hljs-keyword">let</span> dy = baseHeight+<span class="hljs-title function_">random</span>(<span class="hljs-number">25</span>,<span class="hljs-number">100</span>);
   <span class="hljs-keyword">let</span> cHeight = dy;
@@ -59,15 +60,12 @@
   <span class="hljs-comment">// spine</span>
   <span class="hljs-title function_">line</span>(x,y, x, y-dy);
 
-  <span class="hljs-comment">// number of arms</span>
+  <span class="hljs-comment">// arms</span>
   <span class="hljs-keyword">const</span> nArms = <span class="hljs-title function_">random</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>);
-
   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>; i &lt;= nArms; i++) {
     <span class="hljs-keyword">let</span> xpos = x + <span class="hljs-title function_">random</span>(-cHeight/<span class="hljs-number">4</span>, cHeight/<span class="hljs-number">4</span>);
-    <span class="hljs-comment">// let x1 = x;</span>
     <span class="hljs-keyword">let</span> y1 = y - <span class="hljs-number">0.30</span>*cHeight;
-    <span class="hljs-comment">// let x2 = x1 + random(-cHeight/3, cHeight/3);</span>
-    <span class="hljs-keyword">let</span> y2 = y1 - <span class="hljs-title function_">random</span>(cHeight/<span class="hljs-number">6</span>, cHeight/<span class="hljs-number">2</span>);
+    <span class="hljs-keyword">let</span> y2 = y1 - <span class="hljs-title function_">random</span>(cHeight/<span class="hljs-number">6</span>, cHeight/<span class="hljs-number">3</span>);
     <span class="hljs-title function_">line</span>(xpos, y1, xpos, y2);
     <span class="hljs-title function_">line</span>(xpos, y1, x, y1+<span class="hljs-number">10</span>);
   }
@@ -88,10 +86,10 @@
   <span class="hljs-keyword">let</span> cga = [white, cyan, magenta];
 
   <span class="hljs-comment">// landscape</span>
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> y=<span class="hljs-number">400</span>, x=<span class="hljs-number">0</span>, z=<span class="hljs-number">0</span>; y &lt; <span class="hljs-number">620</span>; y+=<span class="hljs-number">10</span>, x+=<span class="hljs-number">10</span>, z+=<span class="hljs-number">0.1</span>) {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> y=<span class="hljs-number">400</span>, x=<span class="hljs-number">0</span>, z=<span class="hljs-number">0.25</span>; y &lt; <span class="hljs-number">620</span>; y+=<span class="hljs-number">10</span>, x+=<span class="hljs-number">10</span>, z+=<span class="hljs-number">0.06</span>) {
     <span class="hljs-title function_">strokeWeight</span>(z);
-    <span class="hljs-keyword">if</span> (y &lt; <span class="hljs-number">580</span>) {
-      <span class="hljs-title function_">stroke</span>(y &lt; <span class="hljs-number">450</span> ? white : cyan);
+    <span class="hljs-keyword">if</span> (y &lt; <span class="hljs-number">575</span>) {
+      <span class="hljs-title function_">stroke</span>(y &lt; <span class="hljs-number">475</span> ? white : cyan);
       <span class="hljs-title function_">line</span>(x*<span class="hljs-number">5</span>+<span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>,<span class="hljs-number">100</span>), y, <span class="hljs-number">200</span> + <span class="hljs-title function_">random</span>(<span class="hljs-number">100</span>,<span class="hljs-number">200</span>), y);
     } <span class="hljs-keyword">else</span> {
       <span class="hljs-title function_">stroke</span>(magenta);
@@ -100,12 +98,9 @@
   }
 
   <span class="hljs-comment">// cactus</span>
-  <span class="hljs-title function_">cactus</span>(<span class="hljs-number">444</span>, <span class="hljs-number">420</span>, <span class="hljs-number">25</span>);
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> nc = <span class="hljs-number">1</span>; nc &lt;= <span class="hljs-number">3</span>; nc++) {
-    <span class="hljs-title function_">cactus</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>,<span class="hljs-number">340</span>), <span class="hljs-number">400</span> + nc*<span class="hljs-number">50</span>, <span class="hljs-number">100</span>*nc);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> nc = <span class="hljs-number">0</span>, d = <span class="hljs-number">5</span>; nc &lt; <span class="hljs-number">5</span>; nc++, d--) {
+    <span class="hljs-title function_">cactus</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>,<span class="hljs-number">600</span>), <span class="hljs-number">400</span> + nc*<span class="hljs-number">50</span>, <span class="hljs-number">100</span>*nc+<span class="hljs-number">100</span>, d);
   }
-
-  <span class="hljs-title function_">cactus</span>(<span class="hljs-number">500</span>, <span class="hljs-number">450</span>, <span class="hljs-number">110</span>);
 }
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {

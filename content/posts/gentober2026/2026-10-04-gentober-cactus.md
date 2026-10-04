@@ -10,16 +10,17 @@ const white = "#fff";
 const cyan = "#55ffff";
 const magenta = "#ff55ff";
 
-function cactus(x,y, baseHeight) {
+function cactus(x,y, baseHeight, distance) {
   // saguaro-like cactus with random number of arms
-  if (baseHeight < 100) {
+  if (distance >= 4) {
     stroke(white);
-  } else if (baseHeight >= 100 && baseHeight < 250) {
+  } else if (distance >= 2) {
     stroke(cyan);
   } else {
     stroke(magenta);
   }
-  strokeWeight(1);
+
+  strokeWeight(1.5 / distance);
 
   let dy = baseHeight+random(25,100);
   let cHeight = dy;
@@ -27,15 +28,12 @@ function cactus(x,y, baseHeight) {
   // spine
   line(x,y, x, y-dy);
 
-  // number of arms
+  // arms
   const nArms = random(1, 4);
-
   for(let i=1; i <= nArms; i++) {
     let xpos = x + random(-cHeight/4, cHeight/4);
-    // let x1 = x;
     let y1 = y - 0.30*cHeight;
-    // let x2 = x1 + random(-cHeight/3, cHeight/3);
-    let y2 = y1 - random(cHeight/6, cHeight/2);
+    let y2 = y1 - random(cHeight/6, cHeight/3);
     line(xpos, y1, xpos, y2);
     line(xpos, y1, x, y1+10);
   }
@@ -56,10 +54,10 @@ function setup() {
   let cga = [white, cyan, magenta];
 
   // landscape
-  for (let y=400, x=0, z=0; y < 620; y+=10, x+=10, z+=0.1) {
+  for (let y=400, x=0, z=0.25; y < 620; y+=10, x+=10, z+=0.06) {
     strokeWeight(z);
-    if (y < 580) {
-      stroke(y < 450 ? white : cyan);
+    if (y < 575) {
+      stroke(y < 475 ? white : cyan);
       line(x*5+random(0,100), y, 200 + random(100,200), y);
     } else {
       stroke(magenta);
@@ -68,12 +66,9 @@ function setup() {
   }
 
   // cactus
-  cactus(444, 420, 25);
-  for (let nc = 1; nc <= 3; nc++) {
-    cactus(random(0,340), 400 + nc*50, 100*nc);
+  for (let nc = 0, d = 5; nc < 5; nc++, d--) {
+    cactus(random(0,600), 400 + nc*50, 100*nc+100, d);
   }
-
-  cactus(500, 450, 110);
 }
 
 function keyPressed() {

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 5 - Smack</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 5 - Smack",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-04"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-05-gentober-smack.html">Generativetober Day 5 - Smack</a></h1>
+<p><time datetime="2026-10-04">October 4, 2026</time></p>
+</header>
+<p><img src="../../assets/gentober-day5.png" alt="day picture"></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = <span class="hljs-string">&quot;#fff&quot;</span>;
+<span class="hljs-keyword">const</span> cyan = <span class="hljs-string">&quot;#55ffff&quot;</span>;
+<span class="hljs-keyword">const</span> magenta = <span class="hljs-string">&quot;#ff55ff&quot;</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>, <span class="hljs-variable constant_">WEBGL</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">let</span> kpFont = <span class="hljs-keyword">await</span> <span class="hljs-title function_">loadFont</span>(<span class="hljs-string">&quot;KaPow.otf&quot;</span>);
+
+  msgs = [
+    <span class="hljs-string">&quot;Can you give me your passport?&quot;</span>,
+    <span class="hljs-string">&quot;I need this paper stamped by border services&quot;</span>,
+    <span class="hljs-string">&quot;Do your have your work permit?&quot;</span>,
+    <span class="hljs-string">&quot;Do you have a study permit?&quot;</span>,
+    <span class="hljs-string">&quot;You need a &lt;country&gt; phone number&quot;</span>,
+    <span class="hljs-string">&quot;You need a &lt;country&gt; bank account&quot;</span>,
+    <span class="hljs-string">&quot;You need a &lt;country&gt; address&quot;</span>,
+    <span class="hljs-string">&quot;I&#x27;ll need two forms of identification&quot;</span>,
+    <span class="hljs-string">&quot;I just need a stamp on this&quot;</span>,
+    <span class="hljs-string">&quot;You can book an appointment by phone&quot;</span>,
+    <span class="hljs-string">&quot;You can book an appointment online&quot;</span>,
+    <span class="hljs-string">&quot;Can I have the paperwork provided by your PODS agent?&quot;</span>,
+    <span class="hljs-string">&quot;I do this every day&quot;</span>,
+    <span class="hljs-string">&quot;The account was flagged as fraud&quot;</span>,
+    <span class="hljs-string">&quot;Let&#x27;s reset your pin&quot;</span>,
+    <span class="hljs-string">&quot;Let&#x27;s set a pin for your account&quot;</span>,
+    <span class="hljs-string">&quot;Someone is waiting outside for entry&quot;</span>,
+    <span class="hljs-string">&quot;Please have your ID ready&quot;</span>,
+    <span class="hljs-string">&quot;Have a seat and I&#x27;ll call you when I&#x27;m ready for you&quot;</span>,
+    <span class="hljs-string">&quot;Here&#x27;s your temporary drivers license&quot;</span>,
+    <span class="hljs-string">&quot;You will need to get your car inspected first&quot;</span>,
+    <span class="hljs-string">&quot;You must have &lt;country&gt; plates to get &lt;country&gt; insurance&quot;</span>,
+    <span class="hljs-string">&quot;We&#x27;ll have to buy a new one&quot;</span>,
+    <span class="hljs-string">&quot;Can we go to IKEA today?&quot;</span>,
+    <span class="hljs-string">&quot;Can we go to IKEA tomorrow?&quot;</span>,
+    <span class="hljs-string">&quot;Can we go to IKEA yesterday?&quot;</span>,
+    <span class="hljs-string">&quot;Fill out this form&quot;</span>,
+    <span class="hljs-string">&quot;Please take a number&quot;</span>,
+    <span class="hljs-string">&quot;The car is making a gurgling sound&quot;</span>,
+    <span class="hljs-string">&quot;You have 90 days to import your vehicle&quot;</span>,
+    <span class="hljs-string">&quot;Do you have any vegetables in the vehicle?&quot;</span>,
+    <span class="hljs-string">&quot;Does your POD contain any hazardous materials?&quot;</span>,
+    <span class="hljs-string">&quot;Does your POD contain any weapons?&quot;</span>,
+    <span class="hljs-string">&quot;Oh, where did you move here from?&quot;</span>,
+    <span class="hljs-string">&quot;What are you studying?&quot;</span>,
+    <span class="hljs-string">&quot;Are you employed?&quot;</span>,
+    <span class="hljs-string">&quot;What is your current address?&quot;</span>,
+    <span class="hljs-string">&quot;You can&#x27;t use a forwarding mailbox for this account&quot;</span>,
+    <span class="hljs-string">&quot;You will need to get this notarized&quot;</span>,
+    <span class="hljs-string">&quot;Looks like you&#x27;ve had some work done on this&quot;</span>,
+    <span class="hljs-string">&quot;Internet is provided by the apartment complex&quot;</span>,
+    <span class="hljs-string">&quot;There&#x27;s water leaking through the windows&quot;</span>,
+    <span class="hljs-string">&quot;I can smell grilling outside&quot;</span>,
+    <span class="hljs-string">&quot;Does it smell like smoking?&quot;</span>,
+    <span class="hljs-string">&quot;I can smell smoking&quot;</span>,
+    <span class="hljs-string">&quot;It smells like pot smoking in the bathroom&quot;</span>,
+    <span class="hljs-string">&quot;It smells like someone is cooking tuna&quot;</span>,
+    <span class="hljs-string">&quot;I can&#x27;t sleep&quot;</span>,
+    <span class="hljs-string">&quot;I heard traffic sounds all night&quot;</span>,
+    <span class="hljs-string">&quot;What is your US address?&quot;</span>,
+    <span class="hljs-string">&quot;I miss Pittsburgh&quot;</span>
+  ]
+
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">noStroke</span>();
+  <span class="hljs-title function_">textFont</span>(kpFont);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">15</span>);
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>; i &lt; msgs.<span class="hljs-property">length</span>; i++) {
+    <span class="hljs-title function_">rotateX</span>(<span class="hljs-number">2.0</span>);
+    <span class="hljs-title function_">rotateY</span>(<span class="hljs-number">1.2</span>);
+    <span class="hljs-title function_">textWrap</span>(<span class="hljs-variable constant_">WORD</span>);
+    <span class="hljs-title function_">textSize</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">14</span>, <span class="hljs-number">18</span>));
+    <span class="hljs-title function_">fill</span>(<span class="hljs-title function_">random</span>([white,cyan,magenta]));
+    <span class="hljs-title function_">text</span>(msgs[i], <span class="hljs-title function_">random</span>(-<span class="hljs-number">320</span>,<span class="hljs-number">100</span>), <span class="hljs-title function_">random</span>(-<span class="hljs-number">320</span>,<span class="hljs-number">100</span>));
+  }
+
+  <span class="hljs-title function_">push</span>();
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">40</span>);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-string">&quot;#FF0000&quot;</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Welcome to your new home!&quot;</span>, -<span class="hljs-number">300</span>, <span class="hljs-number">0</span>);
+  <span class="hljs-title function_">pop</span>();
+
+  <span class="hljs-title function_">push</span>();
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">15</span>);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-string">&quot;#FF0000&quot;</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Smack Smack Smack Smack Smack Smack Smack Smack Smack Smack Smack Smack&quot;</span>, -<span class="hljs-number">450</span>, <span class="hljs-number">100</span>);
+  <span class="hljs-title function_">pop</span>();
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&#x27;s&#x27;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;day5.png&quot;</span>);
+  }
+}
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

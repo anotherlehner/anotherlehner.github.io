@@ -6,8 +6,113 @@
 <author>
 <name>anotherlehner/blog</name>
 </author>
-<updated>2026-10-04T20:35:12.629Z</updated>
+<updated>2026-10-05T18:21:29.688Z</updated>
 
+<entry>
+<title>Generativetober Day 5 - Smack</title>
+<id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%205%20-%20Smack</id>
+<link rel="alternate" href="posts/gentober2026/2026-10-05-gentober-smack.html"/>
+<updated>2026-10-04T00:00:00.000Z</updated>
+
+<content type="html">&lt;p&gt;&lt;img src=&quot;posts/gentober2026/../../assets/gentober-day5.png&quot; alt=&quot;day picture&quot;/&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; white = &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#fff&amp;quot;&lt;/span&gt;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; cyan = &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#55ffff&amp;quot;&lt;/span&gt;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; magenta = &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#ff55ff&amp;quot;&lt;/span&gt;;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;setup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+  &lt;span class=&quot;hljs-title function_&quot;&gt;createCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;, &lt;span class=&quot;hljs-variable constant_&quot;&gt;WEBGL&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;background&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;);
+
+  &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; kpFont = &lt;span class=&quot;hljs-keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;loadFont&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;KaPow.otf&amp;quot;&lt;/span&gt;);
+
+  msgs = [
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Can you give me your passport?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;I need this paper stamped by border services&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Do your have your work permit?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Do you have a study permit?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You need a &amp;lt;country&amp;gt; phone number&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You need a &amp;lt;country&amp;gt; bank account&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You need a &amp;lt;country&amp;gt; address&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;I&amp;#x27;ll need two forms of identification&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;I just need a stamp on this&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You can book an appointment by phone&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You can book an appointment online&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Can I have the paperwork provided by your PODS agent?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;I do this every day&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;The account was flagged as fraud&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Let&amp;#x27;s reset your pin&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Let&amp;#x27;s set a pin for your account&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Someone is waiting outside for entry&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Please have your ID ready&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Have a seat and I&amp;#x27;ll call you when I&amp;#x27;m ready for you&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Here&amp;#x27;s your temporary drivers license&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You will need to get your car inspected first&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You must have &amp;lt;country&amp;gt; plates to get &amp;lt;country&amp;gt; insurance&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;We&amp;#x27;ll have to buy a new one&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Can we go to IKEA today?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Can we go to IKEA tomorrow?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Can we go to IKEA yesterday?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Fill out this form&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Please take a number&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;The car is making a gurgling sound&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You have 90 days to import your vehicle&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Do you have any vegetables in the vehicle?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Does your POD contain any hazardous materials?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Does your POD contain any weapons?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Oh, where did you move here from?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;What are you studying?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Are you employed?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;What is your current address?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You can&amp;#x27;t use a forwarding mailbox for this account&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;You will need to get this notarized&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Looks like you&amp;#x27;ve had some work done on this&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Internet is provided by the apartment complex&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;There&amp;#x27;s water leaking through the windows&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;I can smell grilling outside&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Does it smell like smoking?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;I can smell smoking&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;It smells like pot smoking in the bathroom&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;It smells like someone is cooking tuna&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;I can&amp;#x27;t sleep&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;I heard traffic sounds all night&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;What is your US address?&amp;quot;&lt;/span&gt;,
+    &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;I miss Pittsburgh&amp;quot;&lt;/span&gt;
+  ]
+
+  &lt;span class=&quot;hljs-title function_&quot;&gt;fill&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;noStroke&lt;/span&gt;();
+  &lt;span class=&quot;hljs-title function_&quot;&gt;textFont&lt;/span&gt;(kpFont);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;textSize&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
+  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; i=&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; i &amp;lt; msgs.&lt;span class=&quot;hljs-property&quot;&gt;length&lt;/span&gt;; i++) {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;rotateX&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;2.0&lt;/span&gt;);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;rotateY&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1.2&lt;/span&gt;);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;textWrap&lt;/span&gt;(&lt;span class=&quot;hljs-variable constant_&quot;&gt;WORD&lt;/span&gt;);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;textSize&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;14&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;18&lt;/span&gt;));
+    &lt;span class=&quot;hljs-title function_&quot;&gt;fill&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;([white,cyan,magenta]));
+    &lt;span class=&quot;hljs-title function_&quot;&gt;text&lt;/span&gt;(msgs[i], &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;320&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;), &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;320&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;));
+  }
+
+  &lt;span class=&quot;hljs-title function_&quot;&gt;push&lt;/span&gt;();
+  &lt;span class=&quot;hljs-title function_&quot;&gt;textSize&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;40&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;fill&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#FF0000&amp;quot;&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;text&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Welcome to your new home!&amp;quot;&lt;/span&gt;, -&lt;span class=&quot;hljs-number&quot;&gt;300&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;pop&lt;/span&gt;();
+
+  &lt;span class=&quot;hljs-title function_&quot;&gt;push&lt;/span&gt;();
+  &lt;span class=&quot;hljs-title function_&quot;&gt;textSize&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;fill&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;#FF0000&amp;quot;&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;text&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Smack Smack Smack Smack Smack Smack Smack Smack Smack Smack Smack Smack&amp;quot;&lt;/span&gt;, -&lt;span class=&quot;hljs-number&quot;&gt;450&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;100&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;pop&lt;/span&gt;();
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;keyPressed&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (key == &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;s&amp;#x27;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;saveCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;day5.png&amp;quot;&lt;/span&gt;);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+</entry>
 <entry>
 <title>Generativetober Day 4 - Cactus</title>
 <id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%204%20-%20Cactus</id>
@@ -359,28 +464,6 @@
   &lt;span class=&quot;hljs-title function_&quot;&gt;text&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Apple&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;8&lt;/span&gt;, height-&lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;);
 }
 &lt;/code&gt;&lt;/pre&gt;
-</content>
-</entry>
-<entry>
-<title>Nature of Code ch0 end</title>
-<id>urn:md2blog:anotherlehner%2Fblog:Nature%20of%20Code%20ch0%20end</id>
-<link rel="alternate" href="posts/code/2026-09-23-noc-ch0-end.html"/>
-<updated>2026-09-23T00:00:00.000Z</updated>
-
-<content type="html">&lt;p&gt;&lt;img src=&quot;posts/code/../../assets/noc-exercise-0-10.png&quot; alt=&quot;wiggling terrain&quot;/&gt;&lt;/p&gt;
-&lt;p&gt;Finished capping off &lt;strong&gt;Chapter 0&lt;/strong&gt; of &lt;em&gt;The Nature of Code&lt;/em&gt;. I&amp;#39;ve been through most of these examples in various languages, but I think &lt;strong&gt;ReScript&lt;/strong&gt; has been my favorite so far. &lt;/p&gt;
-&lt;p&gt;I liked playing with both F# and ReScript, but a few key things pulled ReScript to the front for me:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Type inference without the friction:&lt;/strong&gt; I mostly didn&amp;#39;t write types except for externals. Once the externals were taken care of, I barely wrote any types in the sketch code itself. Some externals slowed me down a bit, but once I understood more about ReScript&amp;#39;s JS interop, I quickly solved those problems. I got to keep full, sound type safety for most regular coding without explicitly typing everything—it feels dynamic while staying completely type-safe!&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Blazing fast compiler:&lt;/strong&gt; The compiler is &lt;em&gt;fast&lt;/em&gt; fast.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;JavaScript similarity:&lt;/strong&gt; Okay, this one surprised me. I was actually trying to get away from familiar JS syntax toward something new, but I found having a slightly similar syntax helped me feel more at home with ReScript while keeping a bit of familiarity along the way. Maybe a good gateway drug?&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Great tooling:&lt;/strong&gt; The VS Code plugin works well for the most part, with only a few minor quirks.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;a-minor-stumbling-block-p5js--global-scope&quot;&gt;A Minor Stumbling Block (P5.js &amp;amp; Global Scope)&lt;/h3&gt;
-&lt;p&gt;Something less positive that surfaced was less of a ReScript issue and more of a JavaScript/p5.js quirk. &lt;/p&gt;
-&lt;p&gt;I kept running into issues where the &lt;code&gt;floor&lt;/code&gt; function wasn&amp;#39;t found in one module but worked in another. After swapping things around, I realized that the p5.js &lt;code&gt;floor&lt;/code&gt; function (and all of its global functions) aren&amp;#39;t available until the global instance has actually been created. I had global variables being initialized before &lt;code&gt;main()&lt;/code&gt; was called outside of my &lt;code&gt;setup&lt;/code&gt;/&lt;code&gt;draw&lt;/code&gt; functions. &lt;/p&gt;
-&lt;p&gt;Once I rearranged things to initialize those variables inside &lt;code&gt;setup()&lt;/code&gt;, everything started working again. This would probably be an issue in plain JS as well, but either way, it resulted in a runtime error—something I always like to avoid if possible.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;em&gt;I converted the &lt;code&gt;Terrain&lt;/code&gt; code Dan used in the book to ReScript with Gemini&amp;#39;s help for this exercise.&lt;/em&gt;&lt;/p&gt;
 </content>
 </entry>
 </feed>

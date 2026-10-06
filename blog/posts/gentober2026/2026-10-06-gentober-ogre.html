@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 6 - Ogre</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 6 - Ogre",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-04"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-06-gentober-ogre.html">Generativetober Day 6 - Ogre</a></h1>
+<p><time datetime="2026-10-04">October 4, 2026</time></p>
+</header>
+<p><img src="../../assets/gentober-day6.png" alt="day picture"></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = <span class="hljs-string">&quot;#fff&quot;</span>;
+<span class="hljs-keyword">const</span> cyan = <span class="hljs-string">&quot;#55ffff&quot;</span>;
+<span class="hljs-keyword">const</span> magenta = <span class="hljs-string">&quot;#ff55ff&quot;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">drawImpact</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> cx = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">let</span> cy = <span class="hljs-number">0</span>;
+  <span class="hljs-title function_">noFill</span>();
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; ++i) {
+    <span class="hljs-title function_">rotate</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">0.1</span>,<span class="hljs-variable constant_">PI</span>));
+    <span class="hljs-keyword">let</span> lineWeight = <span class="hljs-title function_">random</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">2.5</span>);
+    <span class="hljs-title function_">strokeWeight</span>(lineWeight);
+    <span class="hljs-title function_">stroke</span>(<span class="hljs-title function_">random</span>([cyan, white]));
+
+    <span class="hljs-keyword">let</span> startX = cx + <span class="hljs-title function_">random</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">5</span>, <span class="hljs-number">25</span>), width/<span class="hljs-number">3</span>);
+    <span class="hljs-keyword">let</span> startY = cy;
+  
+    <span class="hljs-keyword">let</span> endX = startX + <span class="hljs-title function_">random</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">5</span>, <span class="hljs-number">25</span>), width/<span class="hljs-number">3</span>);
+    <span class="hljs-keyword">let</span> endY = cy;
+    
+    <span class="hljs-title function_">line</span>(startX, startY, endX, endY);
+
+    <span class="hljs-keyword">let</span> arcsize = <span class="hljs-title function_">random</span>(<span class="hljs-number">10</span>,<span class="hljs-number">400</span>);
+    <span class="hljs-title function_">strokeWeight</span>(lineWeight * <span class="hljs-title function_">random</span>(<span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>));
+    <span class="hljs-title function_">arc</span>(cx, cy, arcsize, arcsize, <span class="hljs-number">0</span>, <span class="hljs-title function_">random</span>(<span class="hljs-number">0.1</span>, <span class="hljs-variable constant_">QUARTER_PI</span>));
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">15</span>);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Ogre&quot;</span>, <span class="hljs-number">10</span>, height-<span class="hljs-number">15</span>);
+
+  <span class="hljs-title function_">translate</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">100</span>, <span class="hljs-number">550</span>), <span class="hljs-title function_">random</span>(<span class="hljs-number">100</span>,<span class="hljs-number">550</span>), <span class="hljs-number">0</span>);
+  <span class="hljs-title function_">drawImpact</span>();
+
+  <span class="hljs-title function_">translate</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">100</span>, <span class="hljs-number">550</span>), <span class="hljs-title function_">random</span>(<span class="hljs-number">100</span>,<span class="hljs-number">550</span>), <span class="hljs-number">0</span>);
+  <span class="hljs-title function_">drawImpact</span>();
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&#x27;s&#x27;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;day6.png&quot;</span>);
+  }
+}
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 12 - Toss</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 12 - Toss",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-12"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-12-gentober-toss.html">Generativetober Day 12 - Toss</a></h1>
+<p><time datetime="2026-10-12">October 12, 2026</time></p>
+</header>
+<p><img src="../../assets/gentober-day12.png" alt="day picture"></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = <span class="hljs-string">&quot;#fff&quot;</span>;
+<span class="hljs-keyword">const</span> cyan = <span class="hljs-string">&quot;#55ffff&quot;</span>;
+<span class="hljs-keyword">const</span> magenta = <span class="hljs-string">&quot;#ff55ff&quot;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-comment">// 1. Create a tiny 2x2 grid for a checkerboard/dither pattern</span>
+  patternImg = <span class="hljs-title function_">createGraphics</span>(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>);
+  patternImg.<span class="hljs-title function_">noStroke</span>();
+  patternImg.<span class="hljs-title function_">background</span>(<span class="hljs-number">250</span>);          <span class="hljs-comment">// Primary color</span>
+  patternImg.<span class="hljs-title function_">fill</span>(<span class="hljs-number">40</span>);                 <span class="hljs-comment">// Secondary dither color</span>
+  patternImg.<span class="hljs-title function_">rect</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+  patternImg.<span class="hljs-title function_">rect</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+  <span class="hljs-comment">// 2. Convert p5.Graphics to an HTML Canvas Pattern</span>
+  <span class="hljs-keyword">let</span> ctx = drawingContext;
+  <span class="hljs-keyword">let</span> pattern = ctx.<span class="hljs-title function_">createPattern</span>(patternImg.<span class="hljs-property">canvas</span>, <span class="hljs-string">&#x27;repeat&#x27;</span>);
+
+  <span class="hljs-comment">// 3. Apply pattern fill and draw standard p5 shapes</span>
+  ctx.<span class="hljs-property">fillStyle</span> = pattern;
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">127</span>);
+  <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">1</span>);
+
+  <span class="hljs-title function_">triangle</span>(<span class="hljs-number">0</span>, height, width/<span class="hljs-number">2</span>, height/<span class="hljs-number">2</span>, width, height);
+  
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">5</span>; i &lt; <span class="hljs-number">25</span>; i++) {
+    <span class="hljs-title function_">fill</span>(<span class="hljs-title function_">random</span>([white,cyan,magenta]));
+    <span class="hljs-title function_">circle</span>(
+      width/<span class="hljs-number">2</span> + <span class="hljs-title function_">random</span>(-i*<span class="hljs-number">10</span>, i*<span class="hljs-number">10</span>),
+      height/<span class="hljs-number">2</span>+i*<span class="hljs-number">10</span>,
+      i
+    );
+  }
+  
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">200</span>);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">200</span>);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">16</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Toss&quot;</span>, <span class="hljs-number">10</span>, height-<span class="hljs-number">50</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&#x27;s&#x27;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;toss.png&quot;</span>);
+  }
+}
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

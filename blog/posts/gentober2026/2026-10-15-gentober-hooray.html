@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 15 - Hooray</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 15 - Hooray",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-15"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-15-gentober-hooray.html">Generativetober Day 15 - Hooray</a></h1>
+<p><time datetime="2026-10-15">October 15, 2026</time></p>
+</header>
+<p><img src="../../assets/gentober-day15.png" alt="day picture"></p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = <span class="hljs-string">&quot;#fff&quot;</span>;
+<span class="hljs-keyword">const</span> cyan = <span class="hljs-string">&quot;#55ffff&quot;</span>;
+<span class="hljs-keyword">const</span> magenta = <span class="hljs-string">&quot;#ff55ff&quot;</span>;
+<span class="hljs-keyword">const</span> colors = [white, cyan, magenta];
+
+<span class="hljs-comment">// Mover from Nature of Code</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Mover</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x, y, m</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">mass</span> = m;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span> = m * <span class="hljs-number">1</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span> = <span class="hljs-title function_">createVector</span>(x, y);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span> = <span class="hljs-title function_">createVector</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">acceleration</span> = <span class="hljs-title function_">createVector</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">heat</span> = <span class="hljs-number">100</span>;
+  }
+
+  <span class="hljs-title function_">applyForce</span>(<span class="hljs-params">force</span>) {
+    <span class="hljs-keyword">let</span> f = p5.<span class="hljs-property">Vector</span>.<span class="hljs-title function_">div</span>(force, <span class="hljs-variable language_">this</span>.<span class="hljs-property">mass</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">acceleration</span>.<span class="hljs-title function_">add</span>(f);
+  }
+
+  <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>.<span class="hljs-title function_">add</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">acceleration</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-title function_">add</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">acceleration</span>.<span class="hljs-title function_">mult</span>(<span class="hljs-number">0</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">heat</span> -= <span class="hljs-number">3</span>;
+  }
+
+  <span class="hljs-title function_">show</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title function_">stroke</span>(<span class="hljs-number">255</span>, <span class="hljs-title function_">map</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">heat</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">255</span>, <span class="hljs-number">88</span>), <span class="hljs-number">255</span>, <span class="hljs-title function_">map</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">heat</span>, <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">80</span>));
+    <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">2</span>);
+    <span class="hljs-title function_">fill</span>(<span class="hljs-number">127</span>, <span class="hljs-number">127</span>);
+    <span class="hljs-title function_">circle</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span> * <span class="hljs-number">2</span>);
+  }
+
+  <span class="hljs-title function_">contactEdge</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span> &gt; height - <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span> - <span class="hljs-number">1</span>);
+  }
+
+  <span class="hljs-title function_">bounceEdges</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">let</span> bounce = -<span class="hljs-number">0.5</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span> &gt; width - <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span> = width - <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span>;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">x</span> *= bounce;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span> &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">x</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span>;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">x</span> *= bounce;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span> &gt; height - <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">position</span>.<span class="hljs-property">y</span> = height - <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span>;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">velocity</span>.<span class="hljs-property">y</span> *= bounce;
+    }
+  }
+
+}
+
+<span class="hljs-keyword">let</span> particles = [];
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>,<span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">let</span> x = <span class="hljs-title function_">random</span>(width/<span class="hljs-number">5</span>, width-width/<span class="hljs-number">5</span>);
+  <span class="hljs-keyword">let</span> y = <span class="hljs-title function_">random</span>(height/<span class="hljs-number">5</span>, height/<span class="hljs-number">2</span>);
+  <span class="hljs-title function_">fill</span>(magenta);
+  <span class="hljs-title function_">stroke</span>(magenta);
+  <span class="hljs-title function_">circle</span>(x, y, <span class="hljs-number">5</span>);
+  
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">25</span>; i++) {
+    particles.<span class="hljs-title function_">push</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Mover</span>(x, y, <span class="hljs-number">1</span>));
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showTitle</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-comment">// Title</span>
+  <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">1</span>);
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-title function_">fill</span>(cyan);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">16</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Hooray&quot;</span>, <span class="hljs-number">10</span>, height-<span class="hljs-number">10</span>);
+}
+
+<span class="hljs-keyword">let</span> firstTime = <span class="hljs-literal">true</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; particles.<span class="hljs-property">length</span>; i++) {
+    <span class="hljs-keyword">let</span> mover = particles[i];
+    <span class="hljs-keyword">let</span> gravity = <span class="hljs-title function_">createVector</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+    mover.<span class="hljs-title function_">applyForce</span>(gravity);
+
+    <span class="hljs-keyword">if</span> (firstTime) {
+      mover.<span class="hljs-title function_">applyForce</span>(<span class="hljs-title function_">createVector</span>(<span class="hljs-title function_">random</span>(-<span class="hljs-number">20</span>,<span class="hljs-number">20</span>), <span class="hljs-title function_">random</span>(-<span class="hljs-number">25</span>,<span class="hljs-number">5</span>)));
+    }
+  
+    <span class="hljs-keyword">if</span> (mover.<span class="hljs-title function_">contactEdge</span>()) {
+      <span class="hljs-keyword">let</span> c = <span class="hljs-number">0.1</span>;
+      <span class="hljs-keyword">let</span> friction = mover.<span class="hljs-property">velocity</span>.<span class="hljs-title function_">copy</span>();
+      friction.<span class="hljs-title function_">mult</span>(-<span class="hljs-number">1</span>);
+      friction.<span class="hljs-title function_">setMag</span>(c);
+  
+      mover.<span class="hljs-title function_">applyForce</span>(friction);
+    }
+  
+    mover.<span class="hljs-title function_">bounceEdges</span>();
+    mover.<span class="hljs-title function_">update</span>();
+    mover.<span class="hljs-title function_">show</span>();
+  }
+
+  <span class="hljs-title function_">showTitle</span>();
+  firstTime=<span class="hljs-literal">false</span>;
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&quot;s&quot;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;hooray.png&quot;</span>);
+  }
+}
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

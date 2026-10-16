@@ -78,7 +78,7 @@ function setup() {
   createCanvas(340, 340).parent('canvas-container');
   background(0);
   showTitle();
-  g = new Gangly(width/2, height, random(5, 25));
+  g = new Gangly(width/2, height, random(5, 15));
 }
 
 function showTitle() {

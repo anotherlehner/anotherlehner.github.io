@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 16 - Gangly</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 16 - Gangly",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-16"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-16-gentober-gangly.html">Generativetober Day 16 - Gangly</a></h1>
+<p><time datetime="2026-10-16">October 16, 2026</time></p>
+</header>
+<h2 id="animation">Animation</h2>
+<div id="canvas-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
+<script src="../../assets/js/gentober2026/day16.js"></script>
+
+<p>This is the first post where I&#39;m including an animated version of the sketch. I&#39;m not sure if I&#39;m going to continue doing this but after Bob and I talked yesterday we were curious if it was possible to include that in these posts. Here you go Bob!</p>
+<h2 id="static">Static</h2>
+<p><img src="../../assets/gentober-day16.png" alt="day picture"></p>
+<h2 id="code">Code</h2>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = [<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> cyan = [<span class="hljs-number">88</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> magenta = [<span class="hljs-number">255</span>, <span class="hljs-number">88</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> colors = [white, cyan, magenta];
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Walker</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x, y, c, g</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = x;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = y;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastx</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lasty</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">tx</span> = <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">ty</span> = <span class="hljs-title function_">random</span>(<span class="hljs-number">1000</span>, <span class="hljs-number">9999</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">color</span> = c;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lean</span> = <span class="hljs-title function_">random</span>(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> = <span class="hljs-number">0</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lifespan</span> = <span class="hljs-title function_">random</span>(<span class="hljs-number">5</span>, <span class="hljs-number">23</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">alpha</span> = <span class="hljs-title function_">random</span>(<span class="hljs-number">127</span>, <span class="hljs-number">255</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">gangly</span> = g;
+  }
+
+  <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">tx</span> += <span class="hljs-title function_">random</span>(<span class="hljs-number">0.05</span>, <span class="hljs-number">0.08</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">ty</span> += <span class="hljs-title function_">random</span>(<span class="hljs-number">0.01</span>, <span class="hljs-number">0.05</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastx</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lasty</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> += <span class="hljs-title function_">map</span>(<span class="hljs-title function_">noise</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tx</span>), <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">3</span>, <span class="hljs-number">3</span>) + <span class="hljs-variable language_">this</span>.<span class="hljs-property">lean</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> += <span class="hljs-title function_">map</span>(<span class="hljs-title function_">noise</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">ty</span>), <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, -<span class="hljs-number">2</span>, -<span class="hljs-number">1</span>); <span class="hljs-comment">// tend up</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> += <span class="hljs-number">0.1</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">gangly</span> 
+        &amp;&amp; <span class="hljs-title function_">random</span>() &lt; <span class="hljs-number">0.1</span> 
+        &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">lifespan</span>/<span class="hljs-number">2</span> 
+        &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">lifespan</span>/<span class="hljs-number">4</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">gangly</span>.<span class="hljs-title function_">sprout</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">color</span>);
+    }
+  }
+
+  <span class="hljs-title function_">show</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span> &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">lifespan</span>) {
+      <span class="hljs-title function_">stroke</span>(...<span class="hljs-variable language_">this</span>.<span class="hljs-property">color</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">alpha</span>);
+      <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-title function_">map</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span>, <span class="hljs-number">0</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">lifespan</span>, <span class="hljs-number">5</span>, <span class="hljs-number">0</span>));
+      <span class="hljs-title function_">line</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastx</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">lasty</span>);
+    }
+  }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Gangly</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x, y, nStrands</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = x;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = y;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">nStrands</span> = nStrands;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">strands</span> = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; nStrands; i++) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">strands</span>.<span class="hljs-title function_">push</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Walker</span>(x+<span class="hljs-title function_">random</span>(-<span class="hljs-number">25</span>,<span class="hljs-number">25</span>), y, <span class="hljs-title function_">random</span>(colors), <span class="hljs-variable language_">this</span>));
+    }
+  }
+
+  <span class="hljs-title function_">sprout</span>(<span class="hljs-params">x, y, c</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">strands</span>.<span class="hljs-title function_">push</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Walker</span>(x, y, c));
+  }
+
+  <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> strand <span class="hljs-keyword">of</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">strands</span>) {
+      strand.<span class="hljs-title function_">update</span>();
+    }
+  }
+
+  <span class="hljs-title function_">show</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> strand <span class="hljs-keyword">of</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">strands</span>) {
+      strand.<span class="hljs-title function_">show</span>();
+    }
+  }
+}
+
+<span class="hljs-keyword">let</span> g;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-title function_">showTitle</span>();
+  g = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Gangly</span>(width/<span class="hljs-number">2</span>, height, <span class="hljs-title function_">random</span>(<span class="hljs-number">5</span>, <span class="hljs-number">25</span>));
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showTitle</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-number">1</span>);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">16</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Gangly&quot;</span>, <span class="hljs-number">10</span>, height-<span class="hljs-number">10</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  g.<span class="hljs-title function_">update</span>();
+  g.<span class="hljs-title function_">show</span>();
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&quot;s&quot;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;gangly.png&quot;</span>);
+  }
+}
+</code></pre>
+<h2 id="discussion">Discussion</h2>
+<p>The word &quot;gangly&quot; means awkward skinny lanky limbs on a person. Tall and skinny. Sometimes it&#39;s used to describe the legs of animals I guess. It feels bouncy in my mouth when I saw it out loud, the tongue hits the teeth a bit. Anyway... I suppose this is the first post where I am trying to describe my thinking (per Bob&#39;s suggestion). I think I limbs reminds me of tree branches or trunks. I suppose after thinking about tree limbs I remembered the walker and how I could use that to make something &quot;bush-like&quot;. I created a walker and did something basic with a single limb and liked how it looked. We can use perlin noise to make the growth of the limb look natural and have some variation. I combined this with an age variable so I could reduce the strokeWeight as the limb grows and age it down to a sharp point at the top end. Modify the walker to always grow upward and give random limbs a &quot;lean&quot; to the left or right and you end up with something vaguely like a growing limb. Threw on some random colors and random alphas just to differentiate them a bit.</p>
+<p>The last thing I did was to add sprouts. A sprout is a probabilistic split around lifespan/4-/2 and this new limb gets added to the whole starting from that x,y coordinate. It&#39;s a nice little graphic and grows up until the limbs age out.</p>
+<p>I think for future variations on this I&#39;d like to play with keeping the variation but making the segments straight lines so it looks like a growing crack or crystal. I also want to play with creating multiple of these gangly groupings and having them vary in other ways.</p>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

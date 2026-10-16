@@ -6,8 +6,131 @@
 <author>
 <name>anotherlehner/blog</name>
 </author>
-<updated>2026-10-15T17:50:06.845Z</updated>
+<updated>2026-10-16T14:20:46.893Z</updated>
 
+<entry>
+<title>Generativetober Day 16 - Gangly</title>
+<id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%2016%20-%20Gangly</id>
+<link rel="alternate" href="posts/gentober2026/2026-10-16-gentober-gangly.html"/>
+<updated>2026-10-16T00:00:00.000Z</updated>
+
+<content type="html">&lt;h2 id=&quot;animation&quot;&gt;Animation&lt;/h2&gt;
+&lt;div id=&quot;canvas-container&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../assets/js/gentober2026/day16.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;This is the first post where I&amp;#39;m including an animated version of the sketch. I&amp;#39;m not sure if I&amp;#39;m going to continue doing this but after Bob and I talked yesterday we were curious if it was possible to include that in these posts. Here you go Bob!&lt;/p&gt;
+&lt;h2 id=&quot;static&quot;&gt;Static&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;posts/gentober2026/../../assets/gentober-day16.png&quot; alt=&quot;day picture&quot;/&gt;&lt;/p&gt;
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; white = [&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;];
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; cyan = [&lt;span class=&quot;hljs-number&quot;&gt;88&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;];
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; magenta = [&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;88&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;];
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; colors = [white, cyan, magenta];
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Walker&lt;/span&gt; {
+  &lt;span class=&quot;hljs-title function_&quot;&gt;constructor&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;x, y, c, g&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; = x;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; = y;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lastx&lt;/span&gt; = &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lasty&lt;/span&gt; = &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;tx&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;);
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;ty&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;9999&lt;/span&gt;);
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;color&lt;/span&gt; = c;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lean&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;);
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;age&lt;/span&gt; = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lifespan&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;23&lt;/span&gt;);
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;alpha&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;127&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;gangly&lt;/span&gt; = g;
+  }
+
+  &lt;span class=&quot;hljs-title function_&quot;&gt;update&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;tx&lt;/span&gt; += &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0.05&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.08&lt;/span&gt;);
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;ty&lt;/span&gt; += &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0.01&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.05&lt;/span&gt;);
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lastx&lt;/span&gt; = &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lasty&lt;/span&gt; = &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; += &lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;noise&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;tx&lt;/span&gt;), &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, -&lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt;) + &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lean&lt;/span&gt;;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; += &lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;noise&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;ty&lt;/span&gt;), &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, -&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;, -&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;); &lt;span class=&quot;hljs-comment&quot;&gt;// tend up&lt;/span&gt;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;age&lt;/span&gt; += &lt;span class=&quot;hljs-number&quot;&gt;0.1&lt;/span&gt;;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;gangly&lt;/span&gt; 
+        &amp;amp;&amp;amp; &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;() &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;0.1&lt;/span&gt; 
+        &amp;amp;&amp;amp; &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;age&lt;/span&gt; &amp;lt; &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lifespan&lt;/span&gt;/&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt; 
+        &amp;amp;&amp;amp; &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;age&lt;/span&gt; &amp;gt; &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lifespan&lt;/span&gt;/&lt;span class=&quot;hljs-number&quot;&gt;4&lt;/span&gt;) {
+      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;gangly&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;sprout&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;color&lt;/span&gt;);
+    }
+  }
+
+  &lt;span class=&quot;hljs-title function_&quot;&gt;show&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;age&lt;/span&gt; &amp;lt; &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lifespan&lt;/span&gt;) {
+      &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(...&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;color&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;alpha&lt;/span&gt;);
+      &lt;span class=&quot;hljs-title function_&quot;&gt;strokeWeight&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;age&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lifespan&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;));
+      &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lastx&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lasty&lt;/span&gt;);
+    }
+  }
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Gangly&lt;/span&gt; {
+  &lt;span class=&quot;hljs-title function_&quot;&gt;constructor&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;x, y, nStrands&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; = x;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; = y;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;nStrands&lt;/span&gt; = nStrands;
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;strands&lt;/span&gt; = [];
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; i = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; i &amp;lt; nStrands; i++) {
+      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;strands&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;push&lt;/span&gt;(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Walker&lt;/span&gt;(x+&lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;25&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;25&lt;/span&gt;), y, &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(colors), &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;));
+    }
+  }
+
+  &lt;span class=&quot;hljs-title function_&quot;&gt;sprout&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;x, y, c&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;strands&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;push&lt;/span&gt;(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Walker&lt;/span&gt;(x, y, c));
+  }
+
+  &lt;span class=&quot;hljs-title function_&quot;&gt;update&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; strand &lt;span class=&quot;hljs-keyword&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;strands&lt;/span&gt;) {
+      strand.&lt;span class=&quot;hljs-title function_&quot;&gt;update&lt;/span&gt;();
+    }
+  }
+
+  &lt;span class=&quot;hljs-title function_&quot;&gt;show&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; strand &lt;span class=&quot;hljs-keyword&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;strands&lt;/span&gt;) {
+      strand.&lt;span class=&quot;hljs-title function_&quot;&gt;show&lt;/span&gt;();
+    }
+  }
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; g;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;setup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+  &lt;span class=&quot;hljs-title function_&quot;&gt;createCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;background&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;showTitle&lt;/span&gt;();
+  g = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Gangly&lt;/span&gt;(width/&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;, height, &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;25&lt;/span&gt;));
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;showTitle&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+  &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;fill&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;strokeWeight&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;textSize&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;16&lt;/span&gt;);
+  &lt;span class=&quot;hljs-title function_&quot;&gt;text&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Gangly&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;, height-&lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;);
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;draw&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+  g.&lt;span class=&quot;hljs-title function_&quot;&gt;update&lt;/span&gt;();
+  g.&lt;span class=&quot;hljs-title function_&quot;&gt;show&lt;/span&gt;();
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;keyPressed&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (key == &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;s&amp;quot;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;saveCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;gangly.png&amp;quot;&lt;/span&gt;);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;discussion&quot;&gt;Discussion&lt;/h2&gt;
+&lt;p&gt;The word &amp;quot;gangly&amp;quot; means awkward skinny lanky limbs on a person. Tall and skinny. Sometimes it&amp;#39;s used to describe the legs of animals I guess. It feels bouncy in my mouth when I saw it out loud, the tongue hits the teeth a bit. Anyway... I suppose this is the first post where I am trying to describe my thinking (per Bob&amp;#39;s suggestion). I think I limbs reminds me of tree branches or trunks. I suppose after thinking about tree limbs I remembered the walker and how I could use that to make something &amp;quot;bush-like&amp;quot;. I created a walker and did something basic with a single limb and liked how it looked. We can use perlin noise to make the growth of the limb look natural and have some variation. I combined this with an age variable so I could reduce the strokeWeight as the limb grows and age it down to a sharp point at the top end. Modify the walker to always grow upward and give random limbs a &amp;quot;lean&amp;quot; to the left or right and you end up with something vaguely like a growing limb. Threw on some random colors and random alphas just to differentiate them a bit.&lt;/p&gt;
+&lt;p&gt;The last thing I did was to add sprouts. A sprout is a probabilistic split around lifespan/4-/2 and this new limb gets added to the whole starting from that x,y coordinate. It&amp;#39;s a nice little graphic and grows up until the limbs age out.&lt;/p&gt;
+&lt;p&gt;I think for future variations on this I&amp;#39;d like to play with keeping the variation but making the segments straight lines so it looks like a growing crack or crystal. I also want to play with creating multiple of these gangly groupings and having them vary in other ways.&lt;/p&gt;
+</content>
+</entry>
 <entry>
 <title>Generativetober Day 15 - Hooray</title>
 <id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%2015%20-%20Hooray</id>
@@ -341,50 +464,6 @@
 &lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;keyPressed&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
   &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (key == &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;s&amp;#x27;&lt;/span&gt;) {
     &lt;span class=&quot;hljs-title function_&quot;&gt;saveCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;toss.png&amp;quot;&lt;/span&gt;);
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-</content>
-</entry>
-<entry>
-<title>Generativetober Day 11 - Rescue</title>
-<id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%2011%20-%20Rescue</id>
-<link rel="alternate" href="posts/gentober2026/2026-10-11-gentober-rescue.html"/>
-<updated>2026-10-11T00:00:00.000Z</updated>
-
-<content type="html">&lt;p&gt;&lt;img src=&quot;posts/gentober2026/../../assets/gentober-day11.png&quot; alt=&quot;day picture&quot;/&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;setup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
-  &lt;span class=&quot;hljs-title function_&quot;&gt;createCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;);
-  &lt;span class=&quot;hljs-title function_&quot;&gt;background&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;);
-
-  &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
-  &lt;span class=&quot;hljs-title function_&quot;&gt;strokeWeight&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;);
-
-  &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; j = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; i = &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;; i &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;38&lt;/span&gt;; i++) {
-    j += &lt;span class=&quot;hljs-number&quot;&gt;0.05&lt;/span&gt;;
-    &lt;span class=&quot;hljs-title function_&quot;&gt;strokeWeight&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;noise&lt;/span&gt;(j));
-    &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(
-      width/j + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;)/j, 
-      height/j + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;)/j,
-      width/j + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;)/j, 
-      height-height/j + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;)/j);
-    &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(
-      width-width/j + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;)/j, 
-      height/j + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;)/j,
-      width-width/j + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;)/j, 
-      height-height/j + &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(-&lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;15&lt;/span&gt;)/j);
-  }
-
-  &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;175&lt;/span&gt;);
-  &lt;span class=&quot;hljs-title function_&quot;&gt;fill&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;175&lt;/span&gt;);
-  &lt;span class=&quot;hljs-title function_&quot;&gt;textSize&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;16&lt;/span&gt;);
-  &lt;span class=&quot;hljs-title function_&quot;&gt;text&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Rescue&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;, height-&lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;);
-}
-
-&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;keyPressed&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (key == &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;s&amp;#x27;&lt;/span&gt;) {
-    &lt;span class=&quot;hljs-title function_&quot;&gt;saveCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;rescue.png&amp;quot;&lt;/span&gt;);
   }
 }
 &lt;/code&gt;&lt;/pre&gt;

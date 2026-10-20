@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 20 - Lounge</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 20 - Lounge",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-20"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-20-gentober-lounge.html">Generativetober Day 20 - Lounge</a></h1>
+<p><time datetime="2026-10-20">October 20, 2026</time></p>
+</header>
+<p><img src="../../assets/gentober-day20.png" alt="day picture"></p>
+<h2 id="code">Code</h2>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = [<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> cyan = [<span class="hljs-number">88</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> magenta = [<span class="hljs-number">255</span>, <span class="hljs-number">88</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> colors = [white, cyan, magenta];
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-title function_">noFill</span>();
+
+  <span class="hljs-keyword">let</span> n = <span class="hljs-number">100</span>;
+  <span class="hljs-keyword">let</span> buffer = <span class="hljs-number">20</span>;
+  <span class="hljs-keyword">let</span> slice = (width - buffer) / n;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+    <span class="hljs-title function_">stroke</span>(...magenta, <span class="hljs-title function_">map</span>(i, <span class="hljs-number">0</span>, n, <span class="hljs-number">50</span>, <span class="hljs-number">255</span>));
+    <span class="hljs-title function_">bezier</span>(
+      slice + slice*i, <span class="hljs-number">10</span>, <span class="hljs-comment">// anchor 1 (start)</span>
+      width/n, height/<span class="hljs-number">1.5</span>, <span class="hljs-comment">// control 1</span>
+      width-width/n, height-height/n, <span class="hljs-comment">// control 2</span>
+      width - slice*i, height-<span class="hljs-number">30</span>  <span class="hljs-comment">// anchor 2 (end)</span>
+    );
+  }
+  
+  <span class="hljs-title function_">noStroke</span>();
+  <span class="hljs-title function_">fill</span>(...magenta, <span class="hljs-number">175</span>);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">16</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Lounge&quot;</span>, <span class="hljs-number">10</span>, height - <span class="hljs-number">10</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&quot;s&quot;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;lounge.png&quot;</span>);
+  }
+}
+</code></pre>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

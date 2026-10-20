@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 17 - Contraption</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 17 - Contraption",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-17"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-17-gentober-contraption.html">Generativetober Day 17 - Contraption</a></h1>
+<p><time datetime="2026-10-17">October 17, 2026</time></p>
+</header>
+<h2 id="animated">Animated</h2>
+<div id="canvas-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
+<script src="../../assets/js/gentober2026/day17.js"></script>
+
+<h2 id="static">Static</h2>
+<p><img src="../../assets/gentober-day17.png" alt="day picture"></p>
+<h2 id="code">Code</h2>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = [<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> cyan = [<span class="hljs-number">255</span>, <span class="hljs-number">88</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> magenta = [<span class="hljs-number">88</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> colors = [white, cyan, magenta];
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Walker</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x,y,lowx,lowy,highx,highy</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = x;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = y;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastx</span> = x;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lasty</span> = y;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lowx</span> = lowx;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lowy</span> = lowy;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">highx</span> = highx;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">highy</span> = highy;
+  }
+
+  <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastx</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">lasty</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-title function_">random</span>() &lt; <span class="hljs-number">0.5</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> += <span class="hljs-title function_">random</span>() &lt; <span class="hljs-number">0.5</span> ? -<span class="hljs-number">5</span> : <span class="hljs-number">5</span>;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> += <span class="hljs-title function_">random</span>() &lt; <span class="hljs-number">0.5</span> ? -<span class="hljs-number">5</span> : <span class="hljs-number">5</span>;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">lowx</span>) <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">highx</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">highx</span>) <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">lowx</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> &lt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">lowy</span>) <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">highy</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> &gt; <span class="hljs-variable language_">this</span>.<span class="hljs-property">highy</span>) <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">lowy</span>;
+  }
+
+  <span class="hljs-title function_">show</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title function_">stroke</span>(...<span class="hljs-title function_">random</span>(colors), <span class="hljs-number">30</span>);
+    <span class="hljs-title function_">noFill</span>();
+    <span class="hljs-title function_">line</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastx</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">lasty</span>);
+  }
+}
+
+<span class="hljs-keyword">let</span> w;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-comment">// frame</span>
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">127</span>);
+  <span class="hljs-title function_">noFill</span>();
+  <span class="hljs-title function_">square</span>(<span class="hljs-number">120</span>,<span class="hljs-number">100</span>, <span class="hljs-number">400</span>);
+
+  w = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Walker</span>(<span class="hljs-number">120</span>, <span class="hljs-number">100</span>, <span class="hljs-number">120</span>, <span class="hljs-number">100</span>, <span class="hljs-number">120</span>+<span class="hljs-number">400</span>, <span class="hljs-number">100</span>+<span class="hljs-number">400</span>);
+  
+  <span class="hljs-comment">// title</span>
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">127</span>);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">127</span>);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">16</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Contraption&quot;</span>, <span class="hljs-number">10</span>, height-<span class="hljs-number">10</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  w.<span class="hljs-title function_">update</span>();
+  w.<span class="hljs-title function_">show</span>();
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&quot;s&quot;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;contraption.png&quot;</span>);
+  }
+}
+</code></pre>
+<h2 id="discussion">Discussion</h2>
+<p>I think contraption feels to me a bit like Ram did previously, that is a machine of some sort. In this case is it the &quot;machine-like&quot; drawing or the machine drawing the drawing? I decided to add a frame to give the contraption some space and feel more like a contained object. I think the lines from top to bottom and left to right jumps (due to the lastx/lasty variable handling) are nice and add to the strange feel of the contraption.</p>
+<p>Something I think might be lost if work like this was done with generative AI is that you give up the exploration of behavior with your own mind and the underlying details. That&#39;s not to say one shouldn&#39;t use AI, just think deliberately about how to use it. Perhaps do a piece twice with both methods. Perhaps start with an AI generated starting point and then add to it. Maybe start with your own exploration and then have AI remix some aspect of it. I don&#39;t want to lose the <em>discovery</em> aspect of what I&#39;m doing is the key thought for me. The jumping vertical and horizontal lines of this piece were discovered, not intended, and I think that&#39;s valuable.</p>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

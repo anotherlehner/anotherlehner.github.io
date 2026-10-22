@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 22 - Beacon</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 22 - Beacon",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-22"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-22-gentober-beacon.html">Generativetober Day 22 - Beacon</a></h1>
+<p><time datetime="2026-10-22">October 22, 2026</time></p>
+</header>
+<h2 id="animated">Animated</h2>
+<div id="canvas-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
+<script src="../../assets/js/gentober2026/day22.js"></script>
+
+<h2 id="static">Static</h2>
+<p><img src="../../assets/gentober-day22.png" alt="day picture"></p>
+<h2 id="code">Code</h2>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = [<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> cyan = [<span class="hljs-number">88</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> magenta = [<span class="hljs-number">255</span>, <span class="hljs-number">88</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> colors = [white, cyan, magenta];
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">showTitle</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">75</span>);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">75</span>);
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">16</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Beacon&quot;</span>, <span class="hljs-number">10</span>, height - <span class="hljs-number">10</span>);
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Star</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x, y</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = x;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = y;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">color</span> = <span class="hljs-title function_">random</span>(colors);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">isBeacon</span> = <span class="hljs-literal">false</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">tbright</span> = <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">10000</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">alph</span> = <span class="hljs-title function_">random</span>(<span class="hljs-number">50</span>, <span class="hljs-number">255</span>);
+  }
+
+  <span class="hljs-title function_">setBeacon</span>(<span class="hljs-params">isBeacon</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">isBeacon</span> = isBeacon;
+  }
+
+  <span class="hljs-title function_">update</span>(<span class="hljs-params"></span>) {
+  }
+
+  <span class="hljs-title function_">show</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title function_">stroke</span>(...<span class="hljs-variable language_">this</span>.<span class="hljs-property">color</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">alph</span>);
+    <span class="hljs-title function_">circle</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>, <span class="hljs-title function_">random</span>());
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">isBeacon</span>) {
+      <span class="hljs-title function_">stroke</span>(...<span class="hljs-variable language_">this</span>.<span class="hljs-property">color</span>, <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>));
+      <span class="hljs-keyword">const</span> n = <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>,<span class="hljs-number">5</span>);
+      <span class="hljs-title function_">line</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> - n, <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> + n, <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span>);
+      <span class="hljs-title function_">line</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> - n, <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> + n);
+    }
+  }
+}
+
+<span class="hljs-keyword">const</span> stars = [];
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) {
+    stars.<span class="hljs-title function_">push</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Star</span>(<span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>,width), <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>,height)));
+  }
+
+  <span class="hljs-title function_">random</span>(stars).<span class="hljs-title function_">setBeacon</span>(<span class="hljs-literal">true</span>);
+  
+  <span class="hljs-title function_">showTitle</span>();
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+  
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> s <span class="hljs-keyword">of</span> stars) {
+    s.<span class="hljs-title function_">update</span>();
+    s.<span class="hljs-title function_">show</span>();
+  }
+
+  <span class="hljs-title function_">showTitle</span>();
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&quot;s&quot;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;beacon.png&quot;</span>);
+  }
+}
+</code></pre>
+<h2 id="discussion">Discussion</h2>
+<p>Today&#39;s prompt is better viewed animated I think than static. It&#39;s the first prompt where what I envisioned before starting was imagined first as an animation rather than a static image. A beacon in this case is a brighter blinking star.</p>
+<p>The blinking beacon star is pretty mundane as far as code goes here but what I thought was a nice touch was the flickering of the other stars. I wanted something that gave the appearance of flickering stars and started out with all sorts of noise calculations but a simple random on the radius of the circle between 0 and 1 was the nicest. Obviously stars don&#39;t all flicker this intensely in the real sky but I think it gave the animation a certain vibe that implies the dots should be seen as &quot;stars&quot; and not just random dots on a field. It&#39;s interesting that my brain wanted to see some sort of flickering behavior in order to see them as stars when in reality it&#39;s not quite the same. Almost as if in order for me to see what I representationally imagined I needed to make the representation non-conforming in some way compared to reality.</p>
+<p>Something else that might be a nice improvement to this would be clustering of sorts rather than uniform randomness of the star locations. When you look through a telescope it&#39;s often the case to see a slight clustering or grouping of stars, sometimes in the same color.</p>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

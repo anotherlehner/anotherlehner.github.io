@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 30 - Cookie</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 30 - Cookie",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-30"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-30-gentober-cookie.html">Generativetober Day 30 - Cookie</a></h1>
+<p><time datetime="2026-10-30">October 30, 2026</time></p>
+</header>
+<h2 id="version-1">Version 1</h2>
+<h3 id="animated">Animated</h3>
+<div id="canvas-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
+<script src="../../assets/js/gentober2026/day30.js"></script>
+
+<h3 id="static">Static</h3>
+<p><img src="../../assets/gentober-day30-v1.png" alt="day picture"></p>
+<h3 id="code">Code</h3>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = [<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> cyan = [<span class="hljs-number">88</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> magenta = [<span class="hljs-number">255</span>, <span class="hljs-number">88</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> colors = [white, cyan, magenta];
+
+<span class="hljs-keyword">let</span> content = <span class="hljs-string">&quot;HimcWYA5ECgGvrKd8TcfCIqm1foNXRLgd9UT2wB7NKhB6nVVYX5tiqGqe4H0t/4fzdqRJJtEbkR+IKnMpRKVj2W3b5euB8xXDPhrNazYUZNxuffnHLPxkhmBA1o/ZaZnKnlHK+SSA+fann9gfsB+iBwX0XZTBv9ir+DIcy7vfXWhPn5E23vCfavze8mcsuFXPRGL0GDUmq1f+AqtfjGAbyazogtv47n9L0gsw21MrnMkP+zLVhMMwGZ6MqFQdD63FZ4Ft7W5PQTrHoKvAxYOQnIFMA5uKA7vdvFsy2FgMHVKsNmqeZzUFsPylJ/2br/M02w8lYKtXwyxhxOR/ShS0Kws8SKq6fxMNAhvS3VyVHn4249SDDXTfTU7Tj6+ZiKhtsIg3K7X4uhNaomoyl/eWARxgYz6fDGcH0+BoG40M60evDK3e0iGN+2WedoQIeUHpv657Mfw7yT6aDEzemY8Y1wtDwZ04sZXzqcrRhxzi2oRKkZTrbMx4cGNRuGGMoslzjihV+NiyPpXkgLoQZRWCdxfTlpNJXUHMt8wM+n3PG8ZmmEM1nGv58VJPhSSkauD9yC//ZWiXnSOwX+TP/4izjAMtEnscWtSY64mR3db5fTvzUH/dsALjYmbJ1crEQakjwGlQd2pazEFQoH3Vj36ZSyCv44VBOjR2L9Nmteud7c=&quot;</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>, <span class="hljs-variable constant_">WEBGL</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-keyword">const</span> encoder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TextEncoder</span>();
+  content = encoder.<span class="hljs-title function_">encode</span>(content);
+}
+
+<span class="hljs-keyword">let</span> t = <span class="hljs-number">0.001</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">snap</span>(<span class="hljs-params">byteCoordinate</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>*<span class="hljs-title function_">map</span>(byteCoordinate, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, -<span class="hljs-number">320</span>, <span class="hljs-number">320</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-title function_">stroke</span>(<span class="hljs-number">255</span>);
+  <span class="hljs-title function_">noFill</span>();
+
+  <span class="hljs-title function_">rotateX</span>(<span class="hljs-variable constant_">PI</span>*t);
+  <span class="hljs-title function_">rotateY</span>(<span class="hljs-variable constant_">PI</span>*t);
+  <span class="hljs-title function_">rotateZ</span>(<span class="hljs-variable constant_">PI</span>*t);
+  t += <span class="hljs-number">0.001</span>;
+
+  <span class="hljs-keyword">let</span> lastx = <span class="hljs-title function_">snap</span>(content[<span class="hljs-number">0</span>]);
+  <span class="hljs-keyword">let</span> lasty = <span class="hljs-title function_">snap</span>(content[<span class="hljs-number">1</span>]);
+  <span class="hljs-keyword">let</span> lastz = <span class="hljs-title function_">snap</span>(content[<span class="hljs-number">2</span>]);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i &lt; content.<span class="hljs-property">length</span>; i+=<span class="hljs-number">3</span>, j++) {
+    <span class="hljs-keyword">let</span> x = <span class="hljs-title function_">snap</span>(content[i]);
+    <span class="hljs-keyword">let</span> y = <span class="hljs-title function_">snap</span>(content[i+<span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">let</span> z = <span class="hljs-title function_">snap</span>(content[i+<span class="hljs-number">2</span>]);
+
+    <span class="hljs-keyword">let</span> dWhite = <span class="hljs-title function_">dist</span>(content[i], content[i+<span class="hljs-number">1</span>], content[i+<span class="hljs-number">2</span>], ...white);
+    <span class="hljs-keyword">let</span> dCyan = <span class="hljs-title function_">dist</span>(content[i], content[i+<span class="hljs-number">1</span>], content[i+<span class="hljs-number">2</span>], ...cyan);
+    <span class="hljs-keyword">let</span> dMagenta = <span class="hljs-title function_">dist</span>(content[i], content[i+<span class="hljs-number">1</span>], content[i+<span class="hljs-number">2</span>], ...magenta);
+
+    <span class="hljs-keyword">if</span> (dWhite &lt; dCyan &amp;&amp; dWhite &lt; dMagenta) {
+      <span class="hljs-comment">// Note: interestingly none of the line segments are white</span>
+      <span class="hljs-title function_">stroke</span>(...white, <span class="hljs-number">200</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dCyan &lt; dWhite &amp;&amp; dCyan &lt; dMagenta) {
+      <span class="hljs-title function_">stroke</span>(...cyan, <span class="hljs-number">200</span>);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-title function_">stroke</span>(...magenta, <span class="hljs-number">200</span>);
+    }
+    
+    <span class="hljs-title function_">line</span>(
+      lastx,
+      lasty,
+      lastz,
+      x,
+      y,
+      z);
+    lastx = <span class="hljs-title function_">snap</span>(content[i]);
+    lasty = <span class="hljs-title function_">snap</span>(content[i+<span class="hljs-number">1</span>]);
+    lastz = <span class="hljs-title function_">snap</span>(content[i+<span class="hljs-number">2</span>]);
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&quot;s&quot;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;cookie.png&quot;</span>);
+  }
+}
+</code></pre>
+<h2 id="version-2">Version 2</h2>
+<p><img src="../../assets/gentober-day30-v2.png" alt="day picture"></p>
+<h3 id="code-1">Code</h3>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = [<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> cyan = [<span class="hljs-number">88</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> magenta = [<span class="hljs-number">255</span>, <span class="hljs-number">88</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> colors = [white, cyan, magenta];
+
+<span class="hljs-keyword">let</span> content;
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;encrypted-cookie.txt&#x27;</span>);
+  content = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">bytes</span>();
+
+  <span class="hljs-keyword">const</span> decoder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TextDecoder</span>(<span class="hljs-string">&#x27;utf-8&#x27;</span>);
+  <span class="hljs-keyword">const</span> t = decoder.<span class="hljs-title function_">decode</span>(content);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>, <span class="hljs-number">100</span>);
+  <span class="hljs-title function_">noStroke</span>();
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">27</span>);
+  <span class="hljs-title function_">textWrap</span>(<span class="hljs-variable constant_">CHAR</span>);
+  <span class="hljs-title function_">text</span>(t, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">620</span>, <span class="hljs-number">620</span>);
+  
+  <span class="hljs-keyword">const</span> h = <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">const</span> y = <span class="hljs-number">85</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i &lt; content.<span class="hljs-property">length</span>; i+=<span class="hljs-number">3</span>, j++) {
+    <span class="hljs-title function_">fill</span>(content[i], content[i+<span class="hljs-number">1</span>], content[i+<span class="hljs-number">2</span>], <span class="hljs-number">100</span>);
+    <span class="hljs-title function_">stroke</span>(content[i], content[i+<span class="hljs-number">1</span>], content[i+<span class="hljs-number">2</span>]);
+    <span class="hljs-title function_">bezier</span>(
+      width/<span class="hljs-number">10</span>, y+j*h,
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, width), <span class="hljs-title function_">random</span>(y+j*h - <span class="hljs-number">100</span>, y+j*h + <span class="hljs-number">100</span>),
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, width), <span class="hljs-title function_">random</span>(y+j*h - <span class="hljs-number">100</span>, y+j*h + <span class="hljs-number">100</span>),
+      width-width/<span class="hljs-number">10</span>, y+j*h,
+    );
+  }
+
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">16</span>);
+  <span class="hljs-title function_">noStroke</span>();
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>, <span class="hljs-number">225</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Cookie&quot;</span>, width-<span class="hljs-number">60</span>, height - <span class="hljs-number">10</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&quot;s&quot;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;cookie.png&quot;</span>);
+  }
+}
+</code></pre>
+<h2 id="version-3">Version 3</h2>
+<p><img src="../../assets/gentober-day30-v3.png" alt="day picture"></p>
+<h3 id="code-2">Code</h3>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> white = [<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> cyan = [<span class="hljs-number">88</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> magenta = [<span class="hljs-number">255</span>, <span class="hljs-number">88</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> colors = [white, cyan, magenta];
+
+<span class="hljs-keyword">let</span> content;
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>);
+  <span class="hljs-title function_">background</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;encrypted-cookie.txt&#x27;</span>);
+  content = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">bytes</span>();
+
+  <span class="hljs-keyword">const</span> decoder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TextDecoder</span>(<span class="hljs-string">&#x27;utf-8&#x27;</span>);
+  <span class="hljs-keyword">const</span> t = decoder.<span class="hljs-title function_">decode</span>(content);
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>, <span class="hljs-number">50</span>);
+  <span class="hljs-title function_">noStroke</span>();
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">27</span>);
+  <span class="hljs-title function_">textWrap</span>(<span class="hljs-variable constant_">CHAR</span>);
+  <span class="hljs-title function_">text</span>(t, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">620</span>, <span class="hljs-number">620</span>);
+  
+  <span class="hljs-keyword">const</span> h = <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">const</span> y = <span class="hljs-number">85</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i &lt; content.<span class="hljs-property">length</span>; i+=<span class="hljs-number">3</span>, j++) {
+    <span class="hljs-keyword">let</span> dWhite = <span class="hljs-title function_">dist</span>(content[i], content[i+<span class="hljs-number">1</span>], content[i+<span class="hljs-number">2</span>], ...white);
+    <span class="hljs-keyword">let</span> dCyan = <span class="hljs-title function_">dist</span>(content[i], content[i+<span class="hljs-number">1</span>], content[i+<span class="hljs-number">2</span>], ...cyan);
+    <span class="hljs-keyword">let</span> dMagenta = <span class="hljs-title function_">dist</span>(content[i], content[i+<span class="hljs-number">1</span>], content[i+<span class="hljs-number">2</span>], ...magenta);
+
+    <span class="hljs-keyword">if</span> (dWhite &lt; dCyan &amp;&amp; dWhite &lt; dMagenta) {
+      <span class="hljs-title function_">fill</span>(...white, <span class="hljs-number">50</span>);
+      <span class="hljs-title function_">stroke</span>(...white, <span class="hljs-number">200</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dCyan &lt; dWhite &amp;&amp; dCyan &lt; dMagenta) {
+      <span class="hljs-title function_">fill</span>(...cyan, <span class="hljs-number">50</span>);
+      <span class="hljs-title function_">stroke</span>(...cyan, <span class="hljs-number">200</span>);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-title function_">fill</span>(...magenta, <span class="hljs-number">50</span>);
+      <span class="hljs-title function_">stroke</span>(...magenta, <span class="hljs-number">200</span>);
+    }
+    
+    <span class="hljs-title function_">bezier</span>(
+      width/<span class="hljs-number">12</span>, y+j*h,
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, width), <span class="hljs-title function_">random</span>(y+j*h - <span class="hljs-number">100</span>, y+j*h + <span class="hljs-number">100</span>),
+      <span class="hljs-title function_">random</span>(<span class="hljs-number">0</span>, width), <span class="hljs-title function_">random</span>(y+j*h - <span class="hljs-number">100</span>, y+j*h + <span class="hljs-number">100</span>),
+      width-width/<span class="hljs-number">12</span>, y+j*h,
+    );
+  }
+
+  <span class="hljs-title function_">textSize</span>(<span class="hljs-number">16</span>);
+  <span class="hljs-title function_">noStroke</span>();
+  <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>, <span class="hljs-number">225</span>);
+  <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Cookie&quot;</span>, width-<span class="hljs-number">60</span>, height - <span class="hljs-number">10</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+  
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (key == <span class="hljs-string">&quot;s&quot;</span>) {
+    <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&quot;cookie.png&quot;</span>);
+  }
+}
+</code></pre>
+<h2 id="discussion">Discussion</h2>
+<p>Today I have 3 versions of the prompt &quot;cookie&quot;! I&#39;m going to come clean and admit that I started with versions 2 and 3 shown above before I got to the animated version 3 but since I liked the animation I switched them around to show the animation first. Anyway... I started by downloading my p5js editor session cookie and encrypting it using an ancient pkcs1 rsa private key. Then I took the encrypted output and used byte triplets as RGB values to define colors. I find the structure interesting in that cyan and magenta aren&#39;t all mixed together randomly, I can see roughly half the cube is one or the other, why is that the case?</p>
+<p>Version 1 (the animated one) is the result of drawing lines from each byte triplet to another where the triplets were used as xyz coordinates in a 3-dimensional space. The color of the line is determined by the distance of the byte triplet coordinate from the white color triplet (255,255,255), this has the effect of &quot;snapping&quot; the color to white, cyan, or magenta based on it&#39;s distance. Interestingly I didn&#39;t see any white lines, they all ended up closer to magenta or cyan. I suspect this is because all the byte triplets are in the <em>middle</em> of the potential number space?</p>
+<p>Version 2 is the result of drawing filled bezier curves with some randomness for each byte triplet and using the triplet to define the actual color. They all turn out a bit muted. I also write the full text of the encrypted cookie in the background.</p>
+<p>Version 3 is mostly the same as version 2 but with the colors snapped to white, cyan, and magenta like my other examples.</p>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

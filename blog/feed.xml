@@ -6,8 +6,151 @@
 <author>
 <name>anotherlehner/blog</name>
 </author>
-<updated>2026-10-30T14:35:00.917Z</updated>
+<updated>2026-11-01T14:08:22.967Z</updated>
 
+<entry>
+<title>Generativetober Day 31 - Flex</title>
+<id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%2031%20-%20Flex</id>
+<link rel="alternate" href="posts/gentober2026/2026-10-31-gentober-flex.html"/>
+<updated>2026-10-31T00:00:00.000Z</updated>
+
+<content type="html">&lt;h2 id=&quot;animated&quot;&gt;Animated&lt;/h2&gt;
+&lt;div id=&quot;canvas-container&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;../../assets/js/gentober2026/day31.js&quot;&gt;&lt;/script&gt;
+
+&lt;h2 id=&quot;static&quot;&gt;Static&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;posts/gentober2026/../../assets/gentober-day31.png&quot; alt=&quot;day picture&quot;/&gt;&lt;/p&gt;
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; flexCyan = [&lt;span class=&quot;hljs-number&quot;&gt;88&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;];
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; flexMagenta = [&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;88&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;];
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; flexColumns = &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; flexRows = &lt;span class=&quot;hljs-number&quot;&gt;28&lt;/span&gt;;
+&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; flexPoints = [];
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;setup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; canvas = &lt;span class=&quot;hljs-title function_&quot;&gt;createCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;).&lt;span class=&quot;hljs-title function_&quot;&gt;parent&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;canvas-container&amp;#x27;&lt;/span&gt;);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;pixelDensity&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;noFill&lt;/span&gt;();
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;draw&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-title function_&quot;&gt;background&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;12&lt;/span&gt;);
+
+    &lt;span class=&quot;hljs-comment&quot;&gt;// AI made a mistake right here. I don&amp;#x27;t think it intended this fill to cover&lt;/span&gt;
+    &lt;span class=&quot;hljs-comment&quot;&gt;// all the grid lines because later prompts removed it&lt;/span&gt;
+    &lt;span class=&quot;hljs-title function_&quot;&gt;fill&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;88&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;180&lt;/span&gt;);
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; time = &lt;span class=&quot;hljs-title function_&quot;&gt;millis&lt;/span&gt;() / &lt;span class=&quot;hljs-number&quot;&gt;1000&lt;/span&gt;;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; forceX = width / &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt; + &lt;span class=&quot;hljs-title function_&quot;&gt;sin&lt;/span&gt;(time * &lt;span class=&quot;hljs-number&quot;&gt;0.62&lt;/span&gt;) * width * &lt;span class=&quot;hljs-number&quot;&gt;0.18&lt;/span&gt;;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; forceY = height / &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt; + &lt;span class=&quot;hljs-title function_&quot;&gt;cos&lt;/span&gt;(time * &lt;span class=&quot;hljs-number&quot;&gt;0.47&lt;/span&gt;) * height * &lt;span class=&quot;hljs-number&quot;&gt;0.14&lt;/span&gt;;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; reach = &lt;span class=&quot;hljs-number&quot;&gt;128&lt;/span&gt;;
+
+    flexPoints = [];
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; flexStrains = [];
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; row = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; row &amp;lt; flexRows; row++) {
+        flexPoints[row] = [];
+        flexStrains[row] = [];
+        &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; y = &lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(row, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, flexRows - &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;38&lt;/span&gt;, height - &lt;span class=&quot;hljs-number&quot;&gt;38&lt;/span&gt;);
+
+        &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; column = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; column &amp;lt; flexColumns; column++) {
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; x = &lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(column, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, flexColumns - &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;38&lt;/span&gt;, width - &lt;span class=&quot;hljs-number&quot;&gt;38&lt;/span&gt;);
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; edgeTension = &lt;span class=&quot;hljs-title function_&quot;&gt;sin&lt;/span&gt;(&lt;span class=&quot;hljs-variable constant_&quot;&gt;PI&lt;/span&gt; * column / (flexColumns - &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;)) *
+                &lt;span class=&quot;hljs-title function_&quot;&gt;sin&lt;/span&gt;(&lt;span class=&quot;hljs-variable constant_&quot;&gt;PI&lt;/span&gt; * row / (flexRows - &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;));
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dx = x - forceX;
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dy = y - forceY;
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; falloff = &lt;span class=&quot;hljs-title function_&quot;&gt;exp&lt;/span&gt;(-(dx * dx + dy * dy) / (&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt; * reach * reach));
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; strain = falloff * edgeTension;
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; drift = &lt;span class=&quot;hljs-title function_&quot;&gt;sin&lt;/span&gt;(y * &lt;span class=&quot;hljs-number&quot;&gt;0.014&lt;/span&gt; + time * &lt;span class=&quot;hljs-number&quot;&gt;1.2&lt;/span&gt;) * &lt;span class=&quot;hljs-number&quot;&gt;9&lt;/span&gt; * edgeTension;
+            flexStrains[row][column] = strain;
+
+            flexPoints[row][column] = &lt;span class=&quot;hljs-title function_&quot;&gt;createVector&lt;/span&gt;(
+                x + dx * strain * &lt;span class=&quot;hljs-number&quot;&gt;0.58&lt;/span&gt; + drift,
+                y + dy * strain * &lt;span class=&quot;hljs-number&quot;&gt;0.46&lt;/span&gt; + &lt;span class=&quot;hljs-title function_&quot;&gt;sin&lt;/span&gt;(x * &lt;span class=&quot;hljs-number&quot;&gt;0.013&lt;/span&gt; - time) * &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt; * edgeTension
+            );
+        }
+    }
+
+    &lt;span class=&quot;hljs-title function_&quot;&gt;noStroke&lt;/span&gt;();
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; row = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; row &amp;lt; flexRows; row++) {
+        &lt;span class=&quot;hljs-title function_&quot;&gt;beginShape&lt;/span&gt;();
+        &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; column = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; column &amp;lt; flexColumns; column++) {
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; flexPoint = flexPoints[row][column];
+            &lt;span class=&quot;hljs-title function_&quot;&gt;vertex&lt;/span&gt;(flexPoint.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, flexPoint.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;);
+        }
+        &lt;span class=&quot;hljs-title function_&quot;&gt;endShape&lt;/span&gt;();
+    }
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; column = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; column &amp;lt; flexColumns; column++) {
+        &lt;span class=&quot;hljs-title function_&quot;&gt;beginShape&lt;/span&gt;();
+        &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; row = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; row &amp;lt; flexRows; row++) {
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; flexPoint = flexPoints[row][column];
+            &lt;span class=&quot;hljs-title function_&quot;&gt;vertex&lt;/span&gt;(flexPoint.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, flexPoint.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;);
+        }
+        &lt;span class=&quot;hljs-title function_&quot;&gt;endShape&lt;/span&gt;();
+    }
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; cyanColor = &lt;span class=&quot;hljs-title function_&quot;&gt;color&lt;/span&gt;(...flexCyan);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; whiteColor = &lt;span class=&quot;hljs-title function_&quot;&gt;color&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; magentaColor = &lt;span class=&quot;hljs-title function_&quot;&gt;color&lt;/span&gt;(...flexMagenta);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; row = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; row &amp;lt; flexRows; row++) {
+        &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; column = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; column &amp;lt; flexColumns - &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;; column++) {
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; firstPoint = flexPoints[row][column];
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; secondPoint = flexPoints[row][column + &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;];
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; segmentIntensity = (flexStrains[row][column] + flexStrains[row][column + &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;]) / &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;;
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; segmentColor = segmentIntensity &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;
+                ? &lt;span class=&quot;hljs-title function_&quot;&gt;lerpColor&lt;/span&gt;(magentaColor, whiteColor, segmentIntensity * &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;)
+                : &lt;span class=&quot;hljs-title function_&quot;&gt;lerpColor&lt;/span&gt;(whiteColor, cyanColor, (segmentIntensity - &lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;) * &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;);
+            &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;red&lt;/span&gt;(segmentColor), &lt;span class=&quot;hljs-title function_&quot;&gt;green&lt;/span&gt;(segmentColor), &lt;span class=&quot;hljs-title function_&quot;&gt;blue&lt;/span&gt;(segmentColor), &lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(segmentIntensity, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;70&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;210&lt;/span&gt;));
+            &lt;span class=&quot;hljs-title function_&quot;&gt;strokeWeight&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(segmentIntensity, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.65&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1.2&lt;/span&gt;));
+            &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(firstPoint.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, firstPoint.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;, secondPoint.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, secondPoint.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;);
+        }
+    }
+
+    &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; column = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; column &amp;lt; flexColumns; column++) {
+        &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; row = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; row &amp;lt; flexRows - &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;; row++) {
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; firstPoint = flexPoints[row][column];
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; secondPoint = flexPoints[row + &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;][column];
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; segmentIntensity = (flexStrains[row][column] + flexStrains[row + &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;][column]) / &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;;
+            &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; segmentColor = segmentIntensity &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;
+                ? &lt;span class=&quot;hljs-title function_&quot;&gt;lerpColor&lt;/span&gt;(magentaColor, whiteColor, segmentIntensity * &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;)
+                : &lt;span class=&quot;hljs-title function_&quot;&gt;lerpColor&lt;/span&gt;(whiteColor, cyanColor, (segmentIntensity - &lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;) * &lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;);
+            &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;red&lt;/span&gt;(segmentColor), &lt;span class=&quot;hljs-title function_&quot;&gt;green&lt;/span&gt;(segmentColor), &lt;span class=&quot;hljs-title function_&quot;&gt;blue&lt;/span&gt;(segmentColor), &lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(segmentIntensity, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;70&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;210&lt;/span&gt;));
+            &lt;span class=&quot;hljs-title function_&quot;&gt;strokeWeight&lt;/span&gt;(&lt;span class=&quot;hljs-title function_&quot;&gt;map&lt;/span&gt;(segmentIntensity, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0.65&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1.2&lt;/span&gt;));
+            &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(firstPoint.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, firstPoint.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;, secondPoint.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, secondPoint.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;);
+        }
+    }
+
+    &lt;span class=&quot;hljs-title function_&quot;&gt;push&lt;/span&gt;();
+    &lt;span class=&quot;hljs-title function_&quot;&gt;noStroke&lt;/span&gt;();
+    &lt;span class=&quot;hljs-title function_&quot;&gt;fill&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;textSize&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;16&lt;/span&gt;);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;text&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Flex&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;, height - &lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;);
+    &lt;span class=&quot;hljs-title function_&quot;&gt;pop&lt;/span&gt;();
+}
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;keyPressed&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (key === &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;s&amp;#x27;&lt;/span&gt;) {
+        &lt;span class=&quot;hljs-title function_&quot;&gt;saveCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;flex.png&amp;#x27;&lt;/span&gt;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;discussion&quot;&gt;Discussion&lt;/h2&gt;
+&lt;h3 id=&quot;ai-discussion&quot;&gt;AI Discussion&lt;/h3&gt;
+&lt;p&gt;I read “Flex” as both a physical quality and a way of responding to pressure: a surface can bend, stretch, and keep its shape connected. That led to a tensioned wire grid rather than a literal figure. The visual language draws on elastic meshes, distorted wireframes, and the interference patterns that appear when regular lines are pushed out of alignment. The saturated pink fill gives the deformation a soft, almost membrane-like body, while the cyan and white strokes make the underlying structure visible.&lt;/p&gt;
+&lt;p&gt;The sketch lays a 28-by-28 grid across the canvas. A smoothly moving point acts like an invisible force: its influence fades with distance, and the grid displacement is softened toward the edges so the whole mesh does not drift away. A slow wave adds a little motion beyond the force itself. Each grid segment uses the average strain at its endpoints to move through a magenta-to-white-to-cyan color range; stronger strain also increases its opacity and weight. The translucent fill is drawn underneath those strokes, so the grid reads both as a set of lines and as overlapping ribbons. Press &lt;code&gt;s&lt;/code&gt; to save a frame.&lt;/p&gt;
+&lt;p&gt;My impression of working with you on this was that the strongest version came from treating the image as something to look at together, not just a prompt to implement. You noticed that the fill I had initially removed was giving the grid a richer, layered character, and asked to keep it. Then we refined the color mapping until the strongest deformation became cyan against the magenta field. The iteration also surfaced a few p5 global-mode naming collisions, which we fixed without changing the visual idea. Your visual judgment gave the sketch its final contrast and depth.&lt;/p&gt;
+&lt;h3 id=&quot;human-discussion&quot;&gt;Human Discussion&lt;/h3&gt;
+&lt;p&gt;So today is the weirdest day of doing this 31 day computer generated art project because I worked with AI to make the sketch. First I asked it (via copilot to GPT Luna) to come up with a sketch based on the prompt word &amp;quot;Flex&amp;quot;. To me the prompt word flex for today triggered thoughts of making the piece in a different way and being flexible with my methods as I&amp;#39;m learning to be more flexible with my development process given the LLM AI reality of today. The AI itself interpreted the prompt word more directly into the visual impression.&lt;/p&gt;
+&lt;p&gt;After getting an initial visual interpretation from the AI I made several prompts to adjust colors, fix the title, etc. Upon fixing the title I noticed the AI was making some mistakes with setting the fill/noFill and stroke settings. When we fixed them the ribbon-like appearance disappeared and even after prompting to go back to the original interpretation it kept only a deforming wire grid and not the ribbons. I think this is because those alpha fills were a mistake. I worked on some of the code manually and figured out how to get back to that appearance and then worked with the AI to add grid lines over the frame that map to white, magenta, and cyan based on the reverse intensity of the force, which gives the contrasting lines on top.&lt;/p&gt;
+&lt;p&gt;Overall I think it was a good experience but one that leaves me with lots of strange feelings and lots of questions. I&amp;#39;m not sure if the piece is my own. How could I prompt things in different ways to get a wider variety of initial interpretations, perhaps in a larger grid, to explore more initial directions? I like the different goals where the AI was thinking mostly about &amp;quot;Flex&amp;quot; in the visual interpretation and I was thinking about &amp;quot;Flex&amp;quot; in terms of process and interaction. I like how it looked over my past pieces in this project to maintain some of the patterns I&amp;#39;ve established so far, especially with respect to color palette.&lt;/p&gt;
+&lt;p&gt;Lastly I&amp;#39;ll note that working with the AI helped me with some math. Math isn&amp;#39;t exactly my strongest skill set. I lean more toward organization, process, and architecture so it was helpful to let the AI handle more of the bottom level tactical things while I thought more about the vision. That said, I still had to dive down and troubleshoot some of the smallest details in order to get exactly what I wanted. The AI can kindof go off the rails and down paths that don&amp;#39;t make sense even after multiple prompts.&lt;/p&gt;
+&lt;p&gt;Today concludes my 31 day computer art project! I&amp;#39;ll have another post in a day or two about the whole experience and looking toward what I&amp;#39;m up to next.&lt;/p&gt;
+&lt;p&gt;Cheers!&lt;/p&gt;
+&lt;p&gt;M.&lt;/p&gt;
+</content>
+</entry>
 <entry>
 <title>Generativetober Day 30 - Cookie</title>
 <id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%2030%20-%20Cookie</id>
@@ -530,128 +673,6 @@
 &lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;keyPressed&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
   &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (key == &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;s&amp;quot;&lt;/span&gt;) {
     &lt;span class=&quot;hljs-title function_&quot;&gt;saveCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;dumb.png&amp;quot;&lt;/span&gt;);
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-</content>
-</entry>
-<entry>
-<title>Generativetober Day 26 - Zip</title>
-<id>urn:md2blog:anotherlehner%2Fblog:Generativetober%20Day%2026%20-%20Zip</id>
-<link rel="alternate" href="posts/gentober2026/2026-10-26-gentober-zip.html"/>
-<updated>2026-10-26T00:00:00.000Z</updated>
-
-<content type="html">&lt;h2 id=&quot;animated&quot;&gt;Animated&lt;/h2&gt;
-&lt;div id=&quot;canvas-container&quot;&gt;&lt;/div&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;../../assets/js/gentober2026/day26.js&quot;&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;static&quot;&gt;Static&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;posts/gentober2026/../../assets/gentober-day26.png&quot; alt=&quot;day picture&quot;/&gt;&lt;/p&gt;
-&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; white = [&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;];
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; cyan = [&lt;span class=&quot;hljs-number&quot;&gt;88&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;];
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; magenta = [&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;88&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;];
-&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; colors = [white, cyan, magenta];
-
-&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;getPerpendicularEndpoint&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;x, y, lastX, lastY, length, direction = &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;ccw&amp;#x27;&lt;/span&gt;&lt;/span&gt;) {
-  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dx = lastX - x;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dy = lastY - y;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; dst = &lt;span class=&quot;hljs-title class_&quot;&gt;Math&lt;/span&gt;.&lt;span class=&quot;hljs-title function_&quot;&gt;hypot&lt;/span&gt;(dx, dy);
-
-  &lt;span class=&quot;hljs-comment&quot;&gt;// Avoid division by zero if points are identical&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (dst === &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; { x, y };
-
-  &lt;span class=&quot;hljs-comment&quot;&gt;// Perpendicular unit vector&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; ux, uy;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (direction === &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;ccw&amp;#x27;&lt;/span&gt;) {
-    ux = -dy / dst;
-    uy = dx / dst;
-  } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
-    ux = dy / dst;
-    uy = -dx / dst;
-  }
-
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; {
-    &lt;span class=&quot;hljs-attr&quot;&gt;x&lt;/span&gt;: x + ux * length,
-    &lt;span class=&quot;hljs-attr&quot;&gt;y&lt;/span&gt;: y + uy * length
-  };
-}
-
-&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Zipper&lt;/span&gt; {
-  &lt;span class=&quot;hljs-title function_&quot;&gt;constructor&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;x, y&lt;/span&gt;) {
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; = x;
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; = y;
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lastx&lt;/span&gt; = x;
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lasty&lt;/span&gt; = y;
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;dirx&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;([-&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;]);
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;diry&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;([-&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;]);
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;alph&lt;/span&gt; = &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;;
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;dira&lt;/span&gt; = -&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;;
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;color&lt;/span&gt; = white;
-  }
-
-  &lt;span class=&quot;hljs-title function_&quot;&gt;update&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;alph&lt;/span&gt; += &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;dira&lt;/span&gt;;
-    &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(...&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;color&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;alph&lt;/span&gt;);
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lastx&lt;/span&gt; = &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;;
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lasty&lt;/span&gt; = &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;;
-    
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; += &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;dirx&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;5&lt;/span&gt;;
-    
-    &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; += &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;diry&lt;/span&gt; * &lt;span class=&quot;hljs-number&quot;&gt;7&lt;/span&gt;;
-
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; &amp;gt;= width-&lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt; || &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt;) {
-      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;dirx&lt;/span&gt; *= -&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;;
-      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt;,width-&lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt;);
-      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lastx&lt;/span&gt; = &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;;
-      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;color&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(colors);
-    }
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; &amp;gt;= height-&lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt; || &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt;) {
-      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;diry&lt;/span&gt; *= -&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;;
-      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt;,height-&lt;span class=&quot;hljs-number&quot;&gt;30&lt;/span&gt;);
-      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lasty&lt;/span&gt; = &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;;
-      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;color&lt;/span&gt; = &lt;span class=&quot;hljs-title function_&quot;&gt;random&lt;/span&gt;(colors);
-    }
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;alph&lt;/span&gt; &amp;gt;= &lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt; || &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;alph&lt;/span&gt; &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
-      &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;dira&lt;/span&gt; *= -&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;;
-    }
-  }
-
-  &lt;span class=&quot;hljs-title function_&quot;&gt;show&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
-    &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lastx&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lasty&lt;/span&gt;);
-    
-    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; p2 = &lt;span class=&quot;hljs-title function_&quot;&gt;getPerpendicularEndpoint&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lastx&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lasty&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;6&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;ccw&amp;#x27;&lt;/span&gt;);
-    &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;, p2.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, p2.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;);
-
-    &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; p3 = &lt;span class=&quot;hljs-title function_&quot;&gt;getPerpendicularEndpoint&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lastx&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;lasty&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;6&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;right&amp;#x27;&lt;/span&gt;);
-    &lt;span class=&quot;hljs-title function_&quot;&gt;line&lt;/span&gt;(&lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, &lt;span class=&quot;hljs-variable language_&quot;&gt;this&lt;/span&gt;.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;, p3.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;, p3.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;);
-  }
-}
-
-&lt;span class=&quot;hljs-keyword&quot;&gt;let&lt;/span&gt; z;
-
-&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;setup&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
-  &lt;span class=&quot;hljs-title function_&quot;&gt;createCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;640&lt;/span&gt;);
-  &lt;span class=&quot;hljs-title function_&quot;&gt;background&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;);
-  &lt;span class=&quot;hljs-title function_&quot;&gt;stroke&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
-
-  z = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Zipper&lt;/span&gt;(width/&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;, height/&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;);
-
-  &lt;span class=&quot;hljs-title function_&quot;&gt;noStroke&lt;/span&gt;();
-  &lt;span class=&quot;hljs-title function_&quot;&gt;fill&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;255&lt;/span&gt;);
-  &lt;span class=&quot;hljs-title function_&quot;&gt;textSize&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;16&lt;/span&gt;);
-  &lt;span class=&quot;hljs-title function_&quot;&gt;text&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;Zip&amp;quot;&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;, height-&lt;span class=&quot;hljs-number&quot;&gt;10&lt;/span&gt;);
-}
-
-&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;draw&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
-  z.&lt;span class=&quot;hljs-title function_&quot;&gt;update&lt;/span&gt;();
-  z.&lt;span class=&quot;hljs-title function_&quot;&gt;show&lt;/span&gt;();
-}
-
-&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;keyPressed&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;/span&gt;) {
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (key == &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;s&amp;quot;&lt;/span&gt;) {
-    &lt;span class=&quot;hljs-title function_&quot;&gt;saveCanvas&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;zip.png&amp;quot;&lt;/span&gt;);
   }
 }
 &lt;/code&gt;&lt;/pre&gt;

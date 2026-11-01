@@ -6,7 +6,7 @@ const flexRows = 28;
 let flexPoints = [];
 
 function setup() {
-    const canvas = createCanvas(640, 640) // .parent('canvas-container');
+    const canvas = createCanvas(640, 640).parent('canvas-container');
     pixelDensity(1);
     noFill();
 }
@@ -24,8 +24,10 @@ function draw() {
     const reach = 128;
 
     flexPoints = [];
+    const flexStrains = [];
     for (let row = 0; row < flexRows; row++) {
         flexPoints[row] = [];
+        flexStrains[row] = [];
         const y = map(row, 0, flexRows - 1, 38, height - 38);
 
         for (let column = 0; column < flexColumns; column++) {
@@ -37,6 +39,7 @@ function draw() {
             const falloff = exp(-(dx * dx + dy * dy) / (2 * reach * reach));
             const strain = falloff * edgeTension;
             const drift = sin(y * 0.014 + time * 1.2) * 9 * edgeTension;
+            flexStrains[row][column] = strain;
 
             flexPoints[row][column] = createVector(
                 x + dx * strain * 0.58 + drift,
@@ -45,11 +48,8 @@ function draw() {
         }
     }
 
+    noStroke();
     for (let row = 0; row < flexRows; row++) {
-        const rowBlend = row / (flexRows - 1);
-        const lineColor = lerpColor(color(...flexCyan), color(...flexMagenta), rowBlend);
-        stroke(red(lineColor), green(lineColor), blue(lineColor), 100);
-        strokeWeight(0.85);
         beginShape();
         for (let column = 0; column < flexColumns; column++) {
             const flexPoint = flexPoints[row][column];
@@ -59,16 +59,43 @@ function draw() {
     }
 
     for (let column = 0; column < flexColumns; column++) {
-        const rowBlend = column / (flexColumns - 1);
-        const lineColor = lerpColor(color(...flexMagenta), color(...flexCyan), rowBlend);
-        stroke(red(lineColor), green(lineColor), blue(lineColor), 78);
-        strokeWeight(0.75);
         beginShape();
         for (let row = 0; row < flexRows; row++) {
             const flexPoint = flexPoints[row][column];
             vertex(flexPoint.x, flexPoint.y);
         }
         endShape();
+    }
+
+    const cyanColor = color(...flexCyan);
+    const whiteColor = color(255);
+    const magentaColor = color(...flexMagenta);
+    for (let row = 0; row < flexRows; row++) {
+        for (let column = 0; column < flexColumns - 1; column++) {
+            const firstPoint = flexPoints[row][column];
+            const secondPoint = flexPoints[row][column + 1];
+            const segmentIntensity = (flexStrains[row][column] + flexStrains[row][column + 1]) / 2;
+            const segmentColor = segmentIntensity < 0.5
+                ? lerpColor(magentaColor, whiteColor, segmentIntensity * 2)
+                : lerpColor(whiteColor, cyanColor, (segmentIntensity - 0.5) * 2);
+            stroke(red(segmentColor), green(segmentColor), blue(segmentColor), map(segmentIntensity, 0, 1, 70, 210));
+            strokeWeight(map(segmentIntensity, 0, 1, 0.65, 1.2));
+            line(firstPoint.x, firstPoint.y, secondPoint.x, secondPoint.y);
+        }
+    }
+
+    for (let column = 0; column < flexColumns; column++) {
+        for (let row = 0; row < flexRows - 1; row++) {
+            const firstPoint = flexPoints[row][column];
+            const secondPoint = flexPoints[row + 1][column];
+            const segmentIntensity = (flexStrains[row][column] + flexStrains[row + 1][column]) / 2;
+            const segmentColor = segmentIntensity < 0.5
+                ? lerpColor(magentaColor, whiteColor, segmentIntensity * 2)
+                : lerpColor(whiteColor, cyanColor, (segmentIntensity - 0.5) * 2);
+            stroke(red(segmentColor), green(segmentColor), blue(segmentColor), map(segmentIntensity, 0, 1, 70, 210));
+            strokeWeight(map(segmentIntensity, 0, 1, 0.65, 1.2));
+            line(firstPoint.x, firstPoint.y, secondPoint.x, secondPoint.y);
+        }
     }
 
     push();

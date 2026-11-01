@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generativetober Day 31 - Flex</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="../../css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Generativetober Day 31 - Flex",
+
+  "keywords": "gentober2026",
+  "datePublished": "2026-10-31"
+}
+</script>
+</head>
+<body>
+<header>
+<h1><a href="../../index.html">anotherlehner/blog</a></h1>
+
+
+<nav>
+<strong>Topics:&nbsp;</strong>
+<ul>
+<li><a href="../../posts/gentober2026/index.html">gentober2026</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<article>
+<header>
+<h1><a href="../../posts/gentober2026/2026-10-31-gentober-flex.html">Generativetober Day 31 - Flex</a></h1>
+<p><time datetime="2026-10-31">October 31, 2026</time></p>
+</header>
+<h2 id="animated">Animated</h2>
+<div id="canvas-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
+<script src="../../assets/js/gentober2026/day31.js"></script>
+
+<h2 id="static">Static</h2>
+<p><img src="../../assets/gentober-day31.png" alt="day picture"></p>
+<h2 id="code">Code</h2>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> flexCyan = [<span class="hljs-number">88</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>];
+<span class="hljs-keyword">const</span> flexMagenta = [<span class="hljs-number">255</span>, <span class="hljs-number">88</span>, <span class="hljs-number">255</span>];
+
+<span class="hljs-keyword">const</span> flexColumns = <span class="hljs-number">28</span>;
+<span class="hljs-keyword">const</span> flexRows = <span class="hljs-number">28</span>;
+<span class="hljs-keyword">let</span> flexPoints = [];
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> canvas = <span class="hljs-title function_">createCanvas</span>(<span class="hljs-number">640</span>, <span class="hljs-number">640</span>).<span class="hljs-title function_">parent</span>(<span class="hljs-string">&#x27;canvas-container&#x27;</span>);
+    <span class="hljs-title function_">pixelDensity</span>(<span class="hljs-number">1</span>);
+    <span class="hljs-title function_">noFill</span>();
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">draw</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title function_">background</span>(<span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">12</span>);
+
+    <span class="hljs-comment">// AI made a mistake right here. I don&#x27;t think it intended this fill to cover</span>
+    <span class="hljs-comment">// all the grid lines because later prompts removed it</span>
+    <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>, <span class="hljs-number">88</span>, <span class="hljs-number">255</span>, <span class="hljs-number">180</span>);
+
+    <span class="hljs-keyword">const</span> time = <span class="hljs-title function_">millis</span>() / <span class="hljs-number">1000</span>;
+    <span class="hljs-keyword">const</span> forceX = width / <span class="hljs-number">2</span> + <span class="hljs-title function_">sin</span>(time * <span class="hljs-number">0.62</span>) * width * <span class="hljs-number">0.18</span>;
+    <span class="hljs-keyword">const</span> forceY = height / <span class="hljs-number">2</span> + <span class="hljs-title function_">cos</span>(time * <span class="hljs-number">0.47</span>) * height * <span class="hljs-number">0.14</span>;
+    <span class="hljs-keyword">const</span> reach = <span class="hljs-number">128</span>;
+
+    flexPoints = [];
+    <span class="hljs-keyword">const</span> flexStrains = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row = <span class="hljs-number">0</span>; row &lt; flexRows; row++) {
+        flexPoints[row] = [];
+        flexStrains[row] = [];
+        <span class="hljs-keyword">const</span> y = <span class="hljs-title function_">map</span>(row, <span class="hljs-number">0</span>, flexRows - <span class="hljs-number">1</span>, <span class="hljs-number">38</span>, height - <span class="hljs-number">38</span>);
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> column = <span class="hljs-number">0</span>; column &lt; flexColumns; column++) {
+            <span class="hljs-keyword">const</span> x = <span class="hljs-title function_">map</span>(column, <span class="hljs-number">0</span>, flexColumns - <span class="hljs-number">1</span>, <span class="hljs-number">38</span>, width - <span class="hljs-number">38</span>);
+            <span class="hljs-keyword">const</span> edgeTension = <span class="hljs-title function_">sin</span>(<span class="hljs-variable constant_">PI</span> * column / (flexColumns - <span class="hljs-number">1</span>)) *
+                <span class="hljs-title function_">sin</span>(<span class="hljs-variable constant_">PI</span> * row / (flexRows - <span class="hljs-number">1</span>));
+            <span class="hljs-keyword">const</span> dx = x - forceX;
+            <span class="hljs-keyword">const</span> dy = y - forceY;
+            <span class="hljs-keyword">const</span> falloff = <span class="hljs-title function_">exp</span>(-(dx * dx + dy * dy) / (<span class="hljs-number">2</span> * reach * reach));
+            <span class="hljs-keyword">const</span> strain = falloff * edgeTension;
+            <span class="hljs-keyword">const</span> drift = <span class="hljs-title function_">sin</span>(y * <span class="hljs-number">0.014</span> + time * <span class="hljs-number">1.2</span>) * <span class="hljs-number">9</span> * edgeTension;
+            flexStrains[row][column] = strain;
+
+            flexPoints[row][column] = <span class="hljs-title function_">createVector</span>(
+                x + dx * strain * <span class="hljs-number">0.58</span> + drift,
+                y + dy * strain * <span class="hljs-number">0.46</span> + <span class="hljs-title function_">sin</span>(x * <span class="hljs-number">0.013</span> - time) * <span class="hljs-number">7</span> * edgeTension
+            );
+        }
+    }
+
+    <span class="hljs-title function_">noStroke</span>();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row = <span class="hljs-number">0</span>; row &lt; flexRows; row++) {
+        <span class="hljs-title function_">beginShape</span>();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> column = <span class="hljs-number">0</span>; column &lt; flexColumns; column++) {
+            <span class="hljs-keyword">const</span> flexPoint = flexPoints[row][column];
+            <span class="hljs-title function_">vertex</span>(flexPoint.<span class="hljs-property">x</span>, flexPoint.<span class="hljs-property">y</span>);
+        }
+        <span class="hljs-title function_">endShape</span>();
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> column = <span class="hljs-number">0</span>; column &lt; flexColumns; column++) {
+        <span class="hljs-title function_">beginShape</span>();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row = <span class="hljs-number">0</span>; row &lt; flexRows; row++) {
+            <span class="hljs-keyword">const</span> flexPoint = flexPoints[row][column];
+            <span class="hljs-title function_">vertex</span>(flexPoint.<span class="hljs-property">x</span>, flexPoint.<span class="hljs-property">y</span>);
+        }
+        <span class="hljs-title function_">endShape</span>();
+    }
+
+    <span class="hljs-keyword">const</span> cyanColor = <span class="hljs-title function_">color</span>(...flexCyan);
+    <span class="hljs-keyword">const</span> whiteColor = <span class="hljs-title function_">color</span>(<span class="hljs-number">255</span>);
+    <span class="hljs-keyword">const</span> magentaColor = <span class="hljs-title function_">color</span>(...flexMagenta);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row = <span class="hljs-number">0</span>; row &lt; flexRows; row++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> column = <span class="hljs-number">0</span>; column &lt; flexColumns - <span class="hljs-number">1</span>; column++) {
+            <span class="hljs-keyword">const</span> firstPoint = flexPoints[row][column];
+            <span class="hljs-keyword">const</span> secondPoint = flexPoints[row][column + <span class="hljs-number">1</span>];
+            <span class="hljs-keyword">const</span> segmentIntensity = (flexStrains[row][column] + flexStrains[row][column + <span class="hljs-number">1</span>]) / <span class="hljs-number">2</span>;
+            <span class="hljs-keyword">const</span> segmentColor = segmentIntensity &lt; <span class="hljs-number">0.5</span>
+                ? <span class="hljs-title function_">lerpColor</span>(magentaColor, whiteColor, segmentIntensity * <span class="hljs-number">2</span>)
+                : <span class="hljs-title function_">lerpColor</span>(whiteColor, cyanColor, (segmentIntensity - <span class="hljs-number">0.5</span>) * <span class="hljs-number">2</span>);
+            <span class="hljs-title function_">stroke</span>(<span class="hljs-title function_">red</span>(segmentColor), <span class="hljs-title function_">green</span>(segmentColor), <span class="hljs-title function_">blue</span>(segmentColor), <span class="hljs-title function_">map</span>(segmentIntensity, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">70</span>, <span class="hljs-number">210</span>));
+            <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-title function_">map</span>(segmentIntensity, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0.65</span>, <span class="hljs-number">1.2</span>));
+            <span class="hljs-title function_">line</span>(firstPoint.<span class="hljs-property">x</span>, firstPoint.<span class="hljs-property">y</span>, secondPoint.<span class="hljs-property">x</span>, secondPoint.<span class="hljs-property">y</span>);
+        }
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> column = <span class="hljs-number">0</span>; column &lt; flexColumns; column++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> row = <span class="hljs-number">0</span>; row &lt; flexRows - <span class="hljs-number">1</span>; row++) {
+            <span class="hljs-keyword">const</span> firstPoint = flexPoints[row][column];
+            <span class="hljs-keyword">const</span> secondPoint = flexPoints[row + <span class="hljs-number">1</span>][column];
+            <span class="hljs-keyword">const</span> segmentIntensity = (flexStrains[row][column] + flexStrains[row + <span class="hljs-number">1</span>][column]) / <span class="hljs-number">2</span>;
+            <span class="hljs-keyword">const</span> segmentColor = segmentIntensity &lt; <span class="hljs-number">0.5</span>
+                ? <span class="hljs-title function_">lerpColor</span>(magentaColor, whiteColor, segmentIntensity * <span class="hljs-number">2</span>)
+                : <span class="hljs-title function_">lerpColor</span>(whiteColor, cyanColor, (segmentIntensity - <span class="hljs-number">0.5</span>) * <span class="hljs-number">2</span>);
+            <span class="hljs-title function_">stroke</span>(<span class="hljs-title function_">red</span>(segmentColor), <span class="hljs-title function_">green</span>(segmentColor), <span class="hljs-title function_">blue</span>(segmentColor), <span class="hljs-title function_">map</span>(segmentIntensity, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">70</span>, <span class="hljs-number">210</span>));
+            <span class="hljs-title function_">strokeWeight</span>(<span class="hljs-title function_">map</span>(segmentIntensity, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0.65</span>, <span class="hljs-number">1.2</span>));
+            <span class="hljs-title function_">line</span>(firstPoint.<span class="hljs-property">x</span>, firstPoint.<span class="hljs-property">y</span>, secondPoint.<span class="hljs-property">x</span>, secondPoint.<span class="hljs-property">y</span>);
+        }
+    }
+
+    <span class="hljs-title function_">push</span>();
+    <span class="hljs-title function_">noStroke</span>();
+    <span class="hljs-title function_">fill</span>(<span class="hljs-number">255</span>);
+    <span class="hljs-title function_">textSize</span>(<span class="hljs-number">16</span>);
+    <span class="hljs-title function_">text</span>(<span class="hljs-string">&quot;Flex&quot;</span>, <span class="hljs-number">10</span>, height - <span class="hljs-number">10</span>);
+    <span class="hljs-title function_">pop</span>();
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">keyPressed</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (key === <span class="hljs-string">&#x27;s&#x27;</span>) {
+        <span class="hljs-title function_">saveCanvas</span>(<span class="hljs-string">&#x27;flex.png&#x27;</span>);
+    }
+}
+</code></pre>
+<h2 id="discussion">Discussion</h2>
+<h3 id="ai-discussion">AI Discussion</h3>
+<p>I read “Flex” as both a physical quality and a way of responding to pressure: a surface can bend, stretch, and keep its shape connected. That led to a tensioned wire grid rather than a literal figure. The visual language draws on elastic meshes, distorted wireframes, and the interference patterns that appear when regular lines are pushed out of alignment. The saturated pink fill gives the deformation a soft, almost membrane-like body, while the cyan and white strokes make the underlying structure visible.</p>
+<p>The sketch lays a 28-by-28 grid across the canvas. A smoothly moving point acts like an invisible force: its influence fades with distance, and the grid displacement is softened toward the edges so the whole mesh does not drift away. A slow wave adds a little motion beyond the force itself. Each grid segment uses the average strain at its endpoints to move through a magenta-to-white-to-cyan color range; stronger strain also increases its opacity and weight. The translucent fill is drawn underneath those strokes, so the grid reads both as a set of lines and as overlapping ribbons. Press <code>s</code> to save a frame.</p>
+<p>My impression of working with you on this was that the strongest version came from treating the image as something to look at together, not just a prompt to implement. You noticed that the fill I had initially removed was giving the grid a richer, layered character, and asked to keep it. Then we refined the color mapping until the strongest deformation became cyan against the magenta field. The iteration also surfaced a few p5 global-mode naming collisions, which we fixed without changing the visual idea. Your visual judgment gave the sketch its final contrast and depth.</p>
+<h3 id="human-discussion">Human Discussion</h3>
+<p>So today is the weirdest day of doing this 31 day computer generated art project because I worked with AI to make the sketch. First I asked it (via copilot to GPT Luna) to come up with a sketch based on the prompt word &quot;Flex&quot;. To me the prompt word flex for today triggered thoughts of making the piece in a different way and being flexible with my methods as I&#39;m learning to be more flexible with my development process given the LLM AI reality of today. The AI itself interpreted the prompt word more directly into the visual impression.</p>
+<p>After getting an initial visual interpretation from the AI I made several prompts to adjust colors, fix the title, etc. Upon fixing the title I noticed the AI was making some mistakes with setting the fill/noFill and stroke settings. When we fixed them the ribbon-like appearance disappeared and even after prompting to go back to the original interpretation it kept only a deforming wire grid and not the ribbons. I think this is because those alpha fills were a mistake. I worked on some of the code manually and figured out how to get back to that appearance and then worked with the AI to add grid lines over the frame that map to white, magenta, and cyan based on the reverse intensity of the force, which gives the contrasting lines on top.</p>
+<p>Overall I think it was a good experience but one that leaves me with lots of strange feelings and lots of questions. I&#39;m not sure if the piece is my own. How could I prompt things in different ways to get a wider variety of initial interpretations, perhaps in a larger grid, to explore more initial directions? I like the different goals where the AI was thinking mostly about &quot;Flex&quot; in the visual interpretation and I was thinking about &quot;Flex&quot; in terms of process and interaction. I like how it looked over my past pieces in this project to maintain some of the patterns I&#39;ve established so far, especially with respect to color palette.</p>
+<p>Lastly I&#39;ll note that working with the AI helped me with some math. Math isn&#39;t exactly my strongest skill set. I lean more toward organization, process, and architecture so it was helpful to let the AI handle more of the bottom level tactical things while I thought more about the vision. That said, I still had to dive down and troubleshoot some of the smallest details in order to get exactly what I wanted. The AI can kindof go off the rails and down paths that don&#39;t make sense even after multiple prompts.</p>
+<p>Today concludes my 31 day computer art project! I&#39;ll have another post in a day or two about the whole experience and looking toward what I&#39;m up to next.</p>
+<p>Cheers!</p>
+<p>M.</p>
+
+<footer>
+<p>&crarr; <a href="../../index.html">Back to home</a></p>
+</footer>
+</article>
+</main>
+
+</body>
+</html>

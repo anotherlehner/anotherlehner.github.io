@@ -1,5 +1,5 @@
 {
-    "$schema": "assets/site.schema.json",
+    "$schema": "site.schema.json",
     "title": "anotherlehner/blog",
     "header": {
         "links": {

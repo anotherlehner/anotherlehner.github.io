@@ -3,7 +3,7 @@ title: Generativetober Day 1 - Apple
 date: 2026-10-01
 ---
 
-![day 1 apple](../../assets/gentober-day1.png)
+![day 1 apple](/assets/gentober-day1.png)
 
 ```javascript
 class Mover {

@@ -3,7 +3,7 @@ title: Generativetober Day 19 - Confused
 date: 2026-10-19
 ---
 
-![day picture](../../assets/gentober-day19.png)
+![day picture](/assets/gentober-day19.png)
 
 ## Code
 

@@ -3,7 +3,7 @@ title: Generativetober Day 11 - Rescue
 date: 2026-10-11
 ---
 
-![day picture](../../assets/gentober-day11.png)
+![day picture](/assets/gentober-day11.png)
 
 ```javascript
 function setup() {

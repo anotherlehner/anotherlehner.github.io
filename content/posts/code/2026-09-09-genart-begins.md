@@ -30,4 +30,4 @@ So I'm left with `cljs` and `purs`. I really like the idea of learning some deep
 
 For a little teaser here's my first image generated with PureScript in ppm format...
 
-![demo png](../../assets/test.png)
+![demo png](/assets/test.png)

@@ -39,7 +39,7 @@
 <h1><a href="../../posts/code/2026-09-14-lips-noc-ch0-uniform.html">LIPS Scheme NoC-ch0-Uniform-Distribution</a></h1>
 <p><time datetime="2026-09-14">September 14, 2026</time></p>
 </header>
-<p><img src="../../assets/lips-scheme-uniform-distr.png" alt="lips scheme uniform distribution"></p>
+<p><img src="/assets/lips-scheme-uniform-distr.png" alt="lips scheme uniform distribution"></p>
 <p>I worked up Example 0.2 in <em>The Nature of Code</em> this morning, which displays growing rectangles with vertical height based on a uniform random distribution. </p>
 <p>Created a new <code>lib.scm</code> file that I could include that contains utility functions. I had never used the <code>unfold</code> function before but managed to use that to create a simple range function that gives me a list of incrementing numbers—this came in handy during this exercise.</p>
 <p>When I finished converting the code to Scheme and running it, I noticed an issue I hadn&#39;t entirely expected: performance. My fans kicked up when running this example in my browser. I had expected to encounter some performance issues later on when I got to exercises and examples with more data, more movement, and lots of particles, but not this early for just 20 rectangles. LIPS Scheme is fully interpreted I believe, but I didn&#39;t expect that to be an issue this early. Will need to re-evaluate tonight what to do moving forward. I don&#39;t want to be baking my laptop and listening to my fans all day.</p>

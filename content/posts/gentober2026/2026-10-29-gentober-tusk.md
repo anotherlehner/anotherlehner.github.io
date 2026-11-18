@@ -3,7 +3,7 @@ title: Generativetober Day 29 - Tusk
 date: 2026-10-29
 ---
 
-![day picture](../../assets/gentober-day29.png)
+![day picture](/assets/gentober-day29.png)
 
 ## Code
 

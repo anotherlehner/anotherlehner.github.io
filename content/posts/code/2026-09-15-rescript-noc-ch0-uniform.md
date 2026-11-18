@@ -3,7 +3,7 @@ title: ReScript NoC-ch0-Random-Distribution
 date: 2026-09-15
 ---
 
-![rescript noc random distribution](../../assets/rescript-noc-random-distr.png)
+![rescript noc random distribution](/assets/rescript-noc-random-distr.png)
 
 I restarted my work on *The Nature of Code* today and started using ReScript instead of LIPS Scheme. ReScript is a variant of the ML language family and compiles to JavaScript. It's based on OCaml and builds very fast, has good integration with the npm ecosystem, and, although it's similar to JavaScript in some ways with respect to syntax, it's a fairly pleasant middle ground between F#, OCaml, SML, JavaScript, and related languages.
 

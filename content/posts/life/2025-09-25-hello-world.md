@@ -136,4 +136,4 @@ function keyPressed() {
 
 ### image
 
-![alt text](../../assets/test.png)
+![alt text](/assets/test.png)

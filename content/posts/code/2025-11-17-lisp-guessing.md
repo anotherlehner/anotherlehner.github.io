@@ -41,7 +41,7 @@ The first game covered in Land of Lisp is a simple repl-driven guessing game, wh
 
 Here's what my Emacs dev environment looks like for Janet using the trial kit ([https://github.com/sogaiu/janet-emacs-trial-kit](https://github.com/sogaiu/janet-emacs-trial-kit)):
 
-![emacs janet environment](../../assets/emacs-janet-demo.png)
+![emacs janet environment](/assets/emacs-janet-demo.png)
 
 I liked that it was so easy to get the trial kit running and quickly see what emacs with all the relevant plugins looks like. The repl has slightly different controls from slime but I found all the ones I needed in the graphical menu with their shortcuts.
 

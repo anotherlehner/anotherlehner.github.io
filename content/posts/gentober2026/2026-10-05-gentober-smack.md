@@ -3,7 +3,7 @@ title: Generativetober Day 5 - Smack
 date: 2026-10-04
 ---
 
-![day picture](../../assets/gentober-day5.png)
+![day picture](/assets/gentober-day5.png)
 
 ```javascript
 const white = "#fff";

@@ -3,7 +3,7 @@ title: Generativetober Day 20 - Lounge
 date: 2026-10-20
 ---
 
-![day picture](../../assets/gentober-day20.png)
+![day picture](/assets/gentober-day20.png)
 
 ## Code
 

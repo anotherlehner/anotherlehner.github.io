@@ -3,7 +3,7 @@ title: Generativetober Day 14 - Lady
 date: 2026-10-14
 ---
 
-![day picture](../../assets/gentober-day14.png)
+![day picture](/assets/gentober-day14.png)
 
 ```javascript
 const white = "#fff";

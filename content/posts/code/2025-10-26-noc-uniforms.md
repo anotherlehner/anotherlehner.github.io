@@ -59,4 +59,4 @@ I needed to write a random function to make calculating discrete ranges of rando
 
 You can grab the cartridge for this in PNG format:
 
-![janet uniform distribution tic-80 cartridge](../../assets/janet_uniform_distribution.png)
+![janet uniform distribution tic-80 cartridge](/assets/janet_uniform_distribution.png)

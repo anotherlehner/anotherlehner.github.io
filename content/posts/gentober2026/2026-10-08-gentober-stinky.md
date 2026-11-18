@@ -3,7 +3,7 @@ title: Generativetober Day 8 - Stinky
 date: 2026-10-08
 ---
 
-![day picture](../../assets/gentober-day8.png)
+![day picture](/assets/gentober-day8.png)
 
 ```javascript
 // Note: this sketch may throw infinite loop protection errors, I should

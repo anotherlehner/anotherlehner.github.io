@@ -9,11 +9,11 @@ date: 2026-10-30
 
 <div id="canvas-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
-<script src="../../assets/js/gentober2026/day30.js"></script>
+<script src="/assets/js/gentober2026/day30.js"></script>
 
 ### Static
 
-![day picture](../../assets/gentober-day30-v1.png)
+![day picture](/assets/gentober-day30-v1.png)
 
 ### Code
 
@@ -92,7 +92,7 @@ function keyPressed() {
 
 ## Version 2
 
-![day picture](../../assets/gentober-day30-v2.png)
+![day picture](/assets/gentober-day30-v2.png)
 
 ### Code
 
@@ -151,7 +151,7 @@ function keyPressed() {
 
 ## Version 3
 
-![day picture](../../assets/gentober-day30-v3.png)
+![day picture](/assets/gentober-day30-v3.png)
 
 ### Code
 

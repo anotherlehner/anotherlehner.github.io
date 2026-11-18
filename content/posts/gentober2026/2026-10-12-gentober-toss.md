@@ -3,7 +3,7 @@ title: Generativetober Day 12 - Toss
 date: 2026-10-12
 ---
 
-![day picture](../../assets/gentober-day12.png)
+![day picture](/assets/gentober-day12.png)
 
 ```javascript
 const white = "#fff";

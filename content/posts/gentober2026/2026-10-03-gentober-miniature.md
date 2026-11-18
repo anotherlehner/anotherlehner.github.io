@@ -3,7 +3,7 @@ title: Generativetober Day 3 - Miniature
 date: 2026-10-03
 ---
 
-![day 3](../../assets/gentober-day3.png)
+![day 3](/assets/gentober-day3.png)
 
 ```javascript
 function keyPressed() {

@@ -3,7 +3,7 @@ title: Generativetober Day 2 - Relic
 date: 2026-10-02
 ---
 
-![day 2 relic](../../assets/gentober-day2.png)
+![day 2 relic](/assets/gentober-day2.png)
 
 ```javascript
 let font;

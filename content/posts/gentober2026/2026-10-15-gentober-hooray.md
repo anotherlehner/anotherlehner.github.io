@@ -3,7 +3,7 @@ title: Generativetober Day 15 - Hooray
 date: 2026-10-15
 ---
 
-![day picture](../../assets/gentober-day15.png)
+![day picture](/assets/gentober-day15.png)
 
 ```javascript
 const white = "#fff";

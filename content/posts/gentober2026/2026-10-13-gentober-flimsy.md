@@ -3,7 +3,7 @@ title: Generativetober Day 13 - Flimsy
 date: 2026-10-13
 ---
 
-![day picture](../../assets/gentober-day13.png)
+![day picture](/assets/gentober-day13.png)
 
 ```javascript
 const white = "#fff";

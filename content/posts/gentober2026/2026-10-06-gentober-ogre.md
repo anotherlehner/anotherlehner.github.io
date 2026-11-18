@@ -3,7 +3,7 @@ title: Generativetober Day 6 - Ogre
 date: 2026-10-06
 ---
 
-![day picture](../../assets/gentober-day6.png)
+![day picture](/assets/gentober-day6.png)
 
 ```javascript
 const white = "#fff";

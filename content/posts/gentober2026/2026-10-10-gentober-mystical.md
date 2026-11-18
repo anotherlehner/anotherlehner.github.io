@@ -3,7 +3,7 @@ title: Generativetober Day 10 - Mystical
 date: 2026-10-10
 ---
 
-![day picture](../../assets/gentober-day10.png)
+![day picture](/assets/gentober-day10.png)
 
 ```javascript
 let white;

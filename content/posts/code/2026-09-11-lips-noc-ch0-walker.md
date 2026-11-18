@@ -3,7 +3,7 @@ title: LIPS Scheme NoC-ch0-Random-Walker
 date: 2026-09-11
 ---
 
-![lips scheme random walker](../../assets/lips-scheme-random-walker.png)
+![lips scheme random walker](/assets/lips-scheme-random-walker.png)
 
 For the moment I settled on a language to use for my exploration of the Nature of Code: I'm going to be using LIPS Scheme, which can be found at https://lips.js.org/. It's an interpreted scheme that runs directly in an HTML page. I quite like the syntax of scheme but haven't had any reason to use it since I was in school many years ago. This project, being relatively small in scope, should be a nice use of it. Bonus being I can get more used to scheme and perhaps use it in other contexts like small binary executables with Chicken or other schemes.
 

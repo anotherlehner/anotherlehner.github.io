@@ -3,7 +3,7 @@ title: LIPS Scheme NoC-ch0-Uniform-Distribution
 date: 2026-09-14
 ---
 
-![lips scheme uniform distribution](../../assets/lips-scheme-uniform-distr.png)
+![lips scheme uniform distribution](/assets/lips-scheme-uniform-distr.png)
 
 I worked up Example 0.2 in *The Nature of Code* this morning, which displays growing rectangles with vertical height based on a uniform random distribution. 
 

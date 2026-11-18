@@ -3,7 +3,7 @@ title: Generativetober Day 4 - Cactus
 date: 2026-10-04
 ---
 
-![day picture](../../assets/gentober-day4.png)
+![day picture](/assets/gentober-day4.png)
 
 ```javascript
 const white = "#fff";

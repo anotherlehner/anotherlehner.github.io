@@ -3,7 +3,7 @@ title: Generativetober Day 7 - Panic
 date: 2026-10-07
 ---
 
-![day picture](../../assets/gentober-day7.png)
+![day picture](/assets/gentober-day7.png)
 
 ```javascript
 // panic

@@ -3,7 +3,7 @@ title: Generativetober Day 18 - Flightless
 date: 2026-10-18
 ---
 
-![day picture](../../assets/gentober-day18.png)
+![day picture](/assets/gentober-day18.png)
 
 ## Code
 

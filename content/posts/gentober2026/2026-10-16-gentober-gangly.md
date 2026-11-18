@@ -7,13 +7,13 @@ date: 2026-10-16
 
 <div id="canvas-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
-<script src="../../assets/js/gentober2026/day16.js"></script>
+<script src="/assets/js/gentober2026/day16.js"></script>
 
 This is the first post where I'm including an animated version of the sketch. I'm not sure if I'm going to continue doing this but after Bob and I talked yesterday we were curious if it was possible to include that in these posts. Here you go Bob!
 
 ## Static
 
-![day picture](../../assets/gentober-day16.png)
+![day picture](/assets/gentober-day16.png)
 
 ## Code
 

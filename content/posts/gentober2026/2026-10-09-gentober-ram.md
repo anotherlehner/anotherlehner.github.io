@@ -3,7 +3,7 @@ title: Generativetober Day 9 - Ram
 date: 2026-10-09
 ---
 
-![day picture](../../assets/gentober-day9.png)
+![day picture](/assets/gentober-day9.png)
 
 ```javascript
 let walker;

@@ -7,11 +7,11 @@ date: 2026-10-27
 
 <div id="canvas-container"></div>
 <script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
-<script src="../../assets/js/gentober2026/day27.js"></script>
+<script src="/assets/js/gentober2026/day27.js"></script>
 
 ## Static
 
-![day picture](../../assets/gentober-day27.png)
+![day picture](/assets/gentober-day27.png)
 
 ## Code
 

@@ -40,6 +40,15 @@
             text-decoration: inherit;
         }
 
+        .home-link {
+            width: min(100%, 80rem);
+            margin: -0.75rem auto 1rem;
+        }
+
+        .home-link a {
+            color: var(--accent);
+        }
+
         .gallery {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -104,6 +113,7 @@
     <header>
         <h1><a href="index.html">anotherlehner/art</a></h1>
     </header>
+    <p class="home-link"><a href="index.html"><span aria-hidden="true">&larr;</span> Back to home</a></p>
     <main class="gallery" aria-label="Artwork gallery">
         <a class="artwork" href="blog/posts/art/2026-11-10-oil-rock-face.html"><img src="blog/assets/art/2026-11-10-oil-rock-face.jpg" alt="oil rock face" loading="lazy"></a>
         <a class="artwork" href="blog/posts/art/2026-11-09-oil-mushroom.html"><img src="blog/assets/art/2026-11-09-oil-mushroom.jpg" alt="oil mushroom" loading="lazy"></a>

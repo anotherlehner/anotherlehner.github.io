@@ -1,6 +1,11 @@
 {
     "$schema": "assets/site.schema.json",
     "title": "anotherlehner/blog",
+    "header": {
+        "links": {
+            "← Back to home": "https://anotherlehner.github.io/index.html"
+        }
+    },
     "colors": {
         "title": "#ff55ff",
         "heading": "#ffffff",
